@@ -35,7 +35,7 @@ export const apiRequest = async <T>(
             Accept: "application/json",
         },
         // cache: "no-store",
-        cache: "force-cache",
+        // cache: "force-cache",
     };
 
     if (token) {
