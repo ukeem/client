@@ -51,7 +51,7 @@ export const apiRequest = async <T>(
         const response = await fetch(`${API}${endpoint}`, options);
 
         if (!response.ok) {
-            let errorMessage = "Ошибка запроса";
+            let errorMessage = `Ошибка запроса ${API}`;
 
             try {
                 const errorData = await response.json();
