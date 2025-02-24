@@ -3,27 +3,34 @@ import { Modal } from 'react-bootstrap'
 import Btn from './Btn'
 import Image from 'next/image'
 import { seoAltImage } from '@/lib/constants'
+import { Car } from '@/types/Car'
 
 interface ModalRequestProps {
 	requestShow: boolean
 	handleCloseRequest: () => void
-	carName: string
-	photo: string
+	car: Car
 }
 
-export const ModalRequest = ({ requestShow, handleCloseRequest, carName, photo }: ModalRequestProps) => {
+export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequestProps) => {
 
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
 	const [formdata, setFormdata] = useState({
 		carName: '',
 		name: '',
-		phone: ''
+		phone: '',
+		url: '',
+		price: ''
 	});
 
 	useEffect(() => {
-		setFormdata({ ...formdata, carName });
-	}, [carName])
+		setFormdata({
+			...formdata,
+			carName: `${car.brand} ${car.model}`,
+			url: `https://fem.encar.com/cars/detail/${car.encarId}`,
+			price: car.price.toLocaleString('ru-RU')
+		});
+	}, [])
 
 	const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormdata({ ...formdata, [e.target.name]: e.target.value });
@@ -77,7 +84,13 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, carName, photo }
 			if (!response.ok) throw new Error("Ошибка отправки");
 
 			setSuccess(true);
-			setFormdata({ carName: "", name: "", phone: "" });
+			setFormdata({
+				carName: '',
+				name: '',
+				phone: '',
+				url: '',
+				price: ''
+			});
 
 			setTimeout(() => {
 				setSuccess(false);
@@ -104,11 +117,11 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, carName, photo }
 				<Modal.Title className=' fs-5'>Оставьте заявку</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<h2 className=' lh-base fs-6 mb-2'>Ваш выбор <span className='text-accent'>{carName}</span></h2>
+				<h2 className=' lh-base fs-6 mb-2'>Ваш выбор <span className='text-accent'>{formdata.carName}</span></h2>
 				<Image
 					className='slide item_slide  mb-3 rounded-2'
-					src={`${process.env.NEXT_PUBLIC_API_URL}${photo}`}
-					alt={`${seoAltImage} | ${carName}`}
+					src={`${process.env.NEXT_PUBLIC_API_URL}${car.photos[0].photo}`}
+					alt={`${seoAltImage} | ${formdata.carName}`}
 					width={306}
 					height={184}
 					quality={50}

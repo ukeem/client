@@ -14,12 +14,11 @@ interface CarMainInfoProps {
 const CarMainInfo: FC<CarMainInfoProps> = ({ car }) => {
 
 
+
 	const [requestShow, setRequestShow] = useState(false);
-	const [carName, setCarName] = useState('');
-	const [carPhoto, setCarPhoto] = useState('');
-	const handleShowRequest = (carNameValue: string, photo: string) => {
-		setCarName(carNameValue)
-		setCarPhoto(photo)
+	// const [car, setCar] = useState<Car>();
+	const handleShowRequest = (car: Car) => {
+		// setCar(car)
 		setRequestShow(true)
 	}
 
@@ -100,7 +99,7 @@ const CarMainInfo: FC<CarMainInfoProps> = ({ car }) => {
 			<div className="row">
 				<div className="col-12">
 					<WantItBtn
-						onClick={() => handleShowRequest(`${car.brand.brand} ${car.model.model} ${(Math.round(car.price / 100000) * 100000).toLocaleString('ru-RU')} ₽`, car.photos[0].photo)}
+						onClick={() => handleShowRequest(car)}
 					/>
 					<FavoriteButton
 						carId={car.encarId}
@@ -111,8 +110,7 @@ const CarMainInfo: FC<CarMainInfoProps> = ({ car }) => {
 			<ModalRequest
 				requestShow={requestShow}
 				handleCloseRequest={handleCloseRequest}
-				carName={carName}
-				photo={carPhoto}
+				car={car}
 			/>
 		</>
 	);

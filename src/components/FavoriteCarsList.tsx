@@ -43,12 +43,11 @@ export default function FavoriteCarsList({ cars = [], limit = 9, load = 9 }: Fav
 	}, [load]);
 
 
+
 	const [requestShow, setRequestShow] = useState(false);
-	const [carName, setCarName] = useState('');
-	const [carPhoto, setCarPhoto] = useState('');
-	const handleShowRequest = (carNameValue: string, photo: string) => {
-		setCarName(carNameValue)
-		setCarPhoto(photo)
+	const [car, setCar] = useState<Car>();
+	const handleShowRequest = (car: Car) => {
+		setCar(car)
 		setRequestShow(true)
 	}
 
@@ -150,7 +149,7 @@ export default function FavoriteCarsList({ cars = [], limit = 9, load = 9 }: Fav
 											<div className="row">
 												<div className="col-12">
 													<WantItBtn
-														onClick={() => handleShowRequest(`${car.brand.brand} ${car.model.model} ${(Math.round(car.price / 100000) * 100000).toLocaleString('ru-RU')} ₽`, car.photos[0].photo)}
+														onClick={() => handleShowRequest(car)}
 													/>
 													<div className=" d-flex align-items-center gap-2">
 														<FavoriteButton
@@ -195,8 +194,7 @@ export default function FavoriteCarsList({ cars = [], limit = 9, load = 9 }: Fav
 			<ModalRequest
 				requestShow={requestShow}
 				handleCloseRequest={handleCloseRequest}
-				carName={carName}
-				photo={carPhoto}
+				car={car!}
 			/>
 		</div>
 	);
