@@ -6,9 +6,8 @@ const nextConfig: NextConfig = {
     images: {
         remotePatterns: [
             {
-                protocol: "http",
-                hostname: "localhost",
-                port: "5000",
+                protocol: "https",
+                hostname: "autokorean.ru",
                 pathname: "/uploads/**",
             },
         ],
