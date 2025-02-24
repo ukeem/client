@@ -1,3 +1,4 @@
+
 import CarDetailSlider from '@/components/CarDetailSlider';
 import CarMainInfo from '@/components/CarMainInfo';
 import HeaderInner from '@/components/HeaderInner';
@@ -7,14 +8,10 @@ import { keywords, seoAltImage } from '@/lib/constants';
 import { Car } from '@/types/Car';
 import { Metadata } from 'next';
 
-type Props = {
-	params: {
-		id: string;
-	};
-};
+type Params = Promise<{ id: string }>
 
-export async function generateMetadata({ params }: Props) {
-	const { id } = params
+export async function generateMetadata(props: { params: Params }) {
+	const { id } = await props.params;
 	const carId = id.split('_')[0];
 
 	if (!carId) return { title: 'Автомобиль не найден' };
@@ -48,8 +45,8 @@ export async function generateMetadata({ params }: Props) {
 }
 
 
-export default async function Page({ params }: Props) {
-	const { id } = params
+export default async function Page(props: { params: Params }) {
+	const { id } = await props.params;
 	const carId = id.split('_')[0];
 
 	if (!carId) return <div>Автомобиль не найден</div>;
