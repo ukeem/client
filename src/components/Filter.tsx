@@ -106,8 +106,8 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 			const maxEngineFilter = filterData.maxEngine ? engine.engine <= filterData.maxEngine : true;
 			const minMileageFilter = filterData.minMileage ? mileage >= filterData.minMileage : true;
 			const maxMileageFilter = filterData.maxMileage ? mileage <= filterData.maxMileage : true;
-			const minPriceFilter = filterData.minPrice ? price >= filterData.minPrice : true;
-			const maxPriceFilter = filterData.maxPrice ? price <= filterData.maxPrice : true;
+			const minPriceFilter = filterData.minPrice ? (price / 10000 * 10000) >= (filterData.minPrice / 10000 * 10000) : true;
+			const maxPriceFilter = filterData.maxPrice ? (price / 10000 * 10000) <= (filterData.maxPrice / 10000 * 10000) : true;
 			const transmissionFilter = filterData.transmissionIds?.length! > 0 ? filterData.transmissionIds?.includes(transmission.id) : true;
 			const fuelFilter = filterData.fuelIds?.length! > 0 ? filterData.fuelIds?.includes(fuel.id) : true;
 			const bodyFilter = filterData.bodyIds?.length! > 0 ? filterData.bodyIds?.includes(body.id) : true;
