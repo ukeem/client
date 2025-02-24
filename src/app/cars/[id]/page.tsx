@@ -8,7 +8,7 @@ import { Car } from '@/types/Car';
 import { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
-	const { id } = await params
+	const { id } = params
 	const carId = id.split('_')[0];
 
 	if (!carId) return { title: 'Автомобиль не найден' };
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 
 
 export default async function Page({ params }: { params: { id: string } }) {
-	const { id } = await params
+	const { id } = params
 	const carId = id.split('_')[0];
 
 	if (!carId) return <div>Автомобиль не найден</div>;
