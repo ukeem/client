@@ -66,7 +66,7 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 									</ul>
 									<div className=" d-flex flex-column gap-3 gap-lg-4 justify-content-between w-100">
 										<div className=" d-flex flex-column align-items-end">
-											<span className='slide_info_price text-nowrap lh-1'>{`${(Math.round(car.price / 100000) * 100000).toLocaleString('ru-RU')} ₽`}</span>
+											<span className='slide_info_price text-nowrap lh-1'>{`${(Math.round(car.price / 10000) * 10000).toLocaleString('ru-RU')} ₽`}</span>
 											<span className='slide_info_key text-nowrap lh-1'>Цена под ключ</span>
 										</div>
 										<Btn

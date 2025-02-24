@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
                 hostname: "autokorean.ru",
                 pathname: "/uploads/**",
             },
+            // {
+            //     protocol: "http",
+            //     hostname: "localhost",
+            //     port: "5000",
+            //     pathname: "/uploads/**",
+            // },
         ],
     },
     experimental: {

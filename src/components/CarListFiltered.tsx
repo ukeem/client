@@ -66,7 +66,7 @@ const CarListFiltered: FC<CarListProps> = ({ limit = 9, load = 9 }) => {
 										>
 											<h2 className='car_title mb-0'>{`${car.brand.brand} ${car.model.model} ${car.edition.edition}`}</h2>
 											<div className=" d-flex align-items-center justify-content-between">
-												<span className='car_price'>{`от ${(Math.round(car.price / 100000) * 100000).toLocaleString('ru-RU')} ₽`}</span>
+												<span className='car_price'>{`от ${(Math.round(car.price / 10000) * 10000).toLocaleString('ru-RU')} ₽`}</span>
 												<span className='car_price_key'>цена под ключ</span>
 											</div>
 										</Link>

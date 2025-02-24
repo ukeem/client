@@ -323,7 +323,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(price)
+						minPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -337,7 +337,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(price)
+						maxPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -560,7 +560,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(price)
+						minPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -574,7 +574,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(price)
+						maxPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -783,7 +783,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(price)
+						minPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -797,7 +797,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(price)
+						maxPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -991,7 +991,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(price)
+						minPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1005,7 +1005,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(price)
+						maxPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1184,7 +1184,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(price)
+						minPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1198,7 +1198,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(price)
+						maxPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1359,7 +1359,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(price)
+						minPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1373,7 +1373,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(price)
+						maxPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1517,7 +1517,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(price)
+						minPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1531,7 +1531,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(price)
+						maxPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1657,7 +1657,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(price)
+						minPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1671,7 +1671,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(price)
+						maxPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1781,7 +1781,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(price)
+						minPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1795,7 +1795,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(price)
+						maxPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1903,7 +1903,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(price)
+						maxPrice: String(price / 10000 * 10000)
 					}
 				})
 				.filter((value, index, self) =>
