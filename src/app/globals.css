@@ -1,42 +1,693 @@
+/** @format */
+
+.loading {
+    background: #fff;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.loading > svg {
+    max-width: 20vw;
+    max-height: 20vh;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --bg: #f5f5f5;
+    --accent: #f44336;
+    --dark: #212121;
+    --light: #9e9e9e;
+    --middle: #616161;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+#search {
+    padding-top: 70px;
 }
-
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: auto !important;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1rem;
+    line-height: 150%;
+    padding-top: 80px;
 }
 
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
+a:hover,
+button:hover {
+    transform: translateY(-1px);
+    filter: brightness(90%);
+}
+a:active,
+button:active {
+    transform: translateY(0);
+    filter: brightness(80%);
+}
+button {
+    transition: all 0.2s;
+    position: relative;
+}
 a {
-  color: inherit;
-  text-decoration: none;
+    position: relative;
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.2s;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/*header*/
+.header {
+    position: fixed;
+    top: -1px;
+    width: 100vw;
+    background-color: var(--bg);
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    height: 60px;
+}
+.header.inner {
+    height: 60px;
+}
+.header h2 {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--accent);
+    margin: 0;
+}
+.header h2 > span {
+    color: var(--middle);
+}
+.swiper.carDetailSlider {
+    aspect-ratio: 5/3;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+.carDetailSlider .slide {
+    cursor: zoom-in;
+}
+.little_swiper {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+/*logo*/
+.logo h2 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    text-align: center;
+    color: var(--dark);
+}
+.logo h2 span:nth-child(1) {
+    color: var(--accent);
+}
+.logo h2 span:nth-child(2) {
+    color: var(--middle);
+}
+.logo > img {
+    transition: all 0.3s;
+}
+.logo:hover > img {
+    transform: rotate(-360deg);
+}
+
+/*contact_btn*/
+/* .contact_btn {
+    padding: 0 15px;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--dark);
+    border-radius: 6px;
+    background-color: var(--dark);
+    color: #fff;
+} */
+.contact_btn {
+    padding: 0 15px;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #fff;
+}
+.contact_btn img {
+    width: 28px;
+    height: 28px;
+    fill: var(--accent);
+}
+
+/*mySwiper*/
+.mySwiper {
+    position: relative;
+    width: 100%;
+    height: auto !important;
+    aspect-ratio: 5 / 3;
+    border-radius: 6px;
+}
+.swiper.mySwiper {
+    /* padding-bottom: 450px; */
+}
+.mySwiper .slide {
+    max-width: 1296px;
+    width: 100%;
+    height: auto !important;
+    aspect-ratio: 5 / 3;
+}
+.slide {
+    width: 100%;
+    height: auto !important;
+    aspect-ratio: 5 / 3;
+}
+.mySwiper .slide_info {
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.8);
+    right: 50%;
+    /* min-height: 200px; */
+    width: 95%;
+    transform: translateX(50%);
+    bottom: 10px;
+    z-index: 3;
+}
+.mySwiperSlide {
+    border-radius: 12px;
+}
+
+.slide_info_title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 140%;
+    color: var(--dark);
+    overflow: hidden; /* Скрывает переполненный текст */
+    text-overflow: ellipsis; /* Добавляет многоточие в конце */
+    white-space: nowrap;
+}
+.slide_info_price {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 100%;
+    color: var(--accent);
+}
+.slide_info_key {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 100%;
+    text-transform: lowercase;
+    color: var(--dark);
+}
+.slide_info ul > li > p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: var(--middle);
+}
+.slide_info ul > li > p > strong {
+    font-weight: 500;
+    color: var(--dark);
+}
+.slide_info_btn {
+    border: none;
+    border-radius: 6px;
+    padding: 0px 20px;
+    width: 100%;
+    height: 48px;
+    background: var(--dark);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: #fff;
+}
+
+.filter {
+    background-color: #fff;
+}
+.filter.fix {
+    margin-bottom: 88px;
+}
+.btn_filter.fix {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 66px;
+    z-index: 10;
+}
+
+.filter form {
+    border: 1px solid var(--light);
+    border-radius: 12px;
+    max-width: 1296px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: none;
+}
+.filter_field {
+    background-color: #fff;
+    border: 1px solid var(--light);
+    border-radius: 6px;
+    height: 48px;
+    font-size: 16px;
+    line-height: 100%;
+    cursor: pointer;
+
+    span {
+        overflow: hidden; /* Скрывает переполненный текст */
+        text-overflow: ellipsis; /* Добавляет многоточие в конце */
+        white-space: nowrap;
+    }
+}
+.filter_field.disabled {
+    background-color: #eeeeee;
+    cursor: not-allowed;
+}
+.inner_btn {
+    border: none;
+    background: transparent;
+    color: var(--dark);
+}
+.modal_title {
+    font-size: 18px;
+    font-weight: bold;
+}
+.modal_checkbox {
+    border-bottom: 1px solid var(--light);
+    cursor: pointer;
+}
+.modal_checkbox:last-child {
+    border: none;
+}
+.modal_checkbox input {
+    width: 16px;
+    height: 16px;
+}
+.modal_checkbox span {
+    font-size: 16px;
+    line-height: 100%;
+}
+.modal_submit_btn {
+    border-radius: 6px;
+    height: 48px;
+    font-size: 16px;
+    color: #fff;
+    background-color: var(--dark);
+    width: 100%;
+    border: none;
+}
+.filter_submit_btn {
+    border-radius: 6px;
+    height: 48px;
+    font-size: 16px;
+    color: #fff;
+    background-color: var(--accent);
+    width: 100%;
+    border: 1px solid var(--accent);
+}
+.global_error_btn {
+    border-radius: 6px;
+    height: 48px;
+    font-size: 16px;
+    color: #fff;
+    width: 280px;
+    background-color: var(--dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.car__item {
+    border: 1px solid var(--light);
+    border-radius: 12px;
+}
+.itemSwiper {
+    border-radius: 6px;
+}
+.itemSwiper .swiper-slide {
+    aspect-ratio: 5 / 3;
+}
+.itemSwiper .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background: var(--accent);
+}
+
+.itemSwiper .swiper-pagination-bullet {
+    background: var(--bg);
+    opacity: 1;
+    width: 4px;
+    height: 4px;
+}
+.clazz {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    border-radius: 3px;
+    padding: 6px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 100%;
+    color: #fff;
+    background: var(--accent);
+    z-index: 2;
+}
+
+.car_info_key {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 100%;
+    color: var(--light);
+}
+.car_info_value {
+    font-size: 14px;
+    overflow: hidden; /* Скрывает переполненный текст */
+    text-overflow: ellipsis; /* Добавляет многоточие в конце */
+    white-space: nowrap;
+    font-weight: 500;
+    line-height: 100%;
+    color: var(--dark);
+}
+.car_title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+    color: var(--dark);
+    overflow: hidden; /* Скрывает переполненный текст */
+    text-overflow: ellipsis; /* Добавляет многоточие в конце */
+    white-space: nowrap;
+}
+.title_photo_modal {
+    overflow: hidden; /* Скрывает переполненный текст */
+    text-overflow: ellipsis; /* Добавляет многоточие в конце */
+    white-space: nowrap;
+    font-size: 14px;
+    height: auto;
+    line-height: 100%;
+}
+.car_price {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 100%;
+    color: var(--accent);
+}
+.car_price_key {
+    padding: 6px;
+    border-radius: 4px;
+    background-color: var(--dark);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: #fff;
+}
+
+.car_btn_wish {
+    border-radius: 6px;
+    padding: 0px 16px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: var(--middle);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 100%;
+}
+.car_btn_wish.added {
+    background: transparent;
+    border: 1px solid var(--accent);
+}
+.car_btn_detail {
+    border-radius: 6px;
+    padding: 0px 16px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: var(--dark);
+    color: #fff;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 100%;
+}
+.show_more_btn {
+    border-radius: 6px;
+    padding: 0px 16px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: var(--dark);
+    color: #fff;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 100%;
+}
+.car_btn_order {
+    border-radius: 6px;
+    padding: 0px 16px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 100%;
+}
+.photo_modal {
+    position: relative !important;
+    aspect-ratio: 5 / 3;
+    width: 100%;
+    max-width: 1296px;
+    height: auto !important;
+}
+.item_slide {
+    cursor: pointer;
+}
+.carDetailSlider .item_slide {
+    cursor: zoom-in;
+}
+.carDetailSlider .swiper-button-prev,
+.carDetailSlider .swiper-button-next {
+    display: none;
+}
+
+.option {
+    font-size: 16px;
+    font-weight: 300;
+}
+.options {
+    border: 1px solid var(--light);
+    border-radius: 12px;
+}
+
+.admin_panel {
+    height: calc(100vh - 64px);
+}
+.admin_panel_header_table {
+    position: sticky;
+    top: 0;
+}
+
+.encarId {
+    font-size: 12px;
+    padding: 4px;
+    border-radius: 4px;
+    background-color: var(--accent);
+    color: #fff;
+}
+.remove_encarId {
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+}
+.text-accent {
+    color: var(--accent);
+    font-weight: 600;
+}
+.favoriteLink {
+    position: fixed;
+    bottom: 60px;
+    left: 12px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
+    background-color: #fff;
+    z-index: 100;
+}
+.count_favorite {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    line-height: 24px;
+    right: -14px;
+    top: -14px;
+    background: var(--dark);
+    color: #fff;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: var(--accent);
+}
+
+.form-control {
+    border-color: var(--dark);
+}
+.requestForm label {
+    color: var(--light);
+}
+.requestForm button {
+    border-radius: 6px;
+    padding: 0px 16px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 300;
+    width: 100%;
+}
+
+@media (min-width: 475px) {
+    .swiper.mySwiper {
+        /* padding-bottom: 530px; */
+    }
+    .mySwiper .slide_info {
+        /* bottom: -530px; */
+    }
+}
+
+@media (min-width: 576px) {
+    .slide_info_btn {
+        width: 280px;
+        margin-left: auto;
+    }
+    .mySwiper .slide_info {
+        /* width: auto; */
+        /* transform: translateX(0);
+        right: 5px; */
+    }
+    .slide_info_title {
+        font-size: 28px;
+    }
+
+    .modal_submit_btn {
+        width: 280px;
+    }
+}
+
+@media (min-width: 768px) {
+    .swiper.mySwiper {
+        /* padding-bottom: 640px; */
+    }
+    .mySwiper .slide_info {
+        /* bottom: -640px; */
+    }
+    .itemSwiper .swiper-pagination-bullet {
+        width: 4px;
+        height: 4px;
+    }
+}
+
+@media (min-width: 992px) {
+    .slide_info_title {
+        font-size: 32px;
+        line-height: 100%;
+        white-space: nowrap;
+        min-height: auto;
+        min-height: 68px;
+        overflow: auto; /* Скрывает переполненный текст */
+        text-overflow: unset; /* Добавляет многоточие в конце */
+        white-space: inherit;
+    }
+    .slide_info_price {
+        font-size: 32px;
+    }
+    .swiper.mySwiper {
+        padding-bottom: 0;
+    }
+    .mySwiper .slide_info {
+        width: auto;
+        transform: translateX(0);
+        right: 24px;
+        bottom: 24px;
+    }
+
+    .carDetailSlider .swiper-button-prev,
+    .carDetailSlider .swiper-button-next {
+        display: flex;
+    }
+
+    .swiper.carDetailSlider {
+        aspect-ratio: 5/3;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .carInfo .car_info_key,
+    .carInfo .car_info_value {
+        font-size: 16px;
+    }
+
+    .option {
+        font-size: 14px;
+        font-weight: 300;
+        overflow: hidden; /* Скрывает переполненный текст */
+        text-overflow: ellipsis; /* Добавляет многоточие в конце */
+        white-space: nowrap;
+    }
+    .favoriteLink {
+        bottom: 50%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .itemSwiper .swiper-pagination-bullet {
+        width: 6px;
+        height: 6px;
+    }
+}
+.main_title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
 }
