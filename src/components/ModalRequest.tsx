@@ -68,7 +68,7 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, carName, photo }
 		}
 
 		try {
-			const response = await fetch("/api/telegram", {
+			const response = await fetch("/telegram", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(formdata),
