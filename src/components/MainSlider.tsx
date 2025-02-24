@@ -72,7 +72,8 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 										<Btn
 											icon='auto'
 											clazz='slide_info_btn d-none d-lg-flex'
-											href={`${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`}
+											href={`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`}
+											target={true}
 										>
 											Заказать авто
 										</Btn>

@@ -12,15 +12,16 @@ interface BtnProps {
 	onClick?: () => void
 	type?: 'submit'
 	disabled?: boolean
+	target?: boolean
 }
 
-const Btn: FC<BtnProps> = ({ children, href, icon, clazz, onClick, type, disabled }) => {
+const Btn: FC<BtnProps> = ({ children, href, icon, clazz, onClick, type, disabled, target }) => {
 	if (href) {
 		return (
 			<Link
 				href={href}
 				className={` d-flex justify-content-center align-items-center gap-2 ${clazz ? clazz : ''}`}
-				target='_blank'
+				target={target ? '_self' : '_blank'}
 				onClick={onClick}
 			>
 				{icon &&
