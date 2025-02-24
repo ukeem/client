@@ -38,9 +38,6 @@ const FilterModal: FC<FilterModalProps> = ({
 			});
 
 
-
-
-
 		} else {
 			const { checked } = e.target;
 			const updatedKey = `${name}Ids`;

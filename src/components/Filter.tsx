@@ -1781,7 +1781,7 @@ const Filter: FC<Filter> = ({ cars = [] }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(Math.round(price / 10000 * 10000))
+						minPrice: String(Math.round(price / 10000) * 10000)
 					}
 				})
 				.filter((value, index, self) =>
