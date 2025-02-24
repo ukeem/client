@@ -120,7 +120,13 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 				<h2 className=' lh-base fs-6 mb-2'>Ваш выбор <span className='text-accent'>{formdata.carName}</span></h2>
 				<Image
 					className='slide item_slide  mb-3 rounded-2'
-					src={`${process.env.NEXT_PUBLIC_API_URL}${car.photos[0].photo}`}
+					src={
+						car?.photos?.length
+							? `${process.env.NEXT_PUBLIC_API_URL}${car.photos
+								.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`
+							: "" // Укажите изображение-заглушку
+					}
+
 					alt={`${seoAltImage} | ${formdata.carName}`}
 					width={306}
 					height={184}
