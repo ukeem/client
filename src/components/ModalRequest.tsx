@@ -8,7 +8,7 @@ import { Car } from '@/types/Car'
 interface ModalRequestProps {
 	requestShow: boolean
 	handleCloseRequest: () => void
-	car: Car
+	car?: Car
 }
 
 export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequestProps) => {
@@ -26,9 +26,9 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 	useEffect(() => {
 		setFormdata({
 			...formdata,
-			carName: `${car.brand} ${car.model}`,
-			url: `https://fem.encar.com/cars/detail/${car.encarId}`,
-			price: car.price.toLocaleString('ru-RU')
+			carName: `${car?.brand} ${car?.model}`,
+			url: `https://fem.encar.com/cars/detail/${car?.encarId}`,
+			price: `${car?.price.toLocaleString('ru-RU')}`
 		});
 	}, [])
 
@@ -124,7 +124,7 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 						car?.photos?.length
 							? `${process.env.NEXT_PUBLIC_API_URL}${car.photos
 								.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`
-							: "" // Укажите изображение-заглушку
+							: "/" // Укажите изображение-заглушку
 					}
 
 					alt={`${seoAltImage} | ${formdata.carName}`}

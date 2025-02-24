@@ -178,7 +178,7 @@ const CarListFiltered: FC<CarListProps> = ({ limit = 9, load = 9 }) => {
 			<ModalRequest
 				requestShow={requestShow}
 				handleCloseRequest={handleCloseRequest}
-				car={car!}
+				car={car}
 			/>
 		</>
 	);
