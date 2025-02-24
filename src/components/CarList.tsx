@@ -18,7 +18,7 @@ interface CarListProps {
 	load?: number;
 }
 
-const CarList: FC<CarListProps> = ({ allcars = [], limit = 9, load = 9 }) => {
+const CarList: FC<CarListProps> = ({ allcars, limit = 9, load = 9 }) => {
 
 	const [visibleCount, setVisibleCount] = useState(limit);
 
