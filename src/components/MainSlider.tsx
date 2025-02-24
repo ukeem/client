@@ -15,13 +15,13 @@ interface MainSliderProps {
 	allCars: Car[]
 }
 const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
-	const { cars, setCars } = useCarStore()
+	// const { cars, setCars } = useCarStore()
 
 	const router = useRouter()
 
-	useEffect(() => {
-		setCars([...allCars].sort(() => Math.random() - 0.5));
-	}, [allCars]);
+	// useEffect(() => {
+	// 	setCars([...allCars].sort(() => Math.random() - 0.5));
+	// }, [allCars]);
 	return (
 		<section className="container mb-4">
 			<Swiper
@@ -34,7 +34,7 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 				modules={[Autoplay]}
 				className="mySwiper"
 			>
-				{cars.sort((a, b) => a.price - b.price).slice(0, 10).map(car => (
+				{allCars.sort((a, b) => a.price - b.price).slice(0, 10).map(car => (
 					<SwiperSlide
 						key={car.id}
 						className='mySwiperSlide'
