@@ -30,7 +30,7 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 			url: `https://fem.encar.com/cars/detail/${car?.encarId}`,
 			price: `${car?.price.toLocaleString('ru-RU')}`
 		});
-	}, [])
+	}, [car])
 
 	const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormdata({ ...formdata, [e.target.name]: e.target.value });
