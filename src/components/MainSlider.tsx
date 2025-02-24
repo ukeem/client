@@ -34,7 +34,7 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 				modules={[Autoplay]}
 				className="mySwiper"
 			>
-				{allCars.sort((a, b) => a.price - b.price).slice(0, 10).map(car => (
+				{allCars.sort(() => Math.random() - 0.5).slice(0, 10).map(car => (
 					<SwiperSlide
 						key={car.id}
 						className='mySwiperSlide'
