@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 interface MainSliderProps {
 	allCars: Car[]
 }
-const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
+const MainSlider: FC<MainSliderProps> = ({ allCars = [] }) => {
 	const { cars, setCars } = useCarStore()
 
 	const router = useRouter()

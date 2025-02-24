@@ -19,7 +19,7 @@ interface FavoriteCarsListProps {
 	load?: number;
 }
 
-export default function FavoriteCarsList({ cars, limit = 9, load = 9 }: FavoriteCarsListProps) {
+export default function FavoriteCarsList({ cars = [], limit = 9, load = 9 }: FavoriteCarsListProps) {
 	const { favoriteIds } = useFavoriteStore();
 	const [favoriteCars, setFavoriteCars] = useState<Car[]>([]);
 	const [visibleCount, setVisibleCount] = useState(limit);

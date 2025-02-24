@@ -9,7 +9,7 @@ interface AdminPanelProps {
 	allCars: Car[];
 }
 
-const AdminPanel: FC<AdminPanelProps> = ({ allCars }) => {
+const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 
 	const { cars, setCars } = useCarStore()
 	const [encarIds, setEncarIds] = useState<string[]>([])
