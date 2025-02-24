@@ -27,7 +27,6 @@ export const metadata: Metadata = {
 
 export default async function Cars() {
 
-
 	const cars = await getAllCars()
 
 	return (
