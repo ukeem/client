@@ -41,7 +41,7 @@ export interface ModalItem {
 }
 
 
-const Filter: FC<Filter> = ({ cars }) => {
+const Filter: FC<Filter> = ({ cars = [] }) => {
 
 	const { filterData, setFilterData } = useFilterDataStore();
 	const { setCarsData } = useCarsDataStore();
