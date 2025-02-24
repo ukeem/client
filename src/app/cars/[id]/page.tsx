@@ -7,7 +7,13 @@ import { keywords, seoAltImage } from '@/lib/constants';
 import { Car } from '@/types/Car';
 import { Metadata } from 'next';
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
+type Props = {
+	params: {
+		id: string;
+	};
+};
+
+export async function generateMetadata({ params }: Props) {
 	const { id } = params
 	const carId = id.split('_')[0];
 
@@ -42,7 +48,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 }
 
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: Props) {
 	const { id } = params
 	const carId = id.split('_')[0];
 
