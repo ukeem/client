@@ -28,7 +28,7 @@ export default function Dashboard() {
 		};
 
 		fetchCars();
-	}, []); // ✅ Добавляем пустой массив зависимостей, чтобы useEffect вызывался 1 раз
+	}, [setCars]); // ✅ Добавляем пустой массив зависимостей, чтобы useEffect вызывался 1 раз
 
 	if (loading) {
 		return <Loading />; // ✅ Возвращаем компонент, а не просто пустой JSX

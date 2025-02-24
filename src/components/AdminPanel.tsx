@@ -19,9 +19,10 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars }) => {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		setCars(allCars)
-		setLoading(false)
-	}, [])
+		setCars(allCars);
+		setLoading(false);
+	}, [allCars, setCars]); // ✅ Теперь useEffect запустится при изменении allCars
+
 
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
