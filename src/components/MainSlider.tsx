@@ -1,5 +1,5 @@
 'use client'
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import "swiper/css";
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,12 +17,18 @@ interface MainSliderProps {
 }
 const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 	// const { cars, setCars } = useCarStore()
-
 	const { cars } = useCars();
+
 
 	const router = useRouter()
 
-	const slicedCars = cars.slice(0, 10)
+	const [randomCars, setRandomCars] = useState<Car[]>([]);
+
+	useEffect(() => {
+		// Перемешиваем массив и берём первые 10 машин
+		const shuffledCars = [...cars].sort(() => Math.random() - 0.5).slice(0, 10);
+		setRandomCars(shuffledCars);
+	}, [cars]);
 
 	return (
 		<section className="container mb-4">
@@ -36,7 +42,7 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 				modules={[Autoplay]}
 				className="mySwiper"
 			>
-				{slicedCars.sort(() => Math.random() - 0.5).map(car => (
+				{randomCars.sort(() => Math.random() - 0.5).map(car => (
 					<SwiperSlide
 						key={car.id}
 						className='mySwiperSlide'
