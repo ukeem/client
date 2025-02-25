@@ -105,9 +105,16 @@ export const translateColor = (color: any) => {
         case "흰색":
             return "Белый";
         case "은색":
+        case "명은색":
             return "Серебро";
+        case "은색투톤":
+            return "Двухцветный серебро";
+        case "금색투톤":
+            return "Двухцветный золото";
         case "은회색":
             return "Серебристо-серый";
+        case "연금색":
+            return "Светло-серый";
         case "하늘색":
             return "Голубой";
         default:
