@@ -9,14 +9,15 @@ import Footer from '@/components/Footer';
 // import { getFilteringCars } from '@/lib/apiRequest';
 import { Suspense } from 'react';
 import Loading from '@/components/Loading';
-import cars from '@/data/response.json'
+import data from '@/data/response.json'
+import { Car } from '@/types/Car';
 
 
 const inter = Inter({
 	subsets: ['latin', 'cyrillic'],
 })
 
-
+const cars: Car[] = data as Car[];
 
 export default async function RootLayout({
 	children,
