@@ -664,12 +664,6 @@ a {
 }
 
 @media (min-width: 768px) {
-    .swiper.mySwiper {
-        /* padding-bottom: 640px; */
-    }
-    .mySwiper .slide_info {
-        /* bottom: -640px; */
-    }
     .itemSwiper .swiper-pagination-bullet {
         width: 4px;
         height: 4px;
