@@ -7,6 +7,8 @@ import { CarsProvider } from '@/context/CarsContext';
 import { Car } from '@/types/Car';
 import Footer from '@/components/Footer';
 import { getFilteringCars } from '@/lib/apiRequest';
+import { Suspense } from 'react';
+import Loading from '@/components/Loading';
 
 
 const inter = Inter({
@@ -33,14 +35,16 @@ export default async function RootLayout({
 	const cars = await getFilteringCars({})
 
 	return (
-		<html lang="ru">
-			<body className={inter.className}>
-				<CarsProvider initialCars={cars}>
-					{children}
-					<Footer />
-					<FavoriteLink />
-				</CarsProvider>
-			</body>
-		</html>
+		<Suspense fallback={<Loading />}>
+			<html lang="ru">
+				<body className={inter.className}>
+					<CarsProvider initialCars={cars}>
+						{children}
+						<Footer />
+						<FavoriteLink />
+					</CarsProvider>
+				</body>
+			</html>
+		</Suspense>
 	);
 }
