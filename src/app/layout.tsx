@@ -15,7 +15,7 @@ const inter = Inter({
 async function getCars(): Promise<Car[]> {
 	const response = await fetch(
 		`${process.env.NEXT_PUBLIC_API_URL}/api/cars`,
-		//  { cache: "force-cache" }
+		{ cache: "force-cache" }
 	);
 	// const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cars`);
 	const data: Car[] = await response.json();
