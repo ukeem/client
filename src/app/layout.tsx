@@ -30,7 +30,6 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 
-	// const cars = await getCars()
 	const cars = await getFilteringCars({})
 
 	return (
