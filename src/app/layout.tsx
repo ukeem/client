@@ -30,7 +30,7 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 
-	const cars = await getFilteringCars({ limit: 300 })
+	const cars = await getFilteringCars()
 
 	return (
 		<html lang="ru">
