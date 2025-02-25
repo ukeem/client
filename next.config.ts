@@ -10,13 +10,12 @@ const nextConfig: NextConfig = {
                 hostname: "autokorean.ru",
                 pathname: "/uploads/**",
             },
-            // {
-            //     protocol: "http",
-            //     hostname: "localhost",
-            //     port: "5000",
-            //     pathname: "/uploads/**",
-            // },
         ],
+        domains: ["autokorean.ru"], // Внешние домены
+        formats: ["image/avif", "image/webp"], // Оптимальные форматы
+        minimumCacheTTL: 60 * 60 * 24 * 30, // Увеличил кэш до 30 дней
+        dangerouslyAllowSVG: true, // Разрешить SVG, если используешь
+        contentSecurityPolicy: "default-src 'self'; img-src * data: blob:;", // Для безопасности
     },
     eslint: {
         // Warning: This allows production builds to successfully complete even if
