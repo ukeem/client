@@ -45,7 +45,7 @@ const ItemSlider: FC<MainSliderProps> = ({ photos, clazz, title }) => {
 							alt={`${seoAltImage} | ${el.photo}`}
 							width={306}
 							height={184}
-							// quality={25}
+							quality={25}
 							priority
 							onClick={() => setShow(true)}
 						/>
