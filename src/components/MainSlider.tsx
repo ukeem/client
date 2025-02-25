@@ -22,9 +22,8 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 
 	const router = useRouter()
 
-	// useEffect(() => {
-	// 	setCars([...allCars].sort(() => Math.random() - 0.5));
-	// }, [allCars]);
+	const slicedCars = cars.slice(0, 10)
+
 	return (
 		<section className="container mb-4">
 			<Swiper
@@ -37,7 +36,7 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 				modules={[Autoplay]}
 				className="mySwiper"
 			>
-				{cars.sort(() => Math.random() - 0.5).slice(0, 10).map(car => (
+				{slicedCars.sort(() => Math.random() - 0.5).map(car => (
 					<SwiperSlide
 						key={car.id}
 						className='mySwiperSlide'
