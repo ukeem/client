@@ -9,7 +9,7 @@ import Footer from '@/components/Footer';
 // import { getFilteringCars } from '@/lib/apiRequest';
 import { Suspense } from 'react';
 import Loading from '@/components/Loading';
-import { cars } from '@/lib/cars';
+import cars from '@/data/response.json'
 
 
 const inter = Inter({
