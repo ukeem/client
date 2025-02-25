@@ -169,7 +169,7 @@ const CarList: FC<CarListProps> = ({ allcars, limit = 9, load = 9 }) => {
 
 				{
 					visibleCount < cars.length && (
-						<div className=" container py-4">
+						<div className=" container py-4 mb-5">
 							<div className="row">
 								<div className=" mx-auto col-12 col-md-4 ">
 									<Btn

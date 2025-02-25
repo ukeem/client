@@ -2344,7 +2344,7 @@ const Filter: FC<Filter> = ({ carss = [] }) => {
 		});
 
 		if (pathname !== "/filter") {
-			router.push("/filter", { scroll: false });
+			router.push("/filter");
 		} else {
 			document.getElementById("search")?.scrollIntoView({ behavior: "smooth" });
 		}

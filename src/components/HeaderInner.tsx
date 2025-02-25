@@ -31,7 +31,6 @@ const HeaderInner: FC<HeaderProps> = () => {
 								<Link
 									href='/'
 									className=' d-flex gap-2 align-items-center'
-									scroll={false}
 								>
 									<Image
 										src={`/home.svg`}
@@ -46,7 +45,6 @@ const HeaderInner: FC<HeaderProps> = () => {
 								<Link
 									href='/cars'
 									className=' d-flex gap-2 align-items-center'
-									scroll={false}
 								>
 									<Image
 										src={`/catalog.svg`}
@@ -68,7 +66,6 @@ const HeaderInner: FC<HeaderProps> = () => {
 									<Link
 										href='/cars'
 										className=' d-flex gap-2 align-items-center'
-										scroll={false}
 									>
 										<span>Каталог авто</span>
 										<Image
@@ -83,7 +80,6 @@ const HeaderInner: FC<HeaderProps> = () => {
 									<Link
 										href='/filter'
 										className=' d-flex gap-2 align-items-center'
-										scroll={false}
 									>
 										<span>Фильтр</span>
 										<Image

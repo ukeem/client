@@ -24,7 +24,6 @@ const Header: FC<HeaderProps> = () => {
 								<Link
 									href='/cars'
 									className=' d-flex gap-2 align-items-center'
-									scroll={false}
 								>
 									<span>Каталог авто</span>
 									<Image

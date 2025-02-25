@@ -5,6 +5,7 @@ import "./globals.css";
 import FavoriteLink from '@/components/FavoriteLink';
 import { CarsProvider } from '@/context/CarsContext';
 import { Car } from '@/types/Car';
+import Footer from '@/components/Footer';
 
 
 const inter = Inter({
@@ -13,6 +14,7 @@ const inter = Inter({
 
 async function getCars(): Promise<Car[]> {
 	const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cars`, { cache: "force-cache" });
+	// const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cars`);
 	const data: Car[] = await response.json();
 	return data;
 }
@@ -31,6 +33,7 @@ export default async function RootLayout({
 			<body className={inter.className}>
 				<CarsProvider initialCars={cars}>
 					{children}
+					<Footer />
 					<FavoriteLink />
 				</CarsProvider>
 			</body>
