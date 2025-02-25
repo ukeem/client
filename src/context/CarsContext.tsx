@@ -10,7 +10,7 @@ interface CarsContextType {
 
 const CarsContext = createContext<CarsContextType>({
 	cars: [],
-	setCars: () => { }, // Заглушка для setCars
+	setCars: () => { },
 });
 
 interface CarsProviderProps {
