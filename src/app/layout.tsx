@@ -4,9 +4,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 import FavoriteLink from '@/components/FavoriteLink';
 import { CarsProvider } from '@/context/CarsContext';
-import { Car } from '@/types/Car';
+// import { Car } from '@/types/Car';
 import Footer from '@/components/Footer';
-import { getFilteringCars } from '@/lib/apiRequest';
+// import { getFilteringCars } from '@/lib/apiRequest';
 import { Suspense } from 'react';
 import Loading from '@/components/Loading';
 import { cars } from '@/lib/cars';
@@ -16,15 +16,6 @@ const inter = Inter({
 	subsets: ['latin', 'cyrillic'],
 })
 
-async function getCars(): Promise<Car[]> {
-	const response = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/cars`,
-		{ cache: "force-cache" }
-	);
-	// const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cars`);
-	const data: Car[] = await response.json();
-	return data;
-}
 
 
 export default async function RootLayout({

@@ -51,7 +51,7 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 							<Image
 								className='slide'
 								src={`${process.env.NEXT_PUBLIC_API_URL}${car.photos.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`}
-								quality={50}
+								quality={75}
 								loading="lazy"
 								alt={`${seoAltImage} | ${car.encarId}`}
 								fill

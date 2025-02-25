@@ -32,7 +32,7 @@ export default async function Home() {
 			<h1 className='main_title'>{`Авто из Кореи | ${seoAltImage}`}</h1>
 			<Header />
 			<MainSlider />
-			{/* <Filter /> */}
+			<Filter />
 			<CarList />
 		</>
 	);
