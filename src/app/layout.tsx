@@ -6,6 +6,7 @@ import FavoriteLink from '@/components/FavoriteLink';
 import { CarsProvider } from '@/context/CarsContext';
 import { Car } from '@/types/Car';
 import Footer from '@/components/Footer';
+import { getFilteringCars } from '@/lib/apiRequest';
 
 
 const inter = Inter({
@@ -29,7 +30,10 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 
-	const cars = await getCars()
+	// const cars = await getCars()
+	const cars = await getFilteringCars({
+		limit: 100
+	})
 
 	return (
 		<html lang="ru">
