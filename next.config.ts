@@ -11,7 +11,6 @@ const nextConfig: NextConfig = {
                 pathname: "/uploads/**",
             },
         ],
-        domains: ["autokorean.ru"], // Внешние домены
         formats: ["image/avif", "image/webp"], // Оптимальные форматы
         minimumCacheTTL: 60 * 60 * 24 * 30, // Увеличил кэш до 30 дней
         dangerouslyAllowSVG: true, // Разрешить SVG, если используешь
