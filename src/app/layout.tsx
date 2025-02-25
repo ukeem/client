@@ -9,6 +9,7 @@ import Footer from '@/components/Footer';
 import { getFilteringCars } from '@/lib/apiRequest';
 import { Suspense } from 'react';
 import Loading from '@/components/Loading';
+import { cars } from '@/lib/cars';
 
 
 const inter = Inter({
@@ -32,7 +33,7 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 
-	const cars = await getFilteringCars({})
+	// const cars = await getFilteringCars({})
 
 	return (
 		<Suspense fallback={<Loading />}>
