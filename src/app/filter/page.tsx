@@ -1,7 +1,6 @@
 import CarListFiltered from '@/components/CarListFiltered';
 import Filter from '@/components/Filter';
 import HeaderInner from '@/components/HeaderInner';
-import { getAllCars } from '@/lib/apiRequest';
 import { keywords, seoAltImage } from '@/lib/constants';
 import { Metadata } from 'next';
 
@@ -27,9 +26,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Cars() {
-
-
-	const cars = await getAllCars()
 
 	return (
 		<>

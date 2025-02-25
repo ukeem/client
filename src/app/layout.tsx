@@ -12,7 +12,7 @@ const inter = Inter({
 })
 
 async function getCars(): Promise<Car[]> {
-	const response = await fetch("https://autokorean.ru/api/cars", { cache: "force-cache" });
+	const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/cars`, { cache: "force-cache" });
 	const data: Car[] = await response.json();
 	return data;
 }

@@ -1,5 +1,4 @@
 import MainSlider from '@/components/MainSlider';
-import { getAllCars } from '@/lib/apiRequest';
 import Filter from '@/components/Filter';
 import CarList from '@/components/CarList';
 import { Metadata } from 'next';
@@ -27,8 +26,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-
-	// const cars = await getAllCars()
 
 	return (
 		<>
