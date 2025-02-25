@@ -1,100 +1,51 @@
 'use client'
+import { useCars } from '@/context/CarsContext';
 import { fetchAllCars } from '@/lib/apiRequest';
 import { getLocal, translateColor } from '@/lib/fn';
-import { useCarStore } from '@/store/useCarStore';
 import { Car } from "@/types/Car";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 
 interface AdminPanelProps {
-	allCars: Car[];
+	allCars?: Car[];
 }
 
 const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 
-	const { cars, setCars } = useCarStore()
-	const [encarIds, setEncarIds] = useState<string[]>([])
-	const [encarId, setEncarId] = useState<string>('')
+
+	const { cars } = useCars();
+	const [url, setUrl] = useState<string>('')
 	const [token] = useState<string>(() => getLocal("token") || "");
 
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 
-	useEffect(() => {
-		setCars(allCars);
-		setLoading(false);
-	}, [allCars, setCars]); // ✅ Теперь useEffect запустится при изменении allCars
+	const extractCarIds = (htmlString: string): string[] => {
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(htmlString, "text/html");
 
+		console.log(doc);
+		const carRows = doc.querySelectorAll("tr[data-impression]");
 
-
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const value = e.target.value;
-		if (value.startsWith('https://fem.encar.com/cars/detail/')) {
-			const match = value.match(/\/detail\/(\d{8})/);
-			const id = match ? match[1] : null;
-
-			if (id) {
-				setEncarId(id);
-				return; // Чтобы не перезаписывать правильный ID
-			}
-		} else if (value.startsWith('http://www.encar.com/dc/dc_cardetailview.do')) {
-			const match = value.match(/[?&]carid=(\d{8})/);
-			const id = match ? match[1] : null;
-
-			if (id) {
-				setEncarId(id);
-				return; // Чтобы не перезаписывать правильный ID
-			}
-		} else {
-			if (/^\d{1,8}$/.test(value)) { // Разрешаем только цифры, максимум 8 символов
-				setEncarId(value);
-			}
-		}
+		return Array.from(carRows)
+			.map(row => row.getAttribute("data-impression")?.split("|")[0] || "") // Заменяем undefined на ""
+			.filter(id => id); // Фильтруем пустые строки
 	};
 
-
-
-	const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (e.key === 'Enter') {
-			handleAdd()
-		}
-	}
-
-	const handleAdd = () => {
-		if (encarId.length < 8) {
-			alert('encar ID состоит из 8 цифр');
-			setEncarId('');
-			return;
-		}
-
-		setEncarIds((prev) => {
-			if (prev.includes(encarId)) {
-				alert('Этот encar ID уже добавлен');
-				return prev; // Возвращаем без изменений, если ID уже есть
-			}
-			return [...prev, encarId];
-		});
-
-		setEncarId('');
-	};
-
-
-	const handleRemove = (value: string) => {
-		setEncarIds(prevItems => prevItems.filter(item => item !== value));
-	};
 
 	const handleSave = async () => {
 
 		setLoading(true)
 		try {
 
-			if (encarIds.length === 0 || !token) {
-				return
-			}
-			// console.log(token);
+			const ids = extractCarIds(url);
+			console.log(ids);
+			console.log(token);
 
-			const res = await fetchAllCars(encarIds, token)
-			console.log(res);
 
-			setEncarIds([])
+			const res = await fetchAllCars(ids, token)
+			// const data = await res.json();
+			// console.log(data);
+
+			setUrl('')
 
 		} catch (error) {
 			alert(error)
@@ -115,38 +66,21 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 
 						<div className=" d-flex align-items-center gap-3">
 							<input
-								type="text"
-								value={encarId}
-								onChange={handleChange}
-								onKeyDown={handleEnterPress}
+								type='text'
+								value={url}
+								onChange={(e) => setUrl(e.target.value)}
+								// onKeyDown={handleEnterPress}
 								disabled={loading}
 							/>
 
 							<button
-								onClick={handleAdd}
+								onClick={handleSave}
 								disabled={loading}
 							>
-								Добавить ID
+								Добавить URL
 							</button>
 						</div>
-						<div className=" d-flex flex-wrap gap-2">
-							{encarIds.map(el => (
-								<span key={el} className=' encarId d-flex align-items-center gap-2'>
-									<span className='  lh-1'>{el}</span>
-									<span
-										className='remove_encarId lh-1'
-										onClick={() => handleRemove(el)}
-									>&times;</span>
-								</span>
-							))}
-						</div>
 					</div>
-					<button
-						onClick={handleSave}
-						disabled={loading}
-					>
-						Сохранить в базу
-					</button>
 				</div>
 				<div className="table-responsive admin_panel overflow-y-auto">
 					<table className="table position-relative table-striped">
