@@ -1,14 +1,12 @@
 'use client'
 import AdminPanel from '@/components/AdminPanel';
-import { getFilteringCars } from '@/lib/apiRequest';
-import { useCarStore } from '@/store/useCarStore';
-import { useEffect, useState } from 'react';
-import Loading from '../loading';
+import { useEffect } from 'react';
 import { getLocal } from '@/lib/fn';
+import { useCars } from '@/context/CarsContext';
 
 export default function Dashboard() {
-	const [loading, setLoading] = useState(true);
-	const { cars, setCars } = useCarStore();
+	// const [loading, setLoading] = useState(true);
+	const { cars } = useCars();
 
 	useEffect(() => {
 
@@ -16,23 +14,11 @@ export default function Dashboard() {
 		if (role !== 'ADMIN' || !role) {
 			window.location.href = '/'
 		}
-		const fetchCars = async () => {
-			try {
-				const data = await getFilteringCars({});
-				setCars(data);
-			} catch (error) {
-				console.error("Ошибка загрузки машин:", error);
-			} finally {
-				setLoading(false); // ✅ Вызываем setLoading(false) только после запроса
-			}
-		};
+	}, []); // ✅ Добавляем пустой массив зависимостей, чтобы useEffect вызывался 1 раз
 
-		fetchCars();
-	}, [setCars]); // ✅ Добавляем пустой массив зависимостей, чтобы useEffect вызывался 1 раз
-
-	if (loading) {
-		return <Loading />; // ✅ Возвращаем компонент, а не просто пустой JSX
-	}
+	// if (loading) {
+	// 	return <Loading />; // ✅ Возвращаем компонент, а не просто пустой JSX
+	// }
 
 	return <AdminPanel allCars={cars} />;
 }

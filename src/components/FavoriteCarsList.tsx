@@ -12,17 +12,19 @@ import { translateBody, translateColor, translateFuel, translateTransmission } f
 import FavoriteButton from './FavoriteButton';
 import { WantItBtn } from './WantItBtn';
 import { ModalRequest } from './ModalRequest';
+import { useCars } from '@/context/CarsContext';
 
 interface FavoriteCarsListProps {
-	cars: Car[]; // Все автомобили
+	// cars: Car[]; // Все автомобили
 	limit?: number;
 	load?: number;
 }
 
-export default function FavoriteCarsList({ cars = [], limit = 9, load = 9 }: FavoriteCarsListProps) {
+export default function FavoriteCarsList({ limit = 9, load = 9 }: FavoriteCarsListProps) {
 	const { favoriteIds } = useFavoriteStore();
 	const [favoriteCars, setFavoriteCars] = useState<Car[]>([]);
 	const [visibleCount, setVisibleCount] = useState(limit);
+	const { cars } = useCars();
 
 	useEffect(() => {
 		const filteredCars = cars.filter((car) => favoriteIds.includes(car.encarId));
@@ -38,9 +40,9 @@ export default function FavoriteCarsList({ cars = [], limit = 9, load = 9 }: Fav
 		router.push(`/cars/${url}`)
 	}
 
-	const handleShowMore = useCallback(() => {
-		setVisibleCount((prev) => prev + load);
-	}, [load]);
+	const handleShowMore = () => {
+		setVisibleCount((prev) => prev += load);
+	}
 
 
 

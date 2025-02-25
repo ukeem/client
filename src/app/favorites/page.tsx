@@ -35,7 +35,7 @@ export default async function Cars() {
 		<>
 			<h1 className='main_title'>{`Избранные авто | ${seoAltImage}`}</h1>
 			<HeaderInner />
-			<FavoriteCarsList cars={cars} />
+			<FavoriteCarsList />
 		</>
 	);
 }
