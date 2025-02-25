@@ -28,15 +28,15 @@ export const metadata: Metadata = {
 
 export default async function Home() {
 
-	const cars = await getAllCars()
+	// const cars = await getAllCars()
 
 	return (
 		<>
 			<h1 className='main_title'>{`Авто из Кореи | ${seoAltImage}`}</h1>
 			<Header />
-			<MainSlider allCars={cars} />
-			<Filter cars={cars} />
-			<CarList allcars={cars} />
+			<MainSlider />
+			<Filter />
+			<CarList />
 		</>
 	);
 }

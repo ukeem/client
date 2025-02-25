@@ -1,5 +1,5 @@
 'use client'
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import "swiper/css";
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,14 +8,17 @@ import Btn from './Btn';
 import { formatNumber, translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
 import { Car } from '@/types/Car';
 import { seoAltImage, seoUrlCarPage } from '@/lib/constants';
-import { useCarStore } from '@/store/useCarStore';
+// import { useCarStore } from '@/store/useCarStore';
 import { useRouter } from 'next/navigation';
+import { useCars } from '@/context/CarsContext';
 
 interface MainSliderProps {
-	allCars: Car[]
+	allCars?: Car[]
 }
 const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 	// const { cars, setCars } = useCarStore()
+
+	const { cars } = useCars();
 
 	const router = useRouter()
 
@@ -34,7 +37,7 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 				modules={[Autoplay]}
 				className="mySwiper"
 			>
-				{allCars.sort(() => Math.random() - 0.5).slice(0, 10).map(car => (
+				{cars.sort(() => Math.random() - 0.5).slice(0, 10).map(car => (
 					<SwiperSlide
 						key={car.id}
 						className='mySwiperSlide'

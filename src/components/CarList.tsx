@@ -1,19 +1,19 @@
 'use client'
 import { translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
 import { Car } from '@/types/Car';
-import { useState, useMemo, useCallback, FC, useEffect } from "react";
+import { useState, useCallback, FC } from "react";
 import ItemSlider from './ItemSlider';
 import Btn from './Btn';
 import { seoUrlCarPage } from '@/lib/constants';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useCarStore } from '@/store/useCarStore';
 import FavoriteButton from './FavoriteButton';
 import { WantItBtn } from './WantItBtn';
 import { ModalRequest } from './ModalRequest';
+import { useCars } from '@/context/CarsContext';
 
 interface CarListProps {
-	allcars: Car[]
+	allcars?: Car[]
 	limit?: number;
 	load?: number;
 }
@@ -22,11 +22,12 @@ const CarList: FC<CarListProps> = ({ allcars, limit = 9, load = 9 }) => {
 
 	const [visibleCount, setVisibleCount] = useState(limit);
 
-	const { cars, setCars } = useCarStore()
+	const { cars } = useCars();
+	// const { cars, setCars } = useCarStore()
 
-	useEffect(() => {
-		setCars([...allcars].sort(() => Math.random() - 0.5));
-	}, [allcars]);
+	// useEffect(() => {
+	// 	setCars([...allcars].sort(() => Math.random() - 0.5));
+	// }, [allcars]);
 
 	const visibleCars = cars.slice(0, visibleCount);
 

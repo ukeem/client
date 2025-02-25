@@ -10,6 +10,7 @@ import Btn from './Btn';
 import { usePathname, useRouter, } from 'next/navigation';
 import { seoAltImage } from '@/lib/constants';
 import { useCarsDataStore } from '@/store/useCarsDataStore';
+import { useCars } from '@/context/CarsContext';
 
 export interface FilterProps {
 	minMileage?: number;
@@ -31,7 +32,7 @@ export interface FilterProps {
 }
 
 interface Filter {
-	cars: Car[]
+	carss?: Car[]
 }
 
 
@@ -41,10 +42,11 @@ export interface ModalItem {
 }
 
 
-const Filter: FC<Filter> = ({ cars = [] }) => {
+const Filter: FC<Filter> = ({ carss = [] }) => {
 
 	const { filterData, setFilterData } = useFilterDataStore();
 	const { setCarsData } = useCarsDataStore();
+	const { cars } = useCars();
 
 
 	const [show, setShow] = useState(false);

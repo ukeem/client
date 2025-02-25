@@ -1,33 +1,38 @@
-"use client";
-import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+
 import { Inter } from 'next/font/google'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 import FavoriteLink from '@/components/FavoriteLink';
+import { CarsProvider } from '@/context/CarsContext';
+import { Car } from '@/types/Car';
 
 
 const inter = Inter({
 	subsets: ['latin', 'cyrillic'],
 })
 
-export default function RootLayout({
+async function getCars(): Promise<Car[]> {
+	const response = await fetch("https://autokorean.ru/api/cars", { cache: "force-cache" });
+	const data: Car[] = await response.json();
+	return data;
+}
+
+
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
 
-	const pathname = usePathname();
-
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, [pathname]);
+	const cars = await getCars()
 
 	return (
 		<html lang="ru">
 			<body className={inter.className}>
-				{children}
-				<FavoriteLink />
+				<CarsProvider initialCars={cars}>
+					{children}
+					<FavoriteLink />
+				</CarsProvider>
 			</body>
 		</html>
 	);
