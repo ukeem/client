@@ -35,7 +35,7 @@ export default async function Cars() {
 		<>
 			<h1 className='main_title'>{`Подбор авто по фильтру | ${seoAltImage}`}</h1>
 			<HeaderInner />
-			<Filter cars={cars} />
+			<Filter />
 			<CarListFiltered />
 		</>
 	);
