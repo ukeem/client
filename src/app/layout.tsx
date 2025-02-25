@@ -31,9 +31,7 @@ export default async function RootLayout({
 }>) {
 
 	// const cars = await getCars()
-	const cars = await getFilteringCars({
-		limit: 100
-	})
+	const cars = await getFilteringCars({})
 
 	return (
 		<html lang="ru">
