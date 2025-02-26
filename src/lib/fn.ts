@@ -170,7 +170,10 @@ export const isNumberArray = (value: number | number[]): value is number[] => {
     return Array.isArray(value);
 };
 
-export const searchFilterCar = (filters: FilterProps, cars: Car[]): Car[] => {
+export const searchFilterCar = (
+    filters: Partial<FilterProps> = {},
+    cars: Car[]
+): Car[] => {
     return cars.filter((car) => {
         const passed =
             (!filters.brandIds ||
