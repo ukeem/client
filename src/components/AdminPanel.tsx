@@ -80,13 +80,15 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 		direction: "asc",
 	});
 
-	const sortCars = (key: "year" | "price") => {
+	const sortCars = (key: "year" | "price" | 'color') => {
 		setSortConfig((prevConfig) => {
 			const newDirection = prevConfig.key === key && prevConfig.direction === "asc" ? "desc" : "asc";
 
 			setCars((prevCars) => {
 				const sortedCars = [...prevCars].sort((a, b) => {
-					return newDirection === "asc" ? a[key] - b[key] : b[key] - a[key];
+					const aValue = key === 'year' || key === 'price' ? a[key] : a[key].color;
+					const bValue = key === 'year' || key === 'price' ? b[key] : b[key].color;
+					return newDirection === "asc" ? Number(aValue) - Number(bValue) : Number(bValue) - Number(aValue);
 				});
 
 				return sortedCars;
@@ -141,11 +143,16 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 								>
 									Цена {sortConfig.key === "price" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}
 								</th>
+								<th
+									scope="col"
+									onClick={() => sortCars("color")}
+									style={{ cursor: 'pointer' }}
+								>
+									Цвет {sortConfig.key === "color" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}</th>
 								<th scope="col">Encar ID</th>
 								<th scope="col">Марка</th>
 								<th scope="col">Модель</th>
 								<th scope="col">Поколение</th>
-								<th scope="col">Цвет</th>
 								<th scope="col">Действия</th>
 							</tr>
 						</thead>
@@ -156,11 +163,11 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 									<th scope="row">{index + 1}</th>
 									<td>{el.year}</td>
 									<td>{el.price.toLocaleString('ru-RU')}</td>
+									<td>{translateColor(el.color.color)}</td>
 									<td>{el.encarId}</td>
 									<td>{el.brand.brand}</td>
 									<td>{el.model.model}</td>
 									<td>{el.edition.edition}</td>
-									<td>{translateColor(el.color.color)}</td>
 									<td
 										onClick={() => handleDelete(`${el.id}`)}
 										style={{ cursor: 'pointer' }}
