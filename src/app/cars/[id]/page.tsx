@@ -45,7 +45,7 @@ export async function generateMetadata(props: { params: Params }) {
 }
 
 
-export default async function Page(props: { params: Params }) {
+export default async function CarPage(props: { params: Params }) {
 	const { id } = await props.params;
 	const carId = id.split('_')[0];
 

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 	},
 };
 
-export default async function Cars() {
+export default async function CarsPage() {
 
 	const initialCars = await getCars(12, 0);
 	return (

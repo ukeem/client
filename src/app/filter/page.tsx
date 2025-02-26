@@ -1,10 +1,6 @@
-import CarListFiltered from '@/components/CarListFiltered';
 import Filter from '@/components/Filter';
-import HeaderInner from '@/components/HeaderInner';
 import { keywords, seoAltImage } from '@/lib/constants';
 import { Metadata } from 'next';
-import { Suspense } from 'react';
-import Loading from '../loading';
 import { getAllCars } from '@/api/cars';
 
 
@@ -28,7 +24,7 @@ export const metadata: Metadata = {
 	},
 };
 
-export default async function Cars() {
+export default async function FilterPage() {
 
 	const allCars = await getAllCars();
 
