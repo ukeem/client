@@ -90,7 +90,7 @@ export async function saveAllCars(
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify({ carIds: data }),
             cache: "no-store",
         }
     );
