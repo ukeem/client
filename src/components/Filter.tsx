@@ -2362,9 +2362,17 @@ const Filter: FC = () => {
 
 
 
-	// if (!cars) {
-	// 	return <Loading />
-	// }
+	if (!cars) {
+		return (
+			<div className="loading">
+				<p>
+					Пожалуйста подождите!
+					<br />
+					Идет загрузка всех авто...
+				</p>
+			</div>
+		)
+	}
 
 	return (
 		<>
