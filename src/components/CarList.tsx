@@ -160,7 +160,7 @@ const CarList: FC<CarListProps> = ({ limit = 12 }) => {
 													<Btn
 														clazz=' w-100 car_btn_detail'
 														icon='info'
-														href={`${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`}
+														href={`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`}
 														target={true}
 													>
 														<span>Детали</span>
