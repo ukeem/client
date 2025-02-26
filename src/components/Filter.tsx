@@ -2329,7 +2329,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 		setCarsData([]);
 
 		if (isEmptyObject(filterData)) {
-			setCarsData(cars);
+			window.location.reload();
 			return;
 		}
 
