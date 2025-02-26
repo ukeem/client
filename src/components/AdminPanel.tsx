@@ -5,25 +5,17 @@ import { Car } from "@/types/Car";
 import { FC, useEffect, useState } from "react";
 
 interface AdminPanelProps {
-	allCars?: Car[];
+	allCars: Car[];
 }
 
 const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 
 
-	const [cars, setCars] = useState<Car[]>([]);
+	const [cars, setCars] = useState<Car[]>(allCars);
 	const [url, setUrl] = useState<string>('')
 	const [token] = useState<string>(() => getLocal("token") || "");
 
 	const [loading, setLoading] = useState(false);
-
-	useEffect(() => {
-		const fetchCars = async () => {
-			const fetchedCars = await getAllCars();
-			setCars(fetchedCars);
-		};
-		fetchCars();
-	}, []);
 
 	const extractCarIds = (htmlString: string): string[] => {
 		const parser = new DOMParser();
@@ -62,26 +54,48 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 
 	};
 	const handleDelete = async (id: string) => {
-		confirm('Вы уверены, что хотите удалить?')
-
 		if (!token) {
-			alert('Необходимо авторизоваться')
-			return
+			alert("Необходимо авторизоваться");
+			return;
 		}
 
-		if (!confirm('Вы уверены, что хотите удалить?')) {
-			return
+		if (!confirm("Вы уверены, что хотите удалить?")) {
+			return;
 		}
 
-		setLoading(true)
+		setLoading(true);
 		try {
-			await deleteCar(id, token)
+			await deleteCar(id, token);
+			setCars((prevCars) => prevCars.filter((car) => car.id !== Number(id))); // Обновляем список после удаления
 		} catch (error) {
-			alert(error)
+			alert(error);
 		} finally {
-			setLoading(false)
+			setLoading(false);
 		}
-	}
+	};
+
+
+	const [sortConfig, setSortConfig] = useState<{ key: string; direction: "asc" | "desc" }>({
+		key: "year",
+		direction: "asc",
+	});
+
+	const sortCars = (key: "year" | "price") => {
+		setSortConfig((prevConfig) => {
+			const newDirection = prevConfig.key === key && prevConfig.direction === "asc" ? "desc" : "asc";
+
+			setCars((prevCars) => {
+				const sortedCars = [...prevCars].sort((a, b) => {
+					return newDirection === "asc" ? a[key] - b[key] : b[key] - a[key];
+				});
+
+				return sortedCars;
+			});
+
+			return { key, direction: newDirection };
+		});
+	};
+
 
 	return (
 		<>
@@ -113,9 +127,13 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 						<thead className="table-dark admin_panel_header_table">
 							<tr>
 								<th scope="col">#</th>
-								<th scope="col">Год</th>
+								<th scope="col" onClick={() => sortCars("year")}>
+									Год {sortConfig.key === "year" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}
+								</th>
+								<th scope="col" onClick={() => sortCars("price")}>
+									Цена {sortConfig.key === "price" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}
+								</th>
 								<th scope="col">Encar ID</th>
-								<th scope="col">Цена</th>
 								<th scope="col">Марка</th>
 								<th scope="col">Модель</th>
 								<th scope="col">Поколение</th>
@@ -125,7 +143,7 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 						</thead>
 						<tbody className=' overflow-y-auto'>
 
-							{cars.sort((a, b) => a.year - b.year).map((el, index) => (
+							{cars.map((el, index) => (
 								<tr key={el.id}>
 									<th scope="row">{index + 1}</th>
 									<td>{el.year}</td>
