@@ -2,7 +2,7 @@
 import Filter from '@/components/Filter';
 // import { keywords, seoAltImage } from '@/lib/constants';
 // import { Metadata } from 'next';
-import { getAllCars } from '@/api/cars';
+// import { getAllCars } from '@/api/cars';
 
 
 // export const metadata: Metadata = {
@@ -40,15 +40,18 @@ import { useState, useEffect } from 'react';
 import { Car } from '@/types/Car';
 import { seoAltImage } from '@/lib/constants';
 import Loading from './loading';
+import { useCarStore } from '@/store/useCarStore';
 
 export default function FilterPage() {
-	const [allCars, setAllCars] = useState<Car[]>([]);
+	// const [allCars, setAllCars] = useState<Car[]>([]);
+	const { cars, setCars } = useCarStore()
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchCars = async () => {
-			const cars = await getAllCars();
-			setAllCars(cars);
+			const response = await fetch("/response.json");
+			const data: Car[] = await response.json();
+			setCars(data);
 			setLoading(false);
 		};
 		fetchCars();
@@ -61,7 +64,7 @@ export default function FilterPage() {
 	return (
 		<>
 			<h1 className='main_title'>{`Подбор авто по фильтру | ${seoAltImage}`}</h1>
-			<Filter allCars={allCars} />
+			<Filter allCars={cars} />
 		</>
 	);
 }
