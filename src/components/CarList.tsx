@@ -29,7 +29,7 @@ const CarList: FC<CarListProps> = ({ limit = 12, cars }) => {
 	const fetchMoreCars = async (limit: number, offset: number) => {
 		try {
 			setLoading(true);
-			const data = await getCars(limit, offset);
+			const data = await getCars(limit, offset, 'price', 'DESC');
 
 			if (data.length && data.length < limit) setHasMore(false);
 			setVisibleCars((prev) => [...prev, ...data]);
