@@ -127,10 +127,18 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 						<thead className="table-dark admin_panel_header_table">
 							<tr>
 								<th scope="col">#</th>
-								<th scope="col" onClick={() => sortCars("year")}>
+								<th
+									scope="col"
+									onClick={() => sortCars("year")}
+									style={{ cursor: 'pointer' }}
+								>
 									Год {sortConfig.key === "year" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}
 								</th>
-								<th scope="col" onClick={() => sortCars("price")}>
+								<th
+									scope="col"
+									onClick={() => sortCars("price")}
+									style={{ cursor: 'pointer' }}
+								>
 									Цена {sortConfig.key === "price" ? (sortConfig.direction === "asc" ? "↑" : "↓") : ""}
 								</th>
 								<th scope="col">Encar ID</th>
@@ -147,8 +155,8 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 								<tr key={el.id}>
 									<th scope="row">{index + 1}</th>
 									<td>{el.year}</td>
+									<td>{el.price.toLocaleString('ru-RU')}</td>
 									<td>{el.encarId}</td>
-									<td>{el.price}</td>
 									<td>{el.brand.brand}</td>
 									<td>{el.model.model}</td>
 									<td>{el.edition.edition}</td>
