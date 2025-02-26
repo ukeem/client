@@ -23,7 +23,7 @@ const CarListFiltered: FC<CarListProps> = ({ limit = 9, load = 9 }) => {
 
 	const [visibleCount, setVisibleCount] = useState(limit);
 
-	const visibleCars = carsData.slice(0, visibleCount);
+	const visibleCars = carsData.sort((a, b) => a.price - b.price).slice(0, visibleCount);
 
 
 	const router = useRouter()
@@ -52,7 +52,7 @@ const CarListFiltered: FC<CarListProps> = ({ limit = 9, load = 9 }) => {
 			<div className='cars mb-4' id='search'>
 				<div className=" container">
 					<div className="row row-gap-4">
-						{visibleCars.sort((a, b) => a.price - b.price).map((car) => (
+						{visibleCars.map((car) => (
 							<div key={car.id} className="col-12 col-md-6 col-xl-4">
 								<div className="car__item p-3 p-lg-4 d-flex flex-column gap-3">
 									<div>

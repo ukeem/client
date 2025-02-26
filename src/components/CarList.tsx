@@ -29,7 +29,7 @@ const CarList: FC<CarListProps> = ({ allcars, limit = 9, load = 9 }) => {
 	// 	setCars([...allcars].sort(() => Math.random() - 0.5));
 	// }, [allcars]);
 
-	const visibleCars = cars.slice(0, visibleCount);
+	const visibleCars = cars.sort(() => Math.random() - 0.5).slice(0, visibleCount);
 
 	const router = useRouter()
 
