@@ -66,6 +66,7 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 		setLoading(true);
 		try {
 			await deleteCar(id, token);
+
 			setCars((prevCars) => prevCars.filter((car) => car.id !== Number(id))); // Обновляем список после удаления
 		} catch (error) {
 			alert(error);
@@ -104,25 +105,21 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 			<section className="container-fluid p-3 overflow-hidden admin_panel">
 				<div className=" d-flex align-items-center justify-content-between">
 
-					<div className=" d-flex flex-column gap-2">
+					<input
+						type='text'
+						value={url}
+						onChange={(e) => setUrl(e.target.value)}
+						// onKeyDown={handleEnterPress}
+						disabled={loading}
+						className=' flex-shrink-0'
+					/>
 
-						<div className=" d-flex align-items-center gap-3">
-							<input
-								type='text'
-								value={url}
-								onChange={(e) => setUrl(e.target.value)}
-								// onKeyDown={handleEnterPress}
-								disabled={loading}
-							/>
-
-							<button
-								onClick={handleSave}
-								disabled={loading}
-							>
-								Добавить URL
-							</button>
-						</div>
-					</div>
+					<button
+						onClick={handleSave}
+						disabled={loading}
+					>
+						Добавить URL
+					</button>
 				</div>
 				<div className="table-responsive admin_panel overflow-y-auto">
 					<table className="table position-relative table-striped">
