@@ -60,9 +60,9 @@ export default function FilterPage() {
 			fetchCars();
 		}
 		setLoading(false);
-	}, []);
+	}, [cars]);
 
-	if (loading) {
+	if (loading || cars.length === 0) {
 		return (
 			<div className="loading">
 				<p>
