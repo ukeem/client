@@ -56,11 +56,9 @@ export default function FilterPage() {
 			setCars(data);
 			setLoading(false);
 		};
-		if (cars.length === 0) {
-			fetchCars();
-		}
-		setLoading(false);
-	}, [cars]);
+
+		fetchCars();
+	}, []);
 
 	if (loading || cars.length === 0) {
 		return (
