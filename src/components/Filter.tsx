@@ -2324,7 +2324,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 		}
 	}
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		setLoading(true);
 		setCarsData([]);
 
@@ -2332,36 +2332,41 @@ const Filter: FC<Filter> = ({ allCars }) => {
 			window.location.reload();
 			return;
 		}
+		try {
 
-		const data = searchFilterCar(filterData, cars);
-		data.sort((a, b) => a.price - b.price);
+			const data = searchFilterCar(filterData, cars);
+			data.sort((a, b) => a.price - b.price);
 
-		setCarsData(data);
-
-		setFilterData({
-			minMileage: undefined,
-			maxMileage: undefined,
-			minYear: undefined,
-			maxYear: undefined,
-			minPrice: undefined,
-			maxPrice: undefined,
-			brandIds: [],
-			modelIds: [],
-			editionIds: [],
-			fuelIds: [],
-			colorIds: [],
-			minEngine: undefined,
-			maxEngine: undefined,
-			bodyIds: [],
-			transmissionIds: [],
-		});
-
-		if (pathname !== "/filter") {
-			router.push("/filter");
-		} else {
+			setCarsData(data);
 			document.getElementById("search")?.scrollIntoView({ behavior: "smooth" });
+		} catch (error) {
+
+		} finally {
+			setFilterData({
+				minMileage: undefined,
+				maxMileage: undefined,
+				minYear: undefined,
+				maxYear: undefined,
+				minPrice: undefined,
+				maxPrice: undefined,
+				brandIds: [],
+				modelIds: [],
+				editionIds: [],
+				fuelIds: [],
+				colorIds: [],
+				minEngine: undefined,
+				maxEngine: undefined,
+				bodyIds: [],
+				transmissionIds: [],
+			});
+			setLoading(false);
 		}
-		setLoading(false);
+
+		// if (pathname !== "/filter") {
+		// 	router.push("/filter");
+		// } else {
+
+		// }
 	};
 
 
