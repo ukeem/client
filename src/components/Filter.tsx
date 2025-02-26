@@ -11,6 +11,7 @@ import { usePathname, useRouter, } from 'next/navigation';
 import { seoAltImage } from '@/lib/constants';
 import { useCarsDataStore } from '@/store/useCarsDataStore';
 import { useCars } from '@/context/CarsContext';
+import Loading from './Loading';
 
 export interface FilterProps {
 	minMileage?: number;
@@ -2349,6 +2350,12 @@ const Filter: FC<Filter> = ({ carss = [] }) => {
 			document.getElementById("search")?.scrollIntoView({ behavior: "smooth" });
 		}
 	};
+
+
+
+	if (!cars) {
+		return <Loading />
+	}
 
 	return (
 		<>

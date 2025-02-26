@@ -63,7 +63,7 @@ const ItemSlider: FC<MainSliderProps> = ({ photos, clazz, title }) => {
 						width={306}
 						height={184}
 						quality={75}
-						loading="lazy"
+						// loading="lazy"
 						priority
 						onClick={() => setShow(true)}
 					/>

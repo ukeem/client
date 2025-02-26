@@ -11,6 +11,7 @@ import FavoriteButton from './FavoriteButton';
 import { WantItBtn } from './WantItBtn';
 import { ModalRequest } from './ModalRequest';
 import { useCars } from '@/context/CarsContext';
+import Loading from './Loading';
 
 interface CarListProps {
 	allcars?: Car[]
@@ -53,6 +54,11 @@ const CarList: FC<CarListProps> = ({ allcars, limit = 9, load = 9 }) => {
 		setRequestShow(false)
 	}
 
+
+
+	if (!cars) {
+		return <Loading />
+	}
 	return (
 		<>
 

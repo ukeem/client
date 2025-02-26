@@ -11,6 +11,7 @@ import FavoriteButton from './FavoriteButton';
 import { WantItBtn } from './WantItBtn';
 import { ModalRequest } from './ModalRequest';
 import { Car } from '@/types/Car';
+import Loading from './Loading';
 
 interface CarListProps {
 	limit?: number;
@@ -46,6 +47,12 @@ const CarListFiltered: FC<CarListProps> = ({ limit = 9, load = 9 }) => {
 
 	const handleCloseRequest = () => {
 		setRequestShow(false)
+	}
+
+
+
+	if (!carsData) {
+		return <Loading />
 	}
 	return (
 		<>

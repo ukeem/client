@@ -11,6 +11,7 @@ import { seoAltImage, seoUrlCarPage } from '@/lib/constants';
 // import { useCarStore } from '@/store/useCarStore';
 import { useRouter } from 'next/navigation';
 import { useCars } from '@/context/CarsContext';
+import Loading from './Loading';
 
 interface MainSliderProps {
 	allCars?: Car[]
@@ -29,6 +30,10 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 		const shuffledCars = [...cars].sort(() => Math.random() - 0.5).slice(0, 10);
 		setRandomCars(shuffledCars);
 	}, [cars]);
+
+	if (!cars) {
+		return <Loading />
+	}
 
 	return (
 		<section className="container mb-4">
@@ -52,7 +57,7 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 								className='slide'
 								src={`${process.env.NEXT_PUBLIC_API_URL}${car.photos.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`}
 								quality={75}
-								loading="lazy"
+								// loading="lazy"
 								alt={`${seoAltImage} | ${car.encarId}`}
 								fill
 								priority
