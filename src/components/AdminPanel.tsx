@@ -104,7 +104,6 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 		<>
 			<section className="container-fluid p-3 overflow-hidden admin_panel">
 				<div className=" d-flex align-items-center justify-content-between">
-
 					<input
 						type='text'
 						value={url}
@@ -113,7 +112,6 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 						disabled={loading}
 						className=' flex-shrink-0'
 					/>
-
 					<button
 						onClick={handleSave}
 						disabled={loading}
