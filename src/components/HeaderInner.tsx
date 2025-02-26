@@ -1,5 +1,5 @@
 'use client'
-import type { FC } from 'react';
+import { useEffect, type FC } from 'react';
 import Btn from './Btn';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -12,13 +12,9 @@ const HeaderInner: FC<HeaderProps> = () => {
 	const router = useRouter()
 	const pathname = usePathname()
 
-	const goBack = () => {
-		router.back();
-
-		setTimeout(() => {
-			document.querySelector("main")?.scrollTo({ top: 0, behavior: "smooth" });
-		}, 100);
-	};
+	useEffect(() => {
+		window.scroll(0, 0);
+	}, [pathname]);
 
 
 	return (
