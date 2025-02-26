@@ -27,14 +27,14 @@ export const metadata: Metadata = {
 	},
 };
 
-export default async function Cars() {
+export default function Cars() {
 
 	return (
-		<>
+		<Suspense fallback={<Loading />}>
 			<h1 className='main_title'>{`Подбор авто по фильтру | ${seoAltImage}`}</h1>
 			<HeaderInner />
 			<Filter />
 			<CarListFiltered />
-		</>
+		</Suspense>
 	);
 }

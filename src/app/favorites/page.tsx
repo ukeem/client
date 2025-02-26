@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 	},
 };
 
-export default async function Cars() {
+export default function Cars() {
 
 	return (
 		<Suspense fallback={<Loading />}>

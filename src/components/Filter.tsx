@@ -2362,7 +2362,7 @@ const Filter: FC = () => {
 
 
 
-	if (!cars) {
+	if (cars.length === 0) {
 		return (
 			<div className="loading">
 				<p>
