@@ -1,8 +1,8 @@
 'use client'
-import { deleteCar, getAllCars, saveAllCars } from '@/api/cars';
+import { deleteCar, saveAllCars } from '@/api/cars';
 import { getLocal, translateColor } from '@/lib/fn';
 import { Car } from "@/types/Car";
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 
 interface AdminPanelProps {
 	allCars: Car[];
