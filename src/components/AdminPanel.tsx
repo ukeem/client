@@ -103,18 +103,19 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 	return (
 		<>
 			<section className="container-fluid p-3 overflow-hidden admin_panel">
-				<div className=" d-flex align-items-center justify-content-between">
+				<div className=" d-flex align-items-center justify-content-between gap-3 mb-3">
 					<input
 						type='text'
 						value={url}
 						onChange={(e) => setUrl(e.target.value)}
 						// onKeyDown={handleEnterPress}
 						disabled={loading}
-						className=' flex-shrink-0'
+						className=' w-75'
 					/>
 					<button
 						onClick={handleSave}
 						disabled={loading}
+						className=' w-25'
 					>
 						Добавить URL
 					</button>

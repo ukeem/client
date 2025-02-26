@@ -505,7 +505,7 @@ a {
 }
 
 .admin_panel {
-    height: calc(100vh - 64px);
+    height: calc(100vh - 200px);
 }
 .admin_panel_header_table {
     position: sticky;
