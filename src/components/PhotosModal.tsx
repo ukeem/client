@@ -34,7 +34,7 @@ const PhotosModal: FC<PhotosModalProps> = ({ photos, show, handleClose, title })
 							<Image
 								src={`${process.env.NEXT_PUBLIC_API_URL}${el.photo}`}
 								alt={`${seoAltImage} | ${el.id}fullscreen`}
-								quality={75}
+								// quality={75}
 								// loading="lazy"
 								fill
 								priority

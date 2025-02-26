@@ -62,7 +62,7 @@ const ItemSlider: FC<MainSliderProps> = ({ photos, clazz, title }) => {
 						alt={`${seoAltImage} | ${photos.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`}
 						width={306}
 						height={184}
-						quality={75}
+						// quality={75}
 						// loading="lazy"
 						priority
 						onClick={() => setShow(true)}

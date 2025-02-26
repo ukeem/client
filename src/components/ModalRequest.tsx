@@ -26,7 +26,7 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 	useEffect(() => {
 		setFormdata({
 			...formdata,
-			carName: `${car?.brand.brand} ${car?.model.model}`,
+			carName: `${car?.brand.brand} ${car?.model.model}  ${car?.edition.edition}`,
 			url: `https://fem.encar.com/cars/detail/${car?.encarId}`,
 			price: `${car?.price.toLocaleString('ru-RU', { maximumFractionDigits: 0 })}`
 		});

@@ -14,11 +14,12 @@ import Loading from './Loading';
 import { getCars } from '@/api/cars';
 
 interface CarListProps {
+	cars: Car[];
 	limit?: number;
 }
 
-const CarList: FC<CarListProps> = ({ limit = 12 }) => {
-	const { cars } = useCars();
+const CarList: FC<CarListProps> = ({ limit = 12, cars }) => {
+	// const { cars } = useCars();
 	const [visibleCars, setVisibleCars] = useState(cars);
 	const [visibleOffset, setVisibleOffset] = useState<number>(0);
 	const [loading, setLoading] = useState(false);

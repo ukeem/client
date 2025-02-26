@@ -10,7 +10,8 @@ import FilterBtn from '@/components/FilterBtn';
 
 export default async function Home() {
 
-	const initialCars = await getCars(12, 0);
+	const carListData = await getCars(12, 0, 'price', 'DESC');
+	const initialCars = await getCars(12, 0, 'price', 'ASC');
 
 	return (
 		<CarsProvider initialCars={initialCars}>
@@ -18,7 +19,7 @@ export default async function Home() {
 			<Header />
 			<MainSlider />
 			<FilterBtn />
-			<CarList />
+			<CarList cars={carListData} />
 		</CarsProvider>
 	);
 }

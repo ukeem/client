@@ -44,7 +44,7 @@ const MainSlider: FC = () => {
 							>
 								<Image
 									src={`${process.env.NEXT_PUBLIC_API_URL}${car.photos.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`}
-									quality={75}
+									// quality={75}
 									alt={`${seoAltImage} | ${car.encarId}`}
 									fill
 									sizes="(max-width: 768px) 100vw, 50vw"
