@@ -1,5 +1,5 @@
 'use client'
-import { getAllCars, saveAllCars } from '@/api/cars';
+import { deleteCar, getAllCars, saveAllCars } from '@/api/cars';
 import { getLocal, translateColor } from '@/lib/fn';
 import { Car } from "@/types/Car";
 import { FC, useEffect, useState } from "react";
@@ -61,6 +61,27 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 
 
 	};
+	const handleDelete = async (id: string) => {
+		confirm('Вы уверены, что хотите удалить?')
+
+		if (!token) {
+			alert('Необходимо авторизоваться')
+			return
+		}
+
+		if (!confirm('Вы уверены, что хотите удалить?')) {
+			return
+		}
+
+		setLoading(true)
+		try {
+			await deleteCar(id, token)
+		} catch (error) {
+			alert(error)
+		} finally {
+			setLoading(false)
+		}
+	}
 
 	return (
 		<>
@@ -94,6 +115,7 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 								<th scope="col">#</th>
 								<th scope="col">Год</th>
 								<th scope="col">Encar ID</th>
+								<th scope="col">Цена</th>
 								<th scope="col">Марка</th>
 								<th scope="col">Модель</th>
 								<th scope="col">Поколение</th>
@@ -108,11 +130,18 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 									<th scope="row">{index + 1}</th>
 									<td>{el.year}</td>
 									<td>{el.encarId}</td>
+									<td>{el.price}</td>
 									<td>{el.brand.brand}</td>
 									<td>{el.model.model}</td>
 									<td>{el.edition.edition}</td>
 									<td>{translateColor(el.color.color)}</td>
-									<td>Удалить</td>
+									<td
+										onClick={() => handleDelete(`${el.id}`)}
+										style={{ cursor: 'pointer' }}
+										className='text-accent'
+									>
+										Удалить
+									</td>
 								</tr>
 							))}
 						</tbody>

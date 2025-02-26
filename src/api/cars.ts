@@ -36,32 +36,27 @@ export async function getAllCars(
     orderKey?: string,
     orderValue?: string
 ): Promise<Car[]> {
-    try {
-        const params = new URLSearchParams();
+    const params = new URLSearchParams();
 
-        if (orderKey) params.append("orderKey", orderKey);
-        if (orderValue) params.append("orderValue", orderValue);
+    if (orderKey) params.append("orderKey", orderKey);
+    if (orderValue) params.append("orderValue", orderValue);
 
-        const url = `${
-            process.env.NEXT_PUBLIC_API_URL
-        }/api/cars?${params.toString()}`;
+    const url = `${
+        process.env.NEXT_PUBLIC_API_URL
+    }/api/cars?${params.toString()}`;
 
-        const res = await fetch(url, {
-            method: "GET",
-            cache: "force-cache",
-        });
+    const res = await fetch(url, {
+        method: "GET",
+        cache: "force-cache",
+    });
 
-        if (!res.ok) {
-            throw new Error(
-                `Ошибка загрузки данных: ${res.status} ${res.statusText}`
-            );
-        }
-
-        return await res.json();
-    } catch (error) {
-        console.error("Ошибка getAllCars:", error);
-        throw new Error("Не удалось загрузить автомобили.");
+    if (!res.ok) {
+        throw new Error(
+            `Ошибка загрузки данных: ${res.status} ${res.statusText}`
+        );
     }
+
+    return await res.json();
 }
 
 export async function getCarById(id: string): Promise<Car> {
@@ -74,7 +69,7 @@ export async function getCarById(id: string): Promise<Car> {
         }
     );
 
-    if (!res.ok) throw new Error("Ошибка загрузки данных");
+    if (!res.ok) throw new Error("Ошибка загрузки данных автомобиля");
 
     return res.json();
 }
@@ -97,7 +92,25 @@ export async function saveAllCars(
         }
     );
 
-    if (!res.ok) throw new Error("Ошибка загрузки данных");
+    if (!res.ok) throw new Error("Ошибка сохранения данных");
+
+    return res.json();
+}
+
+export async function deleteCar(id: string, token: string): Promise<void> {
+    // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cars/${id}`, {
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}`,
+        {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            cache: "no-store",
+        }
+    );
+
+    if (!res.ok) throw new Error("Ошибка удаления автомобиля");
 
     return res.json();
 }
