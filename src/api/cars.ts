@@ -115,7 +115,7 @@ export async function deleteCar(id: string, token: string): Promise<void> {
     if (!res.ok) throw new Error("Ошибка удаления автомобиля");
 
     try {
-        const filePath = path.join(process.cwd(), "/response.json");
+        const filePath = path.join(process.cwd(), "/public/response.json");
         const data = JSON.parse(await fs.readFile(filePath, "utf-8"));
 
         // Фильтруем массив, удаляя машину с соответствующим id
