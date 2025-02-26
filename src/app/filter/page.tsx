@@ -44,18 +44,22 @@ import { useCarStore } from '@/store/useCarStore';
 
 export default function FilterPage() {
 	// const [allCars, setAllCars] = useState<Car[]>([]);
-	const { cars, setCars } = useCarStore()
+	const { cars, setCars } = useCarStore();
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchCars = async () => {
-			const response = await fetch("/response.json");
+			const response = await fetch("/response.json", {
+				cache: "force-cache",
+			});
 			const data: Car[] = await response.json();
 			setCars(data);
 			setLoading(false);
 		};
-		fetchCars();
-	}, []);
+		if (!cars.length) {
+			fetchCars();
+		}
+	}, [setCars, cars.length]);
 
 	if (loading) {
 		return <Loading />
