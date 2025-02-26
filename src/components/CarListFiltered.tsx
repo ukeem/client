@@ -13,30 +13,12 @@ import { ModalRequest } from './ModalRequest';
 import { Car } from '@/types/Car';
 import Loading from './Loading';
 
-interface CarListProps {
-	limit?: number;
-	load?: number;
-}
 
-const CarListFiltered: FC<CarListProps> = ({ limit = 9, load = 9 }) => {
+const CarListFiltered: FC = () => {
 
 	const { carsData } = useCarsDataStore();
 
-	const [visibleCount, setVisibleCount] = useState(limit);
-
-	const visibleCars = carsData.sort((a, b) => a.price - b.price).slice(0, visibleCount);
-
-
-	const router = useRouter()
-
-	const handleLink = (url: string) => {
-		router.push(`/cars/${url}`)
-	}
-
-	const handleShowMore = useCallback(() => {
-		setVisibleCount((prev) => prev + load);
-	}, [load]);
-
+	const visibleCars = carsData.sort((a, b) => a.price - b.price)
 
 	const [requestShow, setRequestShow] = useState(false);
 	const [car, setCar] = useState<Car>();
@@ -48,8 +30,6 @@ const CarListFiltered: FC<CarListProps> = ({ limit = 9, load = 9 }) => {
 	const handleCloseRequest = () => {
 		setRequestShow(false)
 	}
-
-
 
 	if (!carsData) {
 		return <Loading />
@@ -150,7 +130,8 @@ const CarListFiltered: FC<CarListProps> = ({ limit = 9, load = 9 }) => {
 													<Btn
 														clazz=' w-100 car_btn_detail'
 														icon='info'
-														onClick={() => { handleLink(`${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`) }}
+														href={`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`}
+														target={true}
 													>
 														<span>Детали</span>
 													</Btn>
@@ -164,7 +145,7 @@ const CarListFiltered: FC<CarListProps> = ({ limit = 9, load = 9 }) => {
 					</div>
 				</div>
 
-				{visibleCount < carsData.length && (
+				{/* {visibleCount < carsData.length && (
 					<div className="container py-4 mb-5">
 						<div className="row">
 							<div className="mx-auto col-12 col-md-4">
@@ -178,7 +159,7 @@ const CarListFiltered: FC<CarListProps> = ({ limit = 9, load = 9 }) => {
 							</div>
 						</div>
 					</div>
-				)}
+				)} */}
 
 			</div >
 

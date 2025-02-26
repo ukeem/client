@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { User } from '@/types/User';
-import { login } from '@/lib/apiRequest';
 import { getLocal, saveLocal } from '@/lib/fn';
+import { login } from '@/api/user';
 
 export default function LoginForm() {
 	const { register, handleSubmit, formState: { errors } } = useForm<User>();

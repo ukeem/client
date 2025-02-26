@@ -1,9 +1,8 @@
 'use client'
-import { useCars } from '@/context/CarsContext';
-import { fetchAllCars } from '@/lib/apiRequest';
+import { getAllCars, saveAllCars } from '@/api/cars';
 import { getLocal, translateColor } from '@/lib/fn';
 import { Car } from "@/types/Car";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 interface AdminPanelProps {
 	allCars?: Car[];
@@ -12,11 +11,19 @@ interface AdminPanelProps {
 const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 
 
-	const { cars } = useCars();
+	const [cars, setCars] = useState<Car[]>([]);
 	const [url, setUrl] = useState<string>('')
 	const [token] = useState<string>(() => getLocal("token") || "");
 
 	const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+		const fetchCars = async () => {
+			const fetchedCars = await getAllCars();
+			setCars(fetchedCars);
+		};
+		fetchCars();
+	}, []);
 
 	const extractCarIds = (htmlString: string): string[] => {
 		const parser = new DOMParser();
@@ -37,11 +44,9 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 		try {
 
 			const ids = extractCarIds(url);
-			console.log(ids);
-			console.log(token);
 
 
-			const res = await fetchAllCars(ids, token)
+			await saveAllCars(ids, token)
 			// const data = await res.json();
 			// console.log(data);
 

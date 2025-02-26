@@ -1,9 +1,9 @@
 
+import { getCarById } from '@/api/cars';
 import CarDetailSlider from '@/components/CarDetailSlider';
 import CarMainInfo from '@/components/CarMainInfo';
 import HeaderInner from '@/components/HeaderInner';
 import ListOptions from '@/components/ListOptions';
-import { getCar } from '@/lib/apiRequest';
 import { keywords, seoAltImage } from '@/lib/constants';
 import { Car } from '@/types/Car';
 import { Metadata } from 'next';
@@ -16,7 +16,7 @@ export async function generateMetadata(props: { params: Params }) {
 
 	if (!carId) return { title: 'Автомобиль не найден' };
 
-	const car = await getCar(carId);
+	const car = await getCarById(carId);
 	if (!car) return { title: 'Автомобиль не найден' };
 
 	const metadata: Metadata = {
@@ -51,7 +51,7 @@ export default async function Page(props: { params: Params }) {
 
 	if (!carId) return <div>Автомобиль не найден</div>;
 
-	const car: Car = await getCar(carId);
+	const car: Car = await getCarById(carId);
 	if (!car) return <div>Автомобиль не найден</div>;
 
 	return (

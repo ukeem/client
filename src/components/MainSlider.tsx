@@ -6,34 +6,21 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from 'swiper/modules';
 import Btn from './Btn';
 import { formatNumber, translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
-import { Car } from '@/types/Car';
 import { seoAltImage, seoUrlCarPage } from '@/lib/constants';
-// import { useCarStore } from '@/store/useCarStore';
 import { useRouter } from 'next/navigation';
 import { useCars } from '@/context/CarsContext';
 import Loading from './Loading';
+import Link from 'next/link';
 
-interface MainSliderProps {
-	allCars?: Car[]
-}
-const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
-	// const { cars, setCars } = useCarStore()
+const MainSlider: FC = () => {
 	const { cars } = useCars();
-
-
 	const router = useRouter()
 
-	const [randomCars, setRandomCars] = useState<Car[]>([]);
-
-	useEffect(() => {
-		// Перемешиваем массив и берём первые 10 машин
-		const shuffledCars = [...cars].sort(() => Math.random() - 0.5).slice(0, 10);
-		setRandomCars(shuffledCars);
-	}, [cars]);
-
-	if (!cars) {
-		return <Loading />
+	if (!cars || cars.length === 0) {
+		return <Loading />;
 	}
+
+	console.log(cars.map(car => car.photos[0]?.photo));
 
 	return (
 		<section className="container mb-4">
@@ -47,26 +34,28 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 				modules={[Autoplay]}
 				className="mySwiper"
 			>
-				{randomCars.sort(() => Math.random() - 0.5).map(car => (
+				{cars.map(car => (
 					<SwiperSlide
 						key={car.id}
 						className='mySwiperSlide'
 					>
 						<div className="w-100 h-100 position-relative">
-							<Image
-								className='slide'
-								src={`${process.env.NEXT_PUBLIC_API_URL}${car.photos.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`}
-								quality={75}
-								// loading="lazy"
-								alt={`${seoAltImage} | ${car.encarId}`}
-								fill
-								priority
-								onClick={() => router.push(`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`)}
-							/>
+							<Link href={`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`} >
+								<Image
+									className='slide'
+									src={`${process.env.NEXT_PUBLIC_API_URL}${car.photos.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`}
+									quality={75}
+									alt={`${seoAltImage} | ${car.encarId}`}
+									fill
+									sizes="(max-width: 768px) 100vw, 50vw"
+									priority
+									onClick={() => router.push(`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`)}
+								/>
+							</Link>
 							<div className="slide_info d-flex p-2 p-md-4 position-absolute flex-lg-column gap-0 gap-lg-3 gap-lg-4 align-items-center align-items-lg-stretch">
 								<h2 className='slide_info_title mb-0'>{`${car.brand.brand} ${car.model.model} ${car.edition.edition}`}</h2>
-								<div className=" d-flex justify-content-between gap-4">
-									<ul className=' list-unstyled m-0 p-0 d-none d-lg-flex flex-column gap-3'>
+								<div className="d-flex justify-content-between gap-4">
+									<ul className='list-unstyled m-0 p-0 d-none d-lg-flex flex-column gap-3'>
 										<li><p className='slide_info_detail text-nowrap lh-1 mb-0'>Наличие: <strong>В наличии</strong></p></li>
 										<li><p className='slide_info_detail text-nowrap lh-1 mb-0'>Год: <strong>{car.year}</strong></p></li>
 										<li><p className='slide_info_detail text-nowrap lh-1 mb-0'>Пробег: <strong>{`${car.mileage.toLocaleString('ru-RU')} км`}</strong></p></li>

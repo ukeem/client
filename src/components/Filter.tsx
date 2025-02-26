@@ -5,13 +5,13 @@ import FilterModal from './FilterModal';
 import { useFilterDataStore } from '@/store/useFilterDataStore';
 import { Car } from '@/types/Car';
 import FilterInput from './FilterInput';
-import { filterTitle, getUniqueSortedData, resetFilters, searchFilterCar, translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
+import { filterTitle, searchFilterCar, translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
 import Btn from './Btn';
 import { usePathname, useRouter, } from 'next/navigation';
 import { seoAltImage } from '@/lib/constants';
 import { useCarsDataStore } from '@/store/useCarsDataStore';
-import { useCars } from '@/context/CarsContext';
 import Loading from './Loading';
+import { getAllCars } from '@/api/cars';
 
 export interface FilterProps {
 	minMileage?: number;
@@ -32,9 +32,9 @@ export interface FilterProps {
 	optionIds?: number[];
 }
 
-interface Filter {
-	carss?: Car[]
-}
+// interface Filter {
+// 	carss?: Car[]
+// }
 
 
 export interface ModalItem {
@@ -43,11 +43,20 @@ export interface ModalItem {
 }
 
 
-const Filter: FC<Filter> = ({ carss = [] }) => {
+const Filter: FC = () => {
 
+	const [cars, setCars] = useState<Car[]>([]);
+
+	useEffect(() => {
+		const fetchCars = async () => {
+			const fetchedCars = await getAllCars();
+			setCars(fetchedCars);
+		};
+		fetchCars();
+	}, []);
 	const { filterData, setFilterData } = useFilterDataStore();
 	const { setCarsData } = useCarsDataStore();
-	const { cars } = useCars();
+	// const { cars } = useCars();
 
 
 	const [show, setShow] = useState(false);
@@ -2353,9 +2362,9 @@ const Filter: FC<Filter> = ({ carss = [] }) => {
 
 
 
-	if (!cars) {
-		return <Loading />
-	}
+	// if (!cars) {
+	// 	return <Loading />
+	// }
 
 	return (
 		<>

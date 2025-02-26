@@ -13,6 +13,7 @@ import FavoriteButton from './FavoriteButton';
 import { WantItBtn } from './WantItBtn';
 import { ModalRequest } from './ModalRequest';
 import { useCars } from '@/context/CarsContext';
+import { getAllCars } from '@/api/cars';
 
 interface FavoriteCarsListProps {
 	// cars: Car[]; // Все автомобили
@@ -24,7 +25,15 @@ export default function FavoriteCarsList({ limit = 9, load = 9 }: FavoriteCarsLi
 	const { favoriteIds } = useFavoriteStore();
 	const [favoriteCars, setFavoriteCars] = useState<Car[]>([]);
 	const [visibleCount, setVisibleCount] = useState(limit);
-	const { cars } = useCars();
+	const [cars, setCars] = useState<Car[]>([]);
+
+	useEffect(() => {
+		const fetchCars = async () => {
+			const fetchedCars = await getAllCars();
+			setCars(fetchedCars);
+		};
+		fetchCars();
+	}, []);
 
 	useEffect(() => {
 		const filteredCars = cars.filter((car) => favoriteIds.includes(car.encarId));

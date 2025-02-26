@@ -1,46 +1,49 @@
 'use client'
 import { translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
 import { Car } from '@/types/Car';
-import { useState, useCallback, FC } from "react";
+import { useState, FC } from "react";
 import ItemSlider from './ItemSlider';
 import Btn from './Btn';
 import { seoUrlCarPage } from '@/lib/constants';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import FavoriteButton from './FavoriteButton';
 import { WantItBtn } from './WantItBtn';
 import { ModalRequest } from './ModalRequest';
 import { useCars } from '@/context/CarsContext';
 import Loading from './Loading';
+import { getCars } from '@/api/cars';
 
 interface CarListProps {
-	allcars?: Car[]
 	limit?: number;
-	load?: number;
 }
 
-const CarList: FC<CarListProps> = ({ allcars, limit = 9, load = 9 }) => {
-
-	const [visibleCount, setVisibleCount] = useState(limit);
-
+const CarList: FC<CarListProps> = ({ limit = 12 }) => {
 	const { cars } = useCars();
-	// const { cars, setCars } = useCarStore()
+	const [visibleCars, setVisibleCars] = useState(cars);
+	const [visibleOffset, setVisibleOffset] = useState<number>(0);
+	const [loading, setLoading] = useState(false);
+	const [hasMore, setHasMore] = useState(true);
 
-	// useEffect(() => {
-	// 	setCars([...allcars].sort(() => Math.random() - 0.5));
-	// }, [allcars]);
 
-	const visibleCars = cars.sort(() => Math.random() - 0.5).slice(0, visibleCount);
+	const fetchMoreCars = async (limit: number, offset: number) => {
+		try {
+			setLoading(true);
+			const data = await getCars(limit, offset);
 
-	const router = useRouter()
+			if (data.length && data.length < limit) setHasMore(false);
+			setVisibleCars((prev) => [...prev, ...data]);
+		} catch (error) {
+			console.error("Ошибка загрузки автомобилей:", error);
+		} finally {
+			setLoading(false);
+		}
+	};
 
-	const handleLink = (url: string) => {
-		router.push(`/cars/${url}`)
+	const handleShowMore = () => {
+		const newOffset = visibleOffset + limit;
+		setVisibleOffset(newOffset);
+		fetchMoreCars(limit, newOffset);
 	}
-
-	const handleShowMore = useCallback(() => {
-		setVisibleCount((prev) => prev + load);
-	}, [load]);
 
 
 	const [requestShow, setRequestShow] = useState(false);
@@ -54,8 +57,6 @@ const CarList: FC<CarListProps> = ({ allcars, limit = 9, load = 9 }) => {
 		setRequestShow(false)
 	}
 
-
-
 	if (!cars) {
 		return <Loading />
 	}
@@ -68,7 +69,7 @@ const CarList: FC<CarListProps> = ({ allcars, limit = 9, load = 9 }) => {
 						<div className=" col-12">
 							<hr className='m-0' />
 						</div>
-						{visibleCars.sort(() => Math.random() - 0.5).map((car) => (
+						{visibleCars.map((car) => (
 							<div key={car.id} className="col-12 col-md-6 col-xl-4">
 								<div className="car__item p-3 p-lg-4 d-flex flex-column gap-3">
 									<div>
@@ -159,7 +160,8 @@ const CarList: FC<CarListProps> = ({ allcars, limit = 9, load = 9 }) => {
 													<Btn
 														clazz=' w-100 car_btn_detail'
 														icon='info'
-														onClick={() => { handleLink(`${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`) }}
+														href={`${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`}
+														target={true}
 													>
 														<span>Детали</span>
 													</Btn>
@@ -173,23 +175,17 @@ const CarList: FC<CarListProps> = ({ allcars, limit = 9, load = 9 }) => {
 					</div>
 				</div>
 
-				{
-					visibleCount < cars.length && (
-						<div className=" container py-4 mb-5">
-							<div className="row">
-								<div className=" mx-auto col-12 col-md-4 ">
-									<Btn
-										onClick={handleShowMore}
-										icon='arrow_more'
-										clazz='show_more_btn w-100'
-									>
-										Показать больше
-									</Btn>
-								</div>
+				{hasMore && (
+					<div className="container py-4 mb-5">
+						<div className="row">
+							<div className="mx-auto col-12 col-md-4">
+								<Btn onClick={handleShowMore} icon='arrow_more' clazz='show_more_btn w-100'>
+									{loading ? "Загрузка..." : "Показать больше"}
+								</Btn>
 							</div>
 						</div>
-					)
-				}
+					</div>
+				)}
 			</section >
 			<ModalRequest
 				requestShow={requestShow}
