@@ -54,7 +54,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 	const { filterData, setFilterData } = useFilterDataStore();
 	const { setCarsData } = useCarsDataStore();
-
+	const [loading, setLoading] = useState(false);
 
 	const [show, setShow] = useState(false);
 
@@ -2325,7 +2325,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 	}
 
 	const handleSubmit = () => {
-
+		setLoading(true);
 		setCarsData([]);
 
 		if (isEmptyObject(filterData)) {
@@ -2361,6 +2361,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 		} else {
 			document.getElementById("search")?.scrollIntoView({ behavior: "smooth" });
 		}
+		setLoading(false);
 	};
 
 
@@ -2418,8 +2419,10 @@ const Filter: FC<Filter> = ({ allCars }) => {
 								clazz='filter_submit_btn'
 								icon='look'
 								type='submit'
+								disabled={loading}
 							>
-								{filterData.brandIds?.length ? `Найдено (${(searchFilterCar(filterData, cars)).length})` : 'Поиск по фильтру'}
+								{loading ? 'Поиск...' : filterData.brandIds?.length ? `Найдено (${(searchFilterCar(filterData, cars)).length})` : 'Поиск по фильтру'}
+
 							</Btn>
 						</div>
 					</div>
