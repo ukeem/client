@@ -20,8 +20,6 @@ const MainSlider: FC = () => {
 		return <Loading />;
 	}
 
-	console.log(cars.map(car => car.photos[0]?.photo));
-
 	return (
 		<section className="container mb-4">
 			<Swiper
