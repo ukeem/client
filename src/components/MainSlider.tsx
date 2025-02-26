@@ -40,13 +40,16 @@ const MainSlider: FC = () => {
 						className='mySwiperSlide'
 					>
 						<div className="w-100 h-100 position-relative">
-							<Link href={`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`} >
+							<Link
+								className='slide d-block'
+								href={`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`}
+							>
 								<Image
-									className='slide'
 									src={`${process.env.NEXT_PUBLIC_API_URL}${car.photos.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`}
 									quality={75}
 									alt={`${seoAltImage} | ${car.encarId}`}
 									fill
+									sizes="(max-width: 768px) 100vw, 50vw"
 									priority
 									onClick={() => router.push(`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`)}
 								/>
