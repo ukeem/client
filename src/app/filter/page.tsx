@@ -3,6 +3,8 @@ import Filter from '@/components/Filter';
 import HeaderInner from '@/components/HeaderInner';
 import { keywords, seoAltImage } from '@/lib/constants';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
+import Loading from '../loading';
 
 
 export const metadata: Metadata = {
@@ -28,11 +30,11 @@ export const metadata: Metadata = {
 export default async function Cars() {
 
 	return (
-		<>
+		<Suspense fallback={<Loading />}>
 			<h1 className='main_title'>{`Подбор авто по фильтру | ${seoAltImage}`}</h1>
 			<HeaderInner />
 			<Filter />
 			<CarListFiltered />
-		</>
+		</Suspense>
 	);
 }

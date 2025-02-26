@@ -1,7 +1,9 @@
 import CarList from '@/components/CarList';
 import HeaderInner from '@/components/HeaderInner';
+import Loading from '@/components/Loading';
 import { keywords, seoAltImage } from '@/lib/constants';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 
 
 export const metadata: Metadata = {
@@ -27,11 +29,11 @@ export const metadata: Metadata = {
 export default async function Cars() {
 
 	return (
-		<>
+		<Suspense fallback={<Loading />}>
 			<h1 className='main_title'>{`Каталог авто | ${seoAltImage}`}</h1>
 			<HeaderInner />
 			{/* <Filter cars={cars} /> */}
 			<CarList />
-		</>
+		</Suspense>
 	);
 }
