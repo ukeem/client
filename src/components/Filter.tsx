@@ -12,6 +12,9 @@ import { seoAltImage } from '@/lib/constants';
 import { useCarsDataStore } from '@/store/useCarsDataStore';
 import Loading from './Loading';
 import { getAllCars } from '@/api/cars';
+import HeaderInner from './HeaderInner';
+import CarListFiltered from './CarListFiltered';
+import { useCarStore } from '@/store/useCarStore';
 
 export interface FilterProps {
 	minMileage?: number;
@@ -32,9 +35,9 @@ export interface FilterProps {
 	optionIds?: number[];
 }
 
-// interface Filter {
-// 	carss?: Car[]
-// }
+interface Filter {
+	allCars: Car[]
+}
 
 
 export interface ModalItem {
@@ -43,20 +46,16 @@ export interface ModalItem {
 }
 
 
-const Filter: FC = () => {
+const Filter: FC<Filter> = ({ allCars }) => {
 
-	const [cars, setCars] = useState<Car[]>([]);
+	const { cars, setCars } = useCarStore();
 
 	useEffect(() => {
-		const fetchCars = async () => {
-			const fetchedCars = await getAllCars();
-			setCars(fetchedCars);
-		};
-		fetchCars();
-	}, []);
+		setCars(allCars);
+	}, [allCars]);
+
 	const { filterData, setFilterData } = useFilterDataStore();
 	const { setCarsData } = useCarsDataStore();
-	// const { cars } = useCars();
 
 
 	const [show, setShow] = useState(false);
@@ -2376,6 +2375,7 @@ const Filter: FC = () => {
 
 	return (
 		<>
+			<HeaderInner />
 			<section className={`filter ${isFixed ? "fix" : "mb-3"}`} id='filter'>
 				<div className=" container">
 					<div className="row row-gap-3">
@@ -2421,6 +2421,7 @@ const Filter: FC = () => {
 					</div>
 				</div>
 			</div>
+			<CarListFiltered />
 			<FilterModal
 				show={show}
 				title={modalTitle}

@@ -14,6 +14,9 @@ import { WantItBtn } from './WantItBtn';
 import { ModalRequest } from './ModalRequest';
 import { useCars } from '@/context/CarsContext';
 import { getAllCars } from '@/api/cars';
+import { useCarStore } from '@/store/useCarStore';
+import Loading from './Loading';
+import HeaderInner from './HeaderInner';
 
 interface FavoriteCarsListProps {
 	// cars: Car[]; // Все автомобили
@@ -25,20 +28,26 @@ export default function FavoriteCarsList({ limit = 9, load = 9 }: FavoriteCarsLi
 	const { favoriteIds } = useFavoriteStore();
 	const [favoriteCars, setFavoriteCars] = useState<Car[]>([]);
 	const [visibleCount, setVisibleCount] = useState(limit);
-	const [cars, setCars] = useState<Car[]>([]);
+	const { cars } = useCarStore();
+	const [allCars, setAllCars] = useState<Car[]>([]);
 
-	useEffect(() => {
-		const fetchCars = async () => {
-			const fetchedCars = await getAllCars();
-			setCars(fetchedCars);
-		};
-		fetchCars();
+	const fetchCars = useCallback(async () => {
+		const fetchedCars = await getAllCars();
+		setAllCars(fetchedCars);
 	}, []);
 
 	useEffect(() => {
-		const filteredCars = cars.filter((car) => favoriteIds.includes(car.encarId));
+		if (cars.length === 0) {
+			fetchCars();
+		} else {
+			setAllCars(cars);
+		}
+	}, [cars, fetchCars]);
+
+	useEffect(() => {
+		const filteredCars = allCars.filter((car) => favoriteIds.includes(car.encarId));
 		setFavoriteCars(filteredCars);
-	}, [favoriteIds, cars]);
+	}, [favoriteIds, allCars]);
 
 
 	const visibleCars = favoriteCars.slice(0, visibleCount);
@@ -65,148 +74,156 @@ export default function FavoriteCarsList({ limit = 9, load = 9 }: FavoriteCarsLi
 	const handleCloseRequest = () => {
 		setRequestShow(false)
 	}
+
+	if (allCars.length === 0) {
+		return <Loading />
+	}
+
 	return (
-		<div>
+		<>
+			<HeaderInner />
+			<div>
 
-			{favoriteCars.length === 0 ? (
-				<div className=" d-flex justify-content-center">
+				{favoriteCars.length === 0 ? (
+					<div className=" d-flex justify-content-center">
 
-					<p>У вас пока нет избранных автомобилей.</p>
-				</div>
-			) : (
+						<p>У вас пока нет избранных автомобилей.</p>
+					</div>
+				) : (
 
-				<div className='cars mb-4'>
-					<div className=" container">
-						<div className="row row-gap-4">
-							{visibleCars.sort((a, b) => a.price - b.price).map((car) => (
-								<div key={car.id} className="col-12 col-md-6 col-xl-4">
-									<div className="car__item p-3 p-lg-4 d-flex flex-column gap-3">
-										<div>
-											<ItemSlider photos={car.photos} title={`${car.brand.brand} ${car.model.model} ${car.edition.edition}`} clazz={car.clazz ? car.clazz : undefined} />
-										</div>
-										<div className="car_detail d-flex flex-column">
-											<Link
-												href={`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`}
-												className=" d-flex flex-column gap-3"
-												scroll={false}
-											>
-												<h2 className='car_title mb-0'>{`${car.brand.brand} ${car.model.model} ${car.edition.edition}`}</h2>
-												<div className=" d-flex align-items-center justify-content-between">
-													<span className='car_price'>{`от ${(Math.round(car.price / 10000) * 10000).toLocaleString('ru-RU')} ₽`}</span>
-													<span className='car_price_key'>цена под ключ</span>
-												</div>
-											</Link>
-											<hr />
-											<div className="row row-gap-3">
-												<div className="col-6">
-													<div className=" d-flex gap-1">
-														<span className='car_info_key'>Наличие:</span>
-														<span className='car_info_value'>В наличии</span>
-													</div>
-												</div>
-												<div className="col-6">
-													<div className=" d-flex gap-1">
-														<span className='car_info_key'>Год:</span>
-														<span className='car_info_value'>{`${car.year}`}</span>
-													</div>
-												</div>
-												<div className="col-6">
-													<div className=" d-flex gap-1">
-														<span className='car_info_key'>Пробег:</span>
-														<span className='car_info_value'>{`${car.mileage.toLocaleString('ru-RU')} км`}</span>
-													</div>
-												</div>
-
-												<div className="col-6">
-													<div className=" d-flex gap-1">
-														<span className='car_info_key'>Двигатель:</span>
-														<span className='car_info_value'>{`${(car.engine.engine / 1000).toFixed(1)} л`}</span>
-													</div>
-												</div>
-
-
-												<div className="col-6">
-													<div className=" d-flex gap-1">
-														<span className='car_info_key'>Топливо:</span>
-														<span className='car_info_value'>{`${translateFuel(car.fuel.fuel)}`}</span>
-													</div>
-												</div>
-
-
-												<div className="col-6">
-													<div className=" d-flex gap-1">
-														<span className='car_info_key'>КПП:</span>
-														<span className='car_info_value'>{`${translateTransmission(car.transmission.transmission)}`}</span>
-													</div>
-												</div>
-
-
-												<div className="col-6">
-													<div className=" d-flex gap-1">
-														<span className='car_info_key'>Кузов:</span>
-														<span className='car_info_value'>{`${translateBody(car.body.body)}`}</span>
-													</div>
-												</div>
-
-
-												<div className="col-6">
-													<div className=" d-flex gap-1">
-														<span className='car_info_key'>Цвет:</span>
-														<span className='car_info_value'>{`${translateColor(car.color.color)}`}</span>
-													</div>
-												</div>
+					<div className='cars mb-4'>
+						<div className=" container">
+							<div className="row row-gap-4">
+								{visibleCars.sort((a, b) => a.price - b.price).map((car) => (
+									<div key={car.id} className="col-12 col-md-6 col-xl-4">
+										<div className="car__item p-3 p-lg-4 d-flex flex-column gap-3">
+											<div>
+												<ItemSlider photos={car.photos} title={`${car.brand.brand} ${car.model.model} ${car.edition.edition}`} clazz={car.clazz ? car.clazz : undefined} />
 											</div>
-											<hr />
-											<div className="row">
-												<div className="col-12">
-													<WantItBtn
-														onClick={() => handleShowRequest(car)}
-													/>
-													<div className=" d-flex align-items-center gap-2">
-														<FavoriteButton
-															carId={car.encarId}
+											<div className="car_detail d-flex flex-column">
+												<Link
+													href={`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`}
+													className=" d-flex flex-column gap-3"
+													scroll={false}
+												>
+													<h2 className='car_title mb-0'>{`${car.brand.brand} ${car.model.model} ${car.edition.edition}`}</h2>
+													<div className=" d-flex align-items-center justify-content-between">
+														<span className='car_price'>{`от ${(Math.round(car.price / 10000) * 10000).toLocaleString('ru-RU')} ₽`}</span>
+														<span className='car_price_key'>цена под ключ</span>
+													</div>
+												</Link>
+												<hr />
+												<div className="row row-gap-3">
+													<div className="col-6">
+														<div className=" d-flex gap-1">
+															<span className='car_info_key'>Наличие:</span>
+															<span className='car_info_value'>В наличии</span>
+														</div>
+													</div>
+													<div className="col-6">
+														<div className=" d-flex gap-1">
+															<span className='car_info_key'>Год:</span>
+															<span className='car_info_value'>{`${car.year}`}</span>
+														</div>
+													</div>
+													<div className="col-6">
+														<div className=" d-flex gap-1">
+															<span className='car_info_key'>Пробег:</span>
+															<span className='car_info_value'>{`${car.mileage.toLocaleString('ru-RU')} км`}</span>
+														</div>
+													</div>
+
+													<div className="col-6">
+														<div className=" d-flex gap-1">
+															<span className='car_info_key'>Двигатель:</span>
+															<span className='car_info_value'>{`${(car.engine.engine / 1000).toFixed(1)} л`}</span>
+														</div>
+													</div>
+
+
+													<div className="col-6">
+														<div className=" d-flex gap-1">
+															<span className='car_info_key'>Топливо:</span>
+															<span className='car_info_value'>{`${translateFuel(car.fuel.fuel)}`}</span>
+														</div>
+													</div>
+
+
+													<div className="col-6">
+														<div className=" d-flex gap-1">
+															<span className='car_info_key'>КПП:</span>
+															<span className='car_info_value'>{`${translateTransmission(car.transmission.transmission)}`}</span>
+														</div>
+													</div>
+
+
+													<div className="col-6">
+														<div className=" d-flex gap-1">
+															<span className='car_info_key'>Кузов:</span>
+															<span className='car_info_value'>{`${translateBody(car.body.body)}`}</span>
+														</div>
+													</div>
+
+
+													<div className="col-6">
+														<div className=" d-flex gap-1">
+															<span className='car_info_key'>Цвет:</span>
+															<span className='car_info_value'>{`${translateColor(car.color.color)}`}</span>
+														</div>
+													</div>
+												</div>
+												<hr />
+												<div className="row">
+													<div className="col-12">
+														<WantItBtn
+															onClick={() => handleShowRequest(car)}
 														/>
-														<Btn
-															clazz=' w-100 car_btn_detail'
-															icon='info'
-															onClick={() => { handleLink(`${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`) }}
-														>
-															<span>Детали</span>
-														</Btn>
+														<div className=" d-flex align-items-center gap-2">
+															<FavoriteButton
+																carId={car.encarId}
+															/>
+															<Btn
+																clazz=' w-100 car_btn_detail'
+																icon='info'
+																onClick={() => { handleLink(`${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`) }}
+															>
+																<span>Детали</span>
+															</Btn>
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							))}
-						</div>
-					</div>
-
-					{visibleCount < favoriteCars.length && (
-						<div className="container py-4 mb-5">
-							<div className="row">
-								<div className="mx-auto col-12 col-md-4">
-									<Btn
-										onClick={handleShowMore}
-										icon="arrow_more"
-										clazz="show_more_btn w-100"
-									>
-										Показать больше
-									</Btn>
-								</div>
+								))}
 							</div>
 						</div>
-					)}
 
-				</div >
-			)}
+						{visibleCount < favoriteCars.length && (
+							<div className="container py-4 mb-5">
+								<div className="row">
+									<div className="mx-auto col-12 col-md-4">
+										<Btn
+											onClick={handleShowMore}
+											icon="arrow_more"
+											clazz="show_more_btn w-100"
+										>
+											Показать больше
+										</Btn>
+									</div>
+								</div>
+							</div>
+						)}
 
-			<ModalRequest
-				requestShow={requestShow}
-				handleCloseRequest={handleCloseRequest}
-				car={car!}
-			/>
-		</div>
+					</div >
+				)}
+
+				<ModalRequest
+					requestShow={requestShow}
+					handleCloseRequest={handleCloseRequest}
+					car={car!}
+				/>
+			</div>
+		</>
 	);
 }

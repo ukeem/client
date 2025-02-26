@@ -30,10 +30,9 @@ export const metadata: Metadata = {
 export default function Cars() {
 
 	return (
-		<Suspense fallback={<Loading />}>
+		<>
 			<h1 className='main_title'>{`Избранные авто | ${seoAltImage}`}</h1>
-			<HeaderInner />
 			<FavoriteCarsList />
-		</Suspense>
+		</>
 	);
 }

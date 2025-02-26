@@ -5,6 +5,7 @@ import { keywords, seoAltImage } from '@/lib/constants';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import Loading from '../loading';
+import { getAllCars } from '@/api/cars';
 
 
 export const metadata: Metadata = {
@@ -27,14 +28,14 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function Cars() {
+export default async function Cars() {
+
+	const allCars = await getAllCars();
 
 	return (
-		<Suspense fallback={<Loading />}>
+		<>
 			<h1 className='main_title'>{`Подбор авто по фильтру | ${seoAltImage}`}</h1>
-			<HeaderInner />
-			<Filter />
-			<CarListFiltered />
-		</Suspense>
+			<Filter allCars={allCars} />
+		</>
 	);
 }
