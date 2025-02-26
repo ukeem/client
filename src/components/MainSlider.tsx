@@ -11,9 +11,14 @@ import { useRouter } from 'next/navigation';
 import { useCars } from '@/context/CarsContext';
 import Loading from './Loading';
 import Link from 'next/link';
+import { Car } from '@/types/Car';
 
-const MainSlider: FC = () => {
-	const { cars } = useCars();
+interface MainSliderProps {
+	cars: Car[];
+}
+
+const MainSlider: FC<MainSliderProps> = ({ cars }) => {
+	// const { cars } = useCars();
 	const router = useRouter()
 
 	if (!cars || cars.length === 0) {
