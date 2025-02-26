@@ -2327,21 +2327,22 @@ const Filter: FC<Filter> = ({ allCars }) => {
 	const handleSubmit = async () => {
 		setLoading(true);
 		setCarsData([]);
-
 		if (isEmptyObject(filterData)) {
-			window.location.reload();
+			setCarsData(cars);
+			setLoading(false);
 			return;
 		}
+
 		try {
+			const filteredData = searchFilterCar(filterData, cars);
+			filteredData.sort((a, b) => a.price - b.price);
+			setCarsData(filteredData);
 
-			const data = searchFilterCar(filterData, cars);
-			data.sort((a, b) => a.price - b.price);
-
-			setCarsData(data);
 			document.getElementById("search")?.scrollIntoView({ behavior: "smooth" });
 		} catch (error) {
-
+			console.error("Ошибка при фильтрации автомобилей:", error);
 		} finally {
+			setLoading(false);
 			setFilterData({
 				minMileage: undefined,
 				maxMileage: undefined,
@@ -2359,15 +2360,9 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				bodyIds: [],
 				transmissionIds: [],
 			});
-			setLoading(false);
 		}
-
-		// if (pathname !== "/filter") {
-		// 	router.push("/filter");
-		// } else {
-
-		// }
 	};
+
 
 
 
