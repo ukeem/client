@@ -59,7 +59,7 @@ export default function FilterPage() {
 		if (!cars.length) {
 			fetchCars();
 		}
-	}, [setCars, cars.length]);
+	}, [cars]);
 
 	if (loading) {
 		return <Loading />
