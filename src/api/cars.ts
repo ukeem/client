@@ -81,6 +81,7 @@ export async function saveAllCars(
     token: string
 ): Promise<Car[]> {
     // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cars/save`, {
+    console.log("Saving cars:", JSON.stringify(data));
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/api/cars/save`,
         {

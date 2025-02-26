@@ -29,18 +29,18 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 			.filter(id => id); // Фильтруем пустые строки
 	};
 
-
 	const handleSave = async () => {
 
 		setLoading(true)
 		try {
 
 			const ids = extractCarIds(url);
+			console.log(ids);
 
 
-			await saveAllCars(ids, token)
+			const data = await saveAllCars(ids, token)
 			// const data = await res.json();
-			// console.log(data);
+			console.log(data);
 
 			setUrl('')
 
