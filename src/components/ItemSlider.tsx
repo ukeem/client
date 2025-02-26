@@ -58,7 +58,7 @@ const ItemSlider: FC<MainSliderProps> = ({ photos, clazz, title }) => {
 				>
 					<Image
 						className='slide item_slide'
-						src={`${process.env.NEXT_PUBLIC_API_URL}${photos.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`}
+						src={`${process.env.NEXT_PUBLIC_API_URL}${photos.filter(photo => photo.photo).sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`}
 						alt={`${seoAltImage} | ${photos.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`}
 						width={306}
 						height={184}
