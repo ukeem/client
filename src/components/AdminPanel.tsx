@@ -149,6 +149,7 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 								<th scope="col">Марка</th>
 								<th scope="col">Модель</th>
 								<th scope="col">Поколение</th>
+								<th scope="col">Фото</th>
 								<th scope="col">Действия</th>
 							</tr>
 						</thead>
@@ -164,6 +165,7 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 									<td>{el.brand.brand}</td>
 									<td>{el.model.model}</td>
 									<td>{el.edition.edition}</td>
+									<td>{el.photos.length}</td>
 									<td
 										onClick={() => handleDelete(`${el.id}`)}
 										style={{ cursor: 'pointer' }}
