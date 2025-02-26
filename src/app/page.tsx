@@ -8,8 +8,10 @@ import FilterBtn from '@/components/FilterBtn';
 
 export default async function Home() {
 	const [carListData, initialCars] = await Promise.all([
-		getCars(12, 0, 'price', 'DESC'),
-		getCars(12, 0, 'price', 'ASC'),
+		// getCars(12, 0, 'price', 'DESC'),
+		// getCars(12, 0, 'price', 'ASC'),
+		getCars(12, 0),
+		getCars(12, 0),
 	]);
 
 	return (
