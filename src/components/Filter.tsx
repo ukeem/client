@@ -5,13 +5,11 @@ import FilterModal from './FilterModal';
 import { useFilterDataStore } from '@/store/useFilterDataStore';
 import { Car } from '@/types/Car';
 import FilterInput from './FilterInput';
-import { filterTitle, searchFilterCar, translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
+import { filterTitle, isEmptyObject, searchFilterCar, translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
 import Btn from './Btn';
 import { usePathname, useRouter, } from 'next/navigation';
 import { seoAltImage } from '@/lib/constants';
 import { useCarsDataStore } from '@/store/useCarsDataStore';
-import Loading from './Loading';
-import { getAllCars } from '@/api/cars';
 import HeaderInner from './HeaderInner';
 import CarListFiltered from './CarListFiltered';
 import { useCarStore } from '@/store/useCarStore';
@@ -2327,7 +2325,13 @@ const Filter: FC<Filter> = ({ allCars }) => {
 	}
 
 	const handleSubmit = () => {
+
 		setCarsData([]);
+
+		if (isEmptyObject(filterData)) {
+			setCarsData(cars);
+			return;
+		}
 
 		const data = searchFilterCar(filterData, cars);
 		data.sort((a, b) => a.price - b.price);

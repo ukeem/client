@@ -259,3 +259,10 @@ export const getUniqueSortedData = (data: ModalItem[], key: string) => {
         ...new Map(data.map((item: any) => [item[key], item])).values(),
     ].sort((a, b) => a[key].localeCompare(b[key]));
 };
+
+export function isEmptyObject(obj: FilterProps) {
+    return Object.values(obj).every(
+        (value) =>
+            value === undefined || (Array.isArray(value) && value.length === 0)
+    );
+}
