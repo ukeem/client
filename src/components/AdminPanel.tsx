@@ -183,4 +183,5 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 	);
 };
 
+
 export default AdminPanel;
