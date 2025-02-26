@@ -76,6 +76,8 @@ export const translateBody = (body: any) => {
             return "Внедорожник";
         case "RV":
             return "Минивен";
+        case "화물차":
+            return "Пикап";
         default:
             return "Уточните";
     }
@@ -111,6 +113,7 @@ export const translateColor = (color: any) => {
             return "Двухцветный серебро";
         case "금색투톤":
             return "Двухцветный золото";
+        case "은하색":
         case "은회색":
             return "Серебристо-серый";
         case "연금색":
