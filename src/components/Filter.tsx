@@ -2338,7 +2338,13 @@ const Filter: FC<Filter> = ({ allCars }) => {
 		setCarsData([]);
 
 		if (isEmptyObject(filterData)) {
-			setCarsData(cars);
+			alert(`Пожалуйста, выберите хотя бы "Производителя"!`);
+			setLoading(false);
+			return;
+		}
+
+		if (filterData.brandIds?.length === 0) {
+			alert(`Пожалуйста, выберите "Производителя"!`);
 			setLoading(false);
 			return;
 		}
