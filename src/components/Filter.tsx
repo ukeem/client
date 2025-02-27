@@ -2337,19 +2337,18 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 		setCarsData([]);
 
-		if (isEmptyObject(filterData)) {
-			alert(`Пожалуйста, выберите хотя бы "Производителя"!`);
-			setLoading(false);
-			return;
-		}
-
-		if (filterData.brandIds?.length === 0) {
-			alert(`Пожалуйста, выберите "Производителя"!`);
-			setLoading(false);
-			return;
-		}
-
 		try {
+
+			if (isEmptyObject(filterData)) {
+				alert(`Пожалуйста, выберите хотя бы "Производителя"!`);
+				return;
+			}
+
+			if (filterData.brandIds?.length === 0) {
+				alert(`Пожалуйста, выберите "Производителя"!`);
+				return;
+			}
+
 			const filteredData = searchFilterCar(filterData, cars);
 			filteredData.sort((a, b) => a.price - b.price);
 			setCarsData(filteredData);
