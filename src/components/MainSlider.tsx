@@ -20,21 +20,12 @@ interface MainSliderProps {
 
 const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 	const router = useRouter()
-	// const { cars, setCars } = useCars();
-
-	// useEffect(() => {
-	// 	if (allCars.length > 0 && cars.length === 0) {
-	// 		setCars(allCars);
-	// 	} else if (allCars.length === 0 && cars.length === 0) {
-	// 		getCars(12, 0, 'price', 'DESC').then(data => {
-	// 			setCars(data);
-	// 		});
-	// 	}
-	// }, [allCars, cars.length, setCars]);
 
 	if (allCars.length === 0) {
 		return <Loading />;
 	}
+
+
 
 	return (
 		<section className="container mb-4">
@@ -58,15 +49,20 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 								className='slide d-block'
 								href={`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`}
 							>
-								<Image
-									src={`${process.env.NEXT_PUBLIC_API_URL}${car.photos.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`}
-									quality={50}
-									alt={`${seoAltImage} | ${car.encarId}`}
-									fill
-									sizes="(max-width: 768px) 100vw, 50vw"
-									priority
-									onClick={() => router.push(`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`)}
-								/>
+								{(() => {
+									const photoUrl = `${process.env.NEXT_PUBLIC_API_URL}${car.photos.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`;
+									return (
+										<Image
+											src={photoUrl ? photoUrl : '/no_image.jpg'}
+											quality={50}
+											alt={`${seoAltImage} | ${car.encarId}`}
+											fill
+											sizes="(max-width: 768px) 100vw, 50vw"
+											priority
+											onClick={() => router.push(`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`)}
+										/>
+									);
+								})()}
 							</Link>
 							<div className="slide_info d-flex p-2 p-md-4 position-absolute flex-lg-column gap-0 gap-lg-3 gap-lg-4 align-items-center align-items-lg-stretch">
 								<h2 className='slide_info_title mb-0'>{`${car.brand.brand} ${car.model.model} ${car.edition.edition}`}</h2>
