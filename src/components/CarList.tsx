@@ -176,7 +176,7 @@ const CarList: FC<CarListProps> = ({ limit = 12, allCars }) => {
 				</div>
 
 				{hasMore && (
-					<div className="container py-4 mb-5">
+					<div className="container py-4 my-5">
 						<div className="row">
 							<div className="mx-auto col-12 col-md-4">
 								<Btn onClick={handleShowMore} icon='arrow_more' clazz='show_more_btn w-100'>

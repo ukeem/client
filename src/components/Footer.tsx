@@ -167,9 +167,11 @@ const Footer: FC<FooterProps> = () => {
 				<Container>
 					<h2 className=' mb-5 text-center text-md-start text-uppercase info_title'>Присоединяйтесь к нам!</h2>
 					<Row>
-						<div className=" col-10 mx-auto col-lg-3 mb-4">
+						<div className=" col-9 mx-auto col-lg-3 mb-4">
 							<Link
-								href={''}
+								href={'https://t.me/DKmotors_korea_auto'}
+								rel='nofollow'
+								target='_blank'
 								className="contacts_item d-flex align-items-center gap-3">
 								<div className="contacts_item_icon flex-shrink-0 rounded-circle d-flex  justify-content-center align-items-center">
 									<Image
@@ -183,9 +185,11 @@ const Footer: FC<FooterProps> = () => {
 								<span className='contacts_item_text'>Telegram-канал</span>
 							</Link>
 						</div>
-						<div className=" col-10 mx-auto col-lg-3 mb-4">
+						<div className=" col-9 mx-auto col-lg-3 mb-4">
 							<Link
-								href={''}
+								href={'https://t.me/DKMOTORS_KOREA'}
+								rel='nofollow'
+								target='_blank'
 								className="contacts_item d-flex align-items-center gap-3">
 								<div className="contacts_item_icon flex-shrink-0 rounded-circle d-flex  justify-content-center align-items-center">
 									<Image
@@ -199,10 +203,13 @@ const Footer: FC<FooterProps> = () => {
 								<span className='contacts_item_text'>Instagram</span>
 							</Link>
 						</div>
-						<div className=" col-10 mx-auto col-lg-3 mb-4">
+						<div className=" col-9 mx-auto col-lg-3 mb-4">
 							<Link
-								href={''}
-								className="contacts_item d-flex align-items-center gap-3">
+								href={'https://t.me/DKMOTORS_KOREA'}
+								rel='nofollow'
+								target='_blank'
+								className="contacts_item d-flex align-items-center gap-3"
+							>
 								<div className="contacts_item_icon flex-shrink-0 rounded-circle d-flex  justify-content-center align-items-center">
 									<Image
 										src={`/tg_c.svg`}
@@ -215,7 +222,7 @@ const Footer: FC<FooterProps> = () => {
 								<span className='contacts_item_text'>Telegram</span>
 							</Link>
 						</div>
-						<div className=" col-10 mx-auto col-lg-3 mb-4">
+						<div className=" col-9 mx-auto col-lg-3 mb-4">
 							<Link
 								href={''}
 								className="contacts_item d-flex align-items-center gap-3">

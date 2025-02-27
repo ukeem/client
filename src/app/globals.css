@@ -407,7 +407,7 @@ a {
 }
 .car_price {
     font-weight: 600;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 100%;
     color: var(--accent);
 }
@@ -596,7 +596,7 @@ a {
 }
 .privilege_item_top_text {
     font-weight: 300;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 140%;
     color: var(--dark);
 }
@@ -697,6 +697,9 @@ a {
 
     .info_title {
         font-size: 28px;
+    }
+    .car_price {
+        font-size: 24px;
     }
 }
 
