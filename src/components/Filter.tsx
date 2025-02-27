@@ -2326,7 +2326,14 @@ const Filter: FC<Filter> = ({ allCars }) => {
 	const handleSubmit = async () => {
 		setLoading(true);
 		setCarsData([]);
-		if (isEmptyObject(filterData) || !(filterData.brandIds?.length ?? 0)) {
+		if (isEmptyObject(filterData)) {
+			setCarsData(cars);
+			setLoading(false);
+			return;
+		}
+
+
+		if (filterData.brandIds?.length === 0) {
 			setCarsData(cars);
 			setLoading(false);
 			return;
