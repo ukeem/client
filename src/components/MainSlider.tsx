@@ -64,13 +64,15 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 											<li><p className='slide_info_detail mb-0'>Кузов: <strong>{translateBody(car.body.body)}</strong></p></li>
 											<li><p className='slide_info_detail mb-0'>Цвет: <strong>{translateColor(car.color.color)}</strong></p></li>
 										</ul>
-										<div className="d-flex flex-column align-items-end">
-											<span className='slide_info_price'>{`${(Math.round(car.price / 100000) * 100000).toLocaleString('ru-RU')} ₽`}</span>
-											<span className='slide_info_key'>Цена под ключ</span>
+										<div className="d-flex flex-column align-items-end justify-content-center gap-4">
+											<div className="d-flex flex-column align-items-end">
+												<span className='slide_info_price'>{`${(Math.round(car.price / 100000) * 100000).toLocaleString('ru-RU')} ₽`}</span>
+												<span className='slide_info_key'>Цена под ключ</span>
+											</div>
+											<Btn icon='auto' clazz='slide_info_btn d-none d-lg-flex' href={`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`} target>
+												Заказать авто
+											</Btn>
 										</div>
-										<Btn icon='auto' clazz='slide_info_btn d-none d-lg-flex' href={`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`} target>
-											Заказать авто
-										</Btn>
 									</div>
 								</div>
 							</div>

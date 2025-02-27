@@ -4,6 +4,7 @@ import Btn from './Btn'
 import Image from 'next/image'
 import { seoAltImage } from '@/lib/constants'
 import { Car } from '@/types/Car'
+import { useRouter } from 'next/navigation'
 
 interface ModalRequestProps {
 	requestShow: boolean
@@ -13,6 +14,7 @@ interface ModalRequestProps {
 
 export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequestProps) => {
 
+	const router = useRouter();
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
 	const [formdata, setFormdata] = useState({
@@ -92,9 +94,8 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 				price: ''
 			});
 
-			setTimeout(() => {
-				setSuccess(false);
-			}, 3000);
+			router.push('/success');
+			setSuccess(false);
 		} catch (error: any) {
 			alert(error.message);
 		} finally {

@@ -600,10 +600,21 @@ a {
     line-height: 140%;
     color: var(--dark);
 }
+.btn_filter {
+    transition: all 0.3s ease;
+}
+.emptyBlock.fix {
+    height: 49px;
+}
 .privilege_item_bottom {
     border: 1px solid var(--light);
     border-radius: 6px;
     width: 100%;
+}
+.privilege_item_bottom img {
+    width: auto;
+    height: auto;
+    aspect-ratio: 1/1;
 }
 .privilege_item_bottom_text {
     font-weight: 300;

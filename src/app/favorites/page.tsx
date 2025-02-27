@@ -1,5 +1,6 @@
 
 import FavoriteCarsList from '@/components/FavoriteCarsList';
+import Footer from '@/components/Footer';
 import HeaderInner from '@/components/HeaderInner';
 import Loading from '@/components/Loading';
 import { keywords, seoAltImage } from '@/lib/constants';
@@ -33,6 +34,7 @@ export default function FavoritesCars() {
 		<>
 			<h1 className='main_title'>{`Избранные авто | ${seoAltImage}`}</h1>
 			<FavoriteCarsList />
+			<Footer />
 		</>
 	);
 }

@@ -1,5 +1,7 @@
 import { getCars } from '@/api/cars';
 import CarList from '@/components/CarList';
+import FavoriteLink from '@/components/FavoriteLink';
+import Footer from '@/components/Footer';
 import HeaderInner from '@/components/HeaderInner';
 import { CarsProvider } from '@/context/CarsContext';
 import { keywords, seoAltImage } from '@/lib/constants';
@@ -42,6 +44,8 @@ export default async function CarsPage() {
 			<h1 className="main_title">{`Каталог авто | ${seoAltImage}`}</h1>
 			<HeaderInner />
 			<CarList allCars={carListData} />
+			<Footer />
+			<FavoriteLink />
 		</CarsProvider>
 	);
 }

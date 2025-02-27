@@ -13,7 +13,7 @@ const FilterBtn: FC = () => {
 		if (pathname !== "/") return; // Добавляем фикс только на главной
 
 		const handleScroll = () => {
-			setIsFixed(window.scrollY > 930);
+			setIsFixed(window.scrollY > 810);
 		};
 
 		window.addEventListener("scroll", handleScroll);
@@ -25,6 +25,7 @@ const FilterBtn: FC = () => {
 
 	return (
 		<>
+			<div className={`emptyBlock ${isFixed ? "fix" : ""}`}></div>
 			<div className={`btn_filter ${isFixed ? "fix" : ""}`}>
 				<div className=" container mb-4">
 					<div className=" row">

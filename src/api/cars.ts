@@ -10,7 +10,6 @@ export async function getCars(
     orderKey?: string,
     orderValue?: string
 ): Promise<Car[]> {
-    // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cars/filter`, {
     const body: Record<string, any> = { limit, offset };
 
     // Добавляем orderKey и orderValue только если они заданы
@@ -18,7 +17,8 @@ export async function getCars(
     if (orderValue) body.orderValue = orderValue;
 
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/cars/filter`,
+        `${process.env.NEXT_PUBLIC_API_URL}/cars/filter`,
+        // `${process.env.NEXT_PUBLIC_API_URL}/api/cars/filter`,
         {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -41,9 +41,11 @@ export async function getAllCars(
     if (orderKey) params.append("orderKey", orderKey);
     if (orderValue) params.append("orderValue", orderValue);
 
-    const url = `${
-        process.env.NEXT_PUBLIC_API_URL
-    }/api/cars?${params.toString()}`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/cars?${params.toString()}`;
+
+    // const url = `${
+    //     process.env.NEXT_PUBLIC_API_URL
+    // }/api/cars?${params.toString()}`;
 
     const res = await fetch(url, {
         method: "GET",
@@ -62,7 +64,8 @@ export async function getAllCars(
 export async function getCarById(id: string): Promise<Car> {
     // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cars/${id}`, {
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/cars/${id}`,
+        // `${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}`,
         {
             method: "GET",
             cache: "force-cache",

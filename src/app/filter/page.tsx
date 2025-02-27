@@ -4,6 +4,8 @@ import { useState, useEffect, useMemo } from 'react';
 import { seoAltImage } from '@/lib/constants';
 import { useCarStore } from '@/store/useCarStore';
 import { CARS_DATA } from './data';
+import Footer from '@/components/Footer';
+import FavoriteLink from '@/components/FavoriteLink';
 
 export default function FilterPage() {
 
@@ -37,6 +39,8 @@ export default function FilterPage() {
 		<>
 			<h1 className='main_title'>{`Подбор авто по фильтру | ${seoAltImage}`}</h1>
 			<Filter />
+			<Footer />
+			<FavoriteLink />
 		</>
 	);
 }

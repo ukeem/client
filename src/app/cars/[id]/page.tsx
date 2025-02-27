@@ -2,6 +2,8 @@
 import { getCarById } from '@/api/cars';
 import CarDetailSlider from '@/components/CarDetailSlider';
 import CarMainInfo from '@/components/CarMainInfo';
+import FavoriteLink from '@/components/FavoriteLink';
+import Footer from '@/components/Footer';
 import HeaderInner from '@/components/HeaderInner';
 import ListOptions from '@/components/ListOptions';
 import { keywords, seoAltImage, seoUrlCarPage } from '@/lib/constants';
@@ -111,6 +113,8 @@ export default async function CarPage(props: { params: Params }) {
 					</div>
 				</div>
 			</section>
+			<Footer />
+			<FavoriteLink />
 		</>
 	);
 }
