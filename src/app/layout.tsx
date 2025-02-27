@@ -11,6 +11,7 @@ import { Metadata } from 'next';
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
 export const metadata: Metadata = {
+	metadataBase: new URL("https://autokorean.ru"),
 	title: "Авто из Кореи | Купить авто с пробегом в Москве",
 	description: "Авто из Кореи под ключ: цены, характеристики, фото. Прямые поставки. Доставка в Москву и другие города.",
 	keywords: "авто из кореи, корейские автомобили, купить авто с пробегом, авто под ключ",

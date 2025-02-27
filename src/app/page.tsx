@@ -5,43 +5,43 @@ import Header from '@/components/Header';
 import { getCars } from '@/api/cars';
 import { CarsProvider } from '@/context/CarsContext';
 import FilterBtn from '@/components/FilterBtn';
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 import Script from 'next/script';
 
-export const metadata: Metadata = {
-	title: "Авто из Кореи | Купить авто с пробегом в Москве",
-	description: "Авто из Кореи под ключ: цены, характеристики, фото. Прямые поставки. Доставка в Москву и другие города.",
-	keywords: "авто из кореи, корейские автомобили, купить авто с пробегом, авто под ключ",
-	alternates: {
-		canonical: '/',
-	},
-	openGraph: {
-		title: "Авто из Кореи | Купить авто с пробегом в Москве",
-		description: "Авто из Кореи под ключ: цены, характеристики, фото. Прямые поставки.",
-		url: "https://autokorean.ru/",
-		type: "website",
-		images: [{ url: '/no_image.jpg', width: 1200, height: 630, alt: "Авто из Кореи" }],
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: "Авто из Кореи | Купить авто с пробегом",
-		description: "Большой выбор автомобилей из Кореи с доставкой в Россию.",
-		images: ['/no_image.jpg'],
-	},
-	robots: {
-		index: true,
-		follow: true,
-		nocache: false,
-		googleBot: {
-			index: true,
-			follow: true,
-			noimageindex: false,
-			'max-video-preview': -1,
-			'max-image-preview': 'large',
-			'max-snippet': -1,
-		},
-	},
-};
+// export const metadata: Metadata = {
+// 	title: "Авто из Кореи | Купить авто с пробегом в Москве",
+// 	description: "Авто из Кореи под ключ: цены, характеристики, фото. Прямые поставки. Доставка в Москву и другие города.",
+// 	keywords: "авто из кореи, корейские автомобили, купить авто с пробегом, авто под ключ",
+// 	alternates: {
+// 		canonical: '/',
+// 	},
+// 	openGraph: {
+// 		title: "Авто из Кореи | Купить авто с пробегом в Москве",
+// 		description: "Авто из Кореи под ключ: цены, характеристики, фото. Прямые поставки.",
+// 		url: "https://autokorean.ru/",
+// 		type: "website",
+// 		images: [{ url: '/no_image.jpg', width: 1200, height: 630, alt: "Авто из Кореи" }],
+// 	},
+// 	twitter: {
+// 		card: "summary_large_image",
+// 		title: "Авто из Кореи | Купить авто с пробегом",
+// 		description: "Большой выбор автомобилей из Кореи с доставкой в Россию.",
+// 		images: ['/no_image.jpg'],
+// 	},
+// 	robots: {
+// 		index: true,
+// 		follow: true,
+// 		nocache: false,
+// 		googleBot: {
+// 			index: true,
+// 			follow: true,
+// 			noimageindex: false,
+// 			'max-video-preview': -1,
+// 			'max-image-preview': 'large',
+// 			'max-snippet': -1,
+// 		},
+// 	},
+// };
 
 // export const ogImage = async () => {
 // 	return new ImageResponse(
