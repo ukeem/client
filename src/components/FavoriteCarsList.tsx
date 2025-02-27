@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useFavoriteStore } from "@/store/useFavoriteStore";
 import { Car } from "@/types/Car";
 import Link from "next/link";
@@ -17,9 +17,9 @@ import { getAllCars } from '@/api/cars';
 import { useCarStore } from '@/store/useCarStore';
 import Loading from './Loading';
 import HeaderInner from './HeaderInner';
+import { CARS_DATA } from '@/app/filter/data';
 
 interface FavoriteCarsListProps {
-	// cars: Car[]; // Все автомобили
 	limit?: number;
 	load?: number;
 }
@@ -28,26 +28,26 @@ export default function FavoriteCarsList({ limit = 9, load = 9 }: FavoriteCarsLi
 	const { favoriteIds } = useFavoriteStore();
 	const [favoriteCars, setFavoriteCars] = useState<Car[]>([]);
 	const [visibleCount, setVisibleCount] = useState(limit);
-	const { cars } = useCarStore();
-	const [allCars, setAllCars] = useState<Car[]>([]);
-
-	const fetchCars = useCallback(async () => {
-		const fetchedCars = await getAllCars();
-		setAllCars(fetchedCars);
-	}, []);
+	const { cars, setCars } = useCarStore();
+	const [loading, setLoading] = useState(true);
+	const memoizedCars = useMemo(() => CARS_DATA, []);
 
 	useEffect(() => {
 		if (cars.length === 0) {
-			fetchCars();
-		} else {
-			setAllCars(cars);
+			setCars(memoizedCars);
+			setTimeout(() => {
+				setLoading(false);
+			}, 1000);
 		}
-	}, [cars, fetchCars]);
+		setTimeout(() => {
+			setLoading(false);
+		}, 1000);
+	}, [memoizedCars]);
 
 	useEffect(() => {
-		const filteredCars = allCars.filter((car) => favoriteIds.includes(car.encarId));
+		const filteredCars = cars.filter((car) => favoriteIds.includes(car.encarId));
 		setFavoriteCars(filteredCars);
-	}, [favoriteIds, allCars]);
+	}, [favoriteIds, cars]);
 
 
 	const visibleCars = favoriteCars.slice(0, visibleCount);
@@ -75,7 +75,7 @@ export default function FavoriteCarsList({ limit = 9, load = 9 }: FavoriteCarsLi
 		setRequestShow(false)
 	}
 
-	if (allCars.length === 0) {
+	if (loading) {
 		return <Loading />
 	}
 

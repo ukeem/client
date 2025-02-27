@@ -1,11 +1,9 @@
 
 import FavoriteCarsList from '@/components/FavoriteCarsList';
+import FavoriteLink from '@/components/FavoriteLink';
 import Footer from '@/components/Footer';
-import HeaderInner from '@/components/HeaderInner';
-import Loading from '@/components/Loading';
 import { keywords, seoAltImage } from '@/lib/constants';
 import { Metadata } from 'next';
-import { Suspense } from 'react';
 
 
 export const metadata: Metadata = {
@@ -35,6 +33,7 @@ export default function FavoritesCars() {
 			<h1 className='main_title'>{`Избранные авто | ${seoAltImage}`}</h1>
 			<FavoriteCarsList />
 			<Footer />
+			<FavoriteLink />
 		</>
 	);
 }
