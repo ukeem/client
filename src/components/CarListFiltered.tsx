@@ -32,9 +32,10 @@ const CarListFiltered: FC = () => {
 		setRequestShow(false)
 	}
 
-	if (!carsData || carsData.length === 0) {
-		return <Loading />;
-	}
+	// if (!carsData || carsData.length === 0) {
+	// 	return <Loading />;
+	// }
+
 	return (
 		<>
 			<div className='cars mb-4' id='search'>
