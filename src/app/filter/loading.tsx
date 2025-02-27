@@ -6,8 +6,8 @@ export default function Loading() {
 			<Image
 				src='/loading.svg'
 				alt='DKMotors | Экспорт автомобилей из Южной Кореи в Россию и страны СНГ | loading'
-				width={150}
-				height={150}
+				width={102}
+				height={40}
 			/>
 		</div>
 	);

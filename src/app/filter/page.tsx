@@ -31,8 +31,8 @@ export default function FilterPage() {
 					<Image
 						src='/loading.svg'
 						alt='DKMotors | Экспорт автомобилей из Южной Кореи в Россию и страны СНГ | loading'
-						width={100}
-						height={100}
+						width={102}
+						height={40}
 					/>
 					<p>
 						Пожалуйста подождите!
