@@ -19,7 +19,7 @@ export default function FilterPage() {
 
 	// console.log(cars);
 
-	if (loading) {
+	if (cars.length === 0 || loading) {
 		return (
 			<div className="loading">
 				<p>
