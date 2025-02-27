@@ -9,13 +9,14 @@ import { Car } from '@/types/Car';
 import { Metadata } from 'next';
 import Script from 'next/script';
 
-type Params = { id: string };
+type Params = Promise<{ id: string }>
 
 const siteUrl = process.env.NEXT_PUBLIC_CLIENT_URL || "https://autokorean.ru/";
 const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://api.autokorean.ru/";
 
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-	const carId = params.id.split('_')[0];
+export async function generateMetadata(props: { params: Params }): Promise<Metadata> {
+	const { id } = await props.params;
+	const carId = id.split('_')[0];
 	if (!carId) return { title: "Автомобиль не найден" };
 
 	const car = await getCarById(carId);
