@@ -2365,17 +2365,17 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 
 
-	if (cars.length === 0) {
-		return (
-			<div className="loading">
-				<p>
-					Пожалуйста подождите!
-					<br />
-					Идет загрузка всех авто...
-				</p>
-			</div>
-		)
-	}
+	// if (cars.length === 0) {
+	// 	return (
+	// 		<div className="loading">
+	// 			<p>
+	// 				Пожалуйста подождите!
+	// 				<br />
+	// 				Идет загрузка всех авто...
+	// 			</p>
+	// 		</div>
+	// 	)
+	// }
 
 	return (
 		<>

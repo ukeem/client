@@ -63,7 +63,6 @@ const CarList: FC<CarListProps> = ({ limit = 12, allCars }) => {
 
 	return (
 		<>
-
 			<section className='cars'>
 				<div className=" container">
 					<div className="row row-gap-4">
