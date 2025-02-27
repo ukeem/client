@@ -51,8 +51,7 @@ const CarDetailSlider: FC<CarDetailSliderProps> = ({ photos, title }) => {
 						<Image
 							className='slide item_slide_big'
 							src={`${process.env.NEXT_PUBLIC_API_URL}${el.photo}`}
-							// quality={75}
-							// loading="lazy"
+							quality={50}
 							alt={`${seoAltImage} | ${el.id}`}
 							fill
 							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

@@ -1,5 +1,5 @@
 'use client'
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import "swiper/css";
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,16 +12,42 @@ import { useCars } from '@/context/CarsContext';
 import Loading from './Loading';
 import Link from 'next/link';
 import { Car } from '@/types/Car';
+import { getCars } from '@/api/cars';
 
 interface MainSliderProps {
-	cars: Car[];
+	allCars: Car[];
 }
 
-const MainSlider: FC<MainSliderProps> = ({ cars }) => {
-	// const { cars } = useCars();
+const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 	const router = useRouter()
+	const { cars, setCars } = useCars();
 
-	if (!cars || cars.length === 0) {
+	useEffect(() => {
+		if (allCars.length > 0 && cars.length === 0) {
+			setCars(allCars);
+		}
+	}, [allCars, cars.length, setCars]);
+
+	useEffect(() => {
+		let isMounted = true;
+
+		const loadCars = async () => {
+			if (allCars.length === 0 && cars.length === 0) {
+				const data = await getCars(12, 0, 'mileage', 'ASC');
+				if (isMounted) {
+					setCars(data);
+				}
+			}
+		};
+
+		loadCars();
+
+		return () => {
+			isMounted = false;
+		};
+	}, [allCars, cars.length, setCars]);
+
+	if (cars.length === 0) {
 		return <Loading />;
 	}
 
@@ -49,7 +75,7 @@ const MainSlider: FC<MainSliderProps> = ({ cars }) => {
 							>
 								<Image
 									src={`${process.env.NEXT_PUBLIC_API_URL}${car.photos.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`}
-									// quality={75}
+									quality={50}
 									alt={`${seoAltImage} | ${car.encarId}`}
 									fill
 									sizes="(max-width: 768px) 100vw, 50vw"

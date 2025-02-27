@@ -16,9 +16,9 @@ export default async function Home() {
 		<CarsProvider>
 			<h1 className="main_title">{`Авто из Кореи | ${seoAltImage}`}</h1>
 			<Header />
-			<MainSlider cars={initialCars} />
+			<MainSlider allCars={initialCars} />
 			<FilterBtn />
-			<CarList cars={carListData} />
+			<CarList allCars={carListData} />
 		</CarsProvider>
 	);
 }

@@ -1,7 +1,7 @@
 'use client'
 import { translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
 import { Car } from '@/types/Car';
-import { useState, FC } from "react";
+import { useState, FC, useEffect } from "react";
 import ItemSlider from './ItemSlider';
 import Btn from './Btn';
 import { seoUrlCarPage } from '@/lib/constants';
@@ -14,16 +14,46 @@ import Loading from './Loading';
 import { getCars } from '@/api/cars';
 
 interface CarListProps {
-	cars: Car[];
+	allCars: Car[];
 	limit?: number;
 }
 
-const CarList: FC<CarListProps> = ({ limit = 12, cars }) => {
-	// const { cars } = useCars();
-	const [visibleCars, setVisibleCars] = useState(cars);
+const CarList: FC<CarListProps> = ({ limit = 12, allCars }) => {
+
 	const [visibleOffset, setVisibleOffset] = useState<number>(0);
 	const [loading, setLoading] = useState(false);
 	const [hasMore, setHasMore] = useState(true);
+	const { cars, setCars } = useCars();
+	const [visibleCars, setVisibleCars] = useState(cars);
+
+	useEffect(() => {
+		if (allCars.length > 0 && cars.length === 0) {
+			setCars(allCars);
+		}
+	}, [allCars, cars.length, setCars]);
+
+	useEffect(() => {
+		let isMounted = true;
+
+		const loadCars = async () => {
+			if (allCars.length === 0 && cars.length === 0) {
+				const data = await getCars(12, 0, 'price', 'DESC')
+				if (isMounted) {
+					setCars(data);
+				}
+			}
+		};
+
+		loadCars();
+
+		return () => {
+			isMounted = false;
+		};
+	}, [allCars, cars.length, setCars]);
+
+	if (visibleCars.length === 0) {
+		return <Loading />;
+	}
 
 
 	const fetchMoreCars = async (limit: number, offset: number) => {

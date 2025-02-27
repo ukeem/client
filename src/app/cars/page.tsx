@@ -38,7 +38,7 @@ export default async function CarsPage() {
 		<CarsProvider initialCars={initialCars}>
 			<h1 className='main_title'>{`Каталог авто | ${seoAltImage}`}</h1>
 			<HeaderInner />
-			<CarList cars={carListData} />
+			<CarList allCars={carListData} />
 		</CarsProvider>
 	);
 }

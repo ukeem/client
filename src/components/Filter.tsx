@@ -81,7 +81,6 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 	const [isFixed, setIsFixed] = useState(false);
 
-	const router = useRouter()
 	const pathname = usePathname();
 
 
@@ -2327,7 +2326,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 	const handleSubmit = async () => {
 		setLoading(true);
 		setCarsData([]);
-		if (isEmptyObject(filterData)) {
+		if (isEmptyObject(filterData) || !(filterData.brandIds?.length ?? 0)) {
 			setCarsData(cars);
 			setLoading(false);
 			return;

@@ -126,7 +126,6 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 								.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`
 							: "/" // Укажите изображение-заглушку
 					}
-
 					alt={`${seoAltImage} | ${formdata.carName}`}
 					width={306}
 					height={184}
