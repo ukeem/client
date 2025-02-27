@@ -2325,7 +2325,9 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 	const handleSubmit = async () => {
 		setLoading(true);
+
 		setCarsData([]);
+
 		if (isEmptyObject(filterData)) {
 			setCarsData(cars);
 			setLoading(false);
@@ -2341,7 +2343,6 @@ const Filter: FC<Filter> = ({ allCars }) => {
 		} catch (error) {
 			console.error("Ошибка при фильтрации автомобилей:", error);
 		} finally {
-			setLoading(false);
 			setFilterData({
 				minMileage: undefined,
 				maxMileage: undefined,
@@ -2359,6 +2360,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				bodyIds: [],
 				transmissionIds: [],
 			});
+			setLoading(false);
 		}
 	};
 
