@@ -27,17 +27,19 @@ export default function FilterPage() {
 	if (cars.length === 0 || loading) {
 		return (
 			<div className="loading">
-				<Image
-					src='/loading.svg'
-					alt='DKMotors | Экспорт автомобилей из Южной Кореи в Россию и страны СНГ | loading'
-					width={100}
-					height={100}
-				/>
-				<p className=' text-accent'>
-					Пожалуйста подождите!
-					<br />
-					Идет загрузка всех авто...
-				</p>
+				<div className=' d-flex flex-column justify-content-center gap-4'>
+					<Image
+						src='/loading.svg'
+						alt='DKMotors | Экспорт автомобилей из Южной Кореи в Россию и страны СНГ | loading'
+						width={100}
+						height={100}
+					/>
+					<p>
+						Пожалуйста подождите!
+						<br />
+						Идет загрузка всех авто...
+					</p>
+				</div>
 			</div>
 		)
 	}
