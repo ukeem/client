@@ -46,11 +46,7 @@ export interface ModalItem {
 
 const Filter: FC<Filter> = ({ allCars }) => {
 
-	const [cars, setCars] = useState<Car[]>(allCars);
-
-	// useEffect(() => {
-	// 	setCars(allCars);
-	// }, [allCars]);
+	const { cars } = useCarStore();
 
 	const { filterData, setFilterData } = useFilterDataStore();
 	const { setCarsData } = useCarsDataStore();
@@ -2367,17 +2363,17 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 
 
-	// if (cars.length === 0) {
-	// 	return (
-	// 		<div className="loading">
-	// 			<p>
-	// 				Пожалуйста подождите!
-	// 				<br />
-	// 				Идет загрузка всех авто...
-	// 			</p>
-	// 		</div>
-	// 	)
-	// }
+	if (cars.length === 0) {
+		return (
+			<div className="loading">
+				<p>
+					Пожалуйста подождите!
+					<br />
+					Идет загрузка всех авто...
+				</p>
+			</div>
+		)
+	}
 
 	return (
 		<>
