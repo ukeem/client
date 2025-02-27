@@ -2387,8 +2387,8 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 	return (
 		<>
-			{/* <HeaderInner />
-			<section className={`filter ${isFixed ? "fix" : "mb-3"}`} id='filter'>
+			<HeaderInner />
+			{/* <section className={`filter ${isFixed ? "fix" : "mb-3"}`} id='filter'>
 				<div className=" container">
 					<div className="row row-gap-3">
 						<div className=" col-12">
@@ -2434,9 +2434,9 @@ const Filter: FC<Filter> = ({ allCars }) => {
 						</div>
 					</div>
 				</div>
-			</div>
-			<CarListFiltered />
-			<FilterModal
+			</div> */}
+			{/* <CarListFiltered /> */}
+			{/* <FilterModal
 				show={show}
 				title={modalTitle}
 				list={modalList}
