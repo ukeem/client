@@ -11,9 +11,9 @@ export default function GlobalError({
 		// global-error must include html and body tags
 		<html>
 			<body className=' d-flex justify-content-center align-items-center vh-100'>
-				<div className=" d-flex justify-content-center align-items-center gap-3">
+				<div className=" d-flex justify-content-center align-items-center gap-3 flex-column">
 					<h2 className=' text-center'>Проблема с интернет соединением {error.message}</h2>
-					<button className='global_error_btn' onClick={() => reset()}>Перезагрузить</button>
+					<button className='global_error_btn' onClick={() => window.location.reload()}>Перезагрузить</button>
 				</div>
 			</body>
 		</html>
