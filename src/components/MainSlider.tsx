@@ -1,5 +1,5 @@
 'use client'
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import "swiper/css";
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -25,26 +25,11 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 	useEffect(() => {
 		if (allCars.length > 0 && cars.length === 0) {
 			setCars(allCars);
+		} else if (allCars.length === 0 && cars.length === 0) {
+			getCars(12, 0, 'price', 'DESC').then(data => {
+				setCars(data);
+			});
 		}
-	}, [allCars, cars.length, setCars]);
-
-	useEffect(() => {
-		let isMounted = true;
-
-		const loadCars = async () => {
-			if (allCars.length === 0 && cars.length === 0) {
-				const data = await getCars(12, 0, 'mileage', 'ASC');
-				if (isMounted) {
-					setCars(data);
-				}
-			}
-		};
-
-		loadCars();
-
-		return () => {
-			isMounted = false;
-		};
 	}, [allCars, cars.length, setCars]);
 
 	if (cars.length === 0) {

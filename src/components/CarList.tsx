@@ -24,31 +24,18 @@ const CarList: FC<CarListProps> = ({ limit = 12, allCars }) => {
 	const [loading, setLoading] = useState(false);
 	const [hasMore, setHasMore] = useState(true);
 	const { cars, setCars } = useCars();
-	const [visibleCars, setVisibleCars] = useState(cars);
+	const [visibleCars, setVisibleCars] = useState([] as Car[]);
 
 	useEffect(() => {
 		if (allCars.length > 0 && cars.length === 0) {
 			setCars(allCars);
+			setVisibleCars(allCars);
+		} else if (allCars.length === 0 && cars.length === 0) {
+			getCars(12, 0, 'price', 'DESC').then(data => {
+				setCars(data);
+				setVisibleCars(data);
+			});
 		}
-	}, [allCars, cars.length, setCars]);
-
-	useEffect(() => {
-		let isMounted = true;
-
-		const loadCars = async () => {
-			if (allCars.length === 0 && cars.length === 0) {
-				const data = await getCars(12, 0, 'price', 'DESC')
-				if (isMounted) {
-					setCars(data);
-				}
-			}
-		};
-
-		loadCars();
-
-		return () => {
-			isMounted = false;
-		};
 	}, [allCars, cars.length, setCars]);
 
 	if (visibleCars.length === 0) {
