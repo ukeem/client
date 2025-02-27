@@ -17,7 +17,7 @@ export default function FilterPage() {
 		setLoading(false);
 	}, []);
 
-	console.log(cars);
+	// console.log(cars);
 
 	if (loading) {
 		return (
@@ -34,7 +34,7 @@ export default function FilterPage() {
 	return (
 		<>
 			<h1 className='main_title'>{`Подбор авто по фильтру | ${seoAltImage}`}</h1>
-			{/* <Filter allCars={cars} /> */}
+			<Filter />
 		</>
 	);
 }

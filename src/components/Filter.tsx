@@ -34,7 +34,7 @@ export interface FilterProps {
 }
 
 interface Filter {
-	allCars: Car[]
+	allCars?: Car[]
 }
 
 
