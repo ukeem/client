@@ -1,10 +1,11 @@
 'use client';
 import AdminPanel from '@/components/AdminPanel';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { getLocal } from '@/lib/fn';
 import { useCarStore } from '@/store/useCarStore';
 import { Car } from '@/types/Car';
 import Loading from '../loading';
+import { CARS_DATA } from '../filter/data';
 
 export default function Dashboard() {
 	const { cars, setCars } = useCarStore();
@@ -17,23 +18,14 @@ export default function Dashboard() {
 		}
 	}, []);
 
+	const memoizedCars = useMemo(() => CARS_DATA, []);
+
 	useEffect(() => {
-		const fetchCars = async () => {
-			try {
-				const response = await fetch("/response.json");
-				if (!response.ok) {
-					throw new Error('Network response was not ok');
-				}
-				const data: Car[] = await response.json();
-				setCars(data);
-			} catch (error) {
-				console.error('Failed to fetch cars:', error);
-			} finally {
-				setLoading(false);
-			}
-		};
-		fetchCars();
-	}, []);
+		setCars(memoizedCars);
+		setTimeout(() => {
+			setLoading(false);
+		}, 1000);
+	}, [memoizedCars]);
 
 	if (loading) {
 		return <Loading />;
