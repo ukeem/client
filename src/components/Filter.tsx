@@ -46,11 +46,11 @@ export interface ModalItem {
 
 const Filter: FC<Filter> = ({ allCars }) => {
 
-	const { cars, setCars } = useCarStore();
+	const [cars, setCars] = useState<Car[]>(allCars);
 
-	useEffect(() => {
-		setCars(allCars);
-	}, [allCars]);
+	// useEffect(() => {
+	// 	setCars(allCars);
+	// }, [allCars]);
 
 	const { filterData, setFilterData } = useFilterDataStore();
 	const { setCarsData } = useCarsDataStore();

@@ -39,30 +39,34 @@ import Filter from '@/components/Filter';
 import { useState, useEffect } from 'react';
 import { Car } from '@/types/Car';
 import { seoAltImage } from '@/lib/constants';
-import Loading from './loading';
 import { useCarStore } from '@/store/useCarStore';
 
 export default function FilterPage() {
-	// const [allCars, setAllCars] = useState<Car[]>([]);
+
 	const { cars, setCars } = useCarStore();
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		const fetchCars = async () => {
-			const response = await fetch("/response.json", {
-				cache: "force-cache",
-			});
-			const data: Car[] = await response.json();
-			setCars(data);
-			setLoading(false);
+			setLoading(true);
+			try {
+				const response = await fetch("/response.json");
+				if (!response.ok) throw new Error("Ошибка сети");
+				const data: Car[] = await response.json();
+				setCars(data);
+			} catch (error) {
+				console.error("Ошибка загрузки данных:", error);
+			} finally {
+				setLoading(false);
+			}
 		};
+
 		if (cars.length === 0) {
 			fetchCars();
 		}
-		setLoading(false);
-	}, [cars]);
+	}, [cars.length]);
 
-	if (loading || cars.length === 0) {
+	if (loading) {
 		return (
 			<div className="loading">
 				<p>
