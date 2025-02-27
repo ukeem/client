@@ -187,7 +187,7 @@ const Footer: FC<FooterProps> = () => {
 						</div>
 						<div className=" col-9 mx-auto col-lg-3 mb-4">
 							<Link
-								href={'https://t.me/DKMOTORS_KOREA'}
+								href={'https://www.instagram.com/dkmotors.export/#'}
 								rel='nofollow'
 								target='_blank'
 								className="contacts_item d-flex align-items-center gap-3">
@@ -224,7 +224,7 @@ const Footer: FC<FooterProps> = () => {
 						</div>
 						<div className=" col-9 mx-auto col-lg-3 mb-4">
 							<Link
-								href={''}
+								href={'https://wa.me/821050451011'}
 								className="contacts_item d-flex align-items-center gap-3">
 								<div className="contacts_item_icon flex-shrink-0 rounded-circle d-flex  justify-content-center align-items-center">
 									<Image
