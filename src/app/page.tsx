@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 	description: "Авто из Кореи под ключ: цены, характеристики, фото. Прямые поставки. Доставка в Москву и другие города.",
 	keywords: "авто из кореи, корейские автомобили, купить авто с пробегом, авто под ключ",
 	alternates: {
-		canonical: "https://autokorean.ru/",
+		canonical: '/',
 	},
 	openGraph: {
 		title: "Авто из Кореи | Купить авто с пробегом в Москве",
@@ -31,6 +31,15 @@ export const metadata: Metadata = {
 	robots: {
 		index: true,
 		follow: true,
+		nocache: false,
+		googleBot: {
+			index: true,
+			follow: true,
+			noimageindex: false,
+			'max-video-preview': -1,
+			'max-image-preview': 'large',
+			'max-snippet': -1,
+		},
 	},
 };
 
