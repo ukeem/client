@@ -16,13 +16,27 @@ export async function POST(req: Request) {
             );
         }
 
+        // const text = `
+        // 	📩 Новая заявка:  ${new Date().toLocaleString("ru-RU")}\n\n
+        // 	👤 Имя:  ${name}\n\n
+        // 	📞 Телефон:  ${phone}\n\n
+        // 	🚗 Авто:  ${carName}\n\n
+        // 	💰 Цена:  ${price}\n\n
+        // 	🔗 Ссылка ENCAR:  ${url}
+        // `;
+
         const text = `
-			📩 Новая заявка:  ${new Date().toLocaleString("ru-RU")}\n\n
-			👤 Имя:  ${name}\n\n
-			📞 Телефон:  ${phone}\n\n
-			🚗 Авто:  ${carName}\n\n
-			💰 Цена:  ${price}\n\n
-			🔗 Ссылка ENCAR:  ${url}
+			📩 *Новая заявка:*  ${new Date().toLocaleString("ru-RU")}
+
+			👤 Имя:  *${name.replace(/[-_.*+?^${}()|[\]\\]/g, "\\$&")}*
+
+			📞 Телефон:  *${phone.replace(/[-_.*+?^${}()|[\]\\]/g, "\\$&")}*
+
+			🚗 Авто:  *${carName.replace(/[-_.*+?^${}()|[\]\\]/g, "\\$&")}*
+
+			💰 Цена:  *${price.replace(/[-_.*+?^${}()|[\]\\]/g, "\\$&")}*
+
+			🔗 Ссылка ENCAR:  *${url.replace(/[-_.*+?^${}()|[\]\\]/g, "\\$&")}*
 		`;
 
         const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;

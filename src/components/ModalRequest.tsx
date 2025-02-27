@@ -30,7 +30,7 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 			...formdata,
 			carName: `${car?.brand.brand} ${car?.model.model}  ${car?.edition.edition}`,
 			url: `https://fem.encar.com/cars/detail/${car?.encarId}`,
-			price: `${car?.price.toLocaleString('ru-RU', { maximumFractionDigits: 0 })}`
+			price: `${car?.price.toLocaleString('ru-RU', { maximumFractionDigits: 0 })} ₽`
 		});
 	}, [car])
 

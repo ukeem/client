@@ -722,6 +722,7 @@ a {
         transform: translateX(0);
         right: 24px;
         bottom: 24px;
+        max-width: 800px;
     }
 
     .carDetailSlider .swiper-button-prev,
