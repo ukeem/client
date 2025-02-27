@@ -1,7 +1,6 @@
 'use client'
 import Filter from '@/components/Filter';
-import { useState, useEffect } from 'react';
-import { Car } from '@/types/Car';
+import { useState, useEffect, useMemo } from 'react';
 import { seoAltImage } from '@/lib/constants';
 import { useCarStore } from '@/store/useCarStore';
 import { CARS_DATA } from './data';
@@ -9,13 +8,16 @@ import { CARS_DATA } from './data';
 export default function FilterPage() {
 
 	const { cars, setCars } = useCarStore();
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
+
+	const memoizedCars = useMemo(() => CARS_DATA, []);
 
 	useEffect(() => {
-		setLoading(true);
-		setCars(CARS_DATA);
-		setLoading(false);
-	}, []);
+		setCars(memoizedCars);
+		setTimeout(() => {
+			setLoading(false);
+		}, 1000);
+	}, [memoizedCars]);
 
 	// console.log(cars);
 
