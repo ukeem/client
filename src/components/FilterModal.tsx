@@ -130,7 +130,7 @@ const FilterModal: FC<FilterModalProps> = ({
 											)
 										) : itemType === 'minPrice' || itemType === "maxPrice" ? (
 											<>
-												{(Math.round(Number(item[itemType]) / 10000) * 10000).toLocaleString('ru-RU')} ₽
+												{(Math.round(Number(item[itemType]) / 100000) * 100000).toLocaleString('ru-RU')} ₽
 											</>
 										) : itemType === 'minMileage' || itemType === "maxMileage" ? (
 											<>

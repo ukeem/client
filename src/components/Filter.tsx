@@ -114,8 +114,8 @@ const Filter: FC<Filter> = ({ allCars }) => {
 			const maxEngineFilter = filterData.maxEngine ? engine.engine <= filterData.maxEngine : true;
 			const minMileageFilter = filterData.minMileage ? mileage >= filterData.minMileage : true;
 			const maxMileageFilter = filterData.maxMileage ? mileage <= filterData.maxMileage : true;
-			const minPriceFilter = filterData.minPrice ? (Math.round(price / 10000) * 10000) >= Math.round(filterData.minPrice / 10000) * 10000 : true;
-			const maxPriceFilter = filterData.maxPrice ? (Math.round(price / 10000) * 10000) <= Math.round(filterData.maxPrice / 10000) * 10000 : true;
+			const minPriceFilter = filterData.minPrice ? (Math.round(price / 100000) * 100000) >= Math.round(filterData.minPrice / 100000) * 100000 : true;
+			const maxPriceFilter = filterData.maxPrice ? (Math.round(price / 100000) * 100000) <= Math.round(filterData.maxPrice / 100000) * 100000 : true;
 			const transmissionFilter = filterData.transmissionIds?.length! > 0 ? filterData.transmissionIds?.includes(transmission.id) : true;
 			const fuelFilter = filterData.fuelIds?.length! > 0 ? filterData.fuelIds?.includes(fuel.id) : true;
 			const bodyFilter = filterData.bodyIds?.length! > 0 ? filterData.bodyIds?.includes(body.id) : true;
@@ -331,7 +331,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(Math.round(price / 10000 * 10000))
+						minPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -345,7 +345,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(Math.round(price / 10000 * 10000))
+						maxPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -568,7 +568,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(Math.round(price / 10000 * 10000))
+						minPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -582,7 +582,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(Math.round(price / 10000 * 10000))
+						maxPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -791,7 +791,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(Math.round(price / 10000 * 10000))
+						minPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -805,7 +805,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(Math.round(price / 10000 * 10000))
+						maxPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -999,7 +999,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(Math.round(price / 10000 * 10000))
+						minPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1013,7 +1013,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(Math.round(price / 10000 * 10000))
+						maxPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1192,7 +1192,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(Math.round(price / 10000 * 10000))
+						minPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1206,7 +1206,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(Math.round(price / 10000 * 10000))
+						maxPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1367,7 +1367,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(Math.round(price / 10000 * 10000))
+						minPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1381,7 +1381,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(Math.round(price / 10000 * 10000))
+						maxPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1525,7 +1525,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(Math.round(price / 10000 * 10000))
+						minPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1539,7 +1539,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(Math.round(price / 10000 * 10000))
+						maxPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1665,7 +1665,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(Math.round(price / 10000 * 10000))
+						minPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1679,7 +1679,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(Math.round(price / 10000 * 10000))
+						maxPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1789,7 +1789,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						minPrice: String(Math.round(price / 10000) * 10000)
+						minPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1803,7 +1803,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(Math.round(price / 10000 * 10000))
+						maxPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
@@ -1911,7 +1911,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.map(({ price }, index) => {
 					return {
 						id: index,
-						maxPrice: String(Math.round(price / 10000 * 10000))
+						maxPrice: String(Math.round(price / 100000) * 100000)
 					}
 				})
 				.filter((value, index, self) =>
