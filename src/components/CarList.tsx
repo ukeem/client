@@ -23,25 +23,23 @@ const CarList: FC<CarListProps> = ({ limit = 12, allCars }) => {
 	const [visibleOffset, setVisibleOffset] = useState<number>(0);
 	const [loading, setLoading] = useState(false);
 	const [hasMore, setHasMore] = useState(true);
-	const { cars, setCars } = useCars();
-	const [visibleCars, setVisibleCars] = useState([] as Car[]);
+	const [visibleCars, setVisibleCars] = useState(allCars);
 
-	useEffect(() => {
-		if (allCars.length > 0 && cars.length === 0) {
-			setCars(allCars);
-			setVisibleCars(allCars);
-		} else if (allCars.length === 0 && cars.length === 0) {
-			getCars(12, 0, 'price', 'DESC').then(data => {
-				setCars(data);
-				setVisibleCars(data);
-			});
-		}
-	}, [allCars, cars.length, setCars]);
+	// useEffect(() => {
+	// 	if (allCars.length > 0 && cars.length === 0) {
+	// 		setCars(allCars);
+	// 		setVisibleCars(allCars);
+	// 	} else if (allCars.length === 0 && cars.length === 0) {
+	// 		getCars(12, 0, 'price', 'DESC').then(data => {
+	// 			setCars(data);
+	// 			setVisibleCars(data);
+	// 		});
+	// 	}
+	// }, [allCars, cars.length, setCars]);
 
 	if (visibleCars.length === 0) {
 		return <Loading />;
 	}
-
 
 	const fetchMoreCars = async (limit: number, offset: number) => {
 		try {
@@ -75,9 +73,6 @@ const CarList: FC<CarListProps> = ({ limit = 12, allCars }) => {
 		setRequestShow(false)
 	}
 
-	if (!cars) {
-		return <Loading />
-	}
 	return (
 		<>
 

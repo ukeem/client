@@ -1,5 +1,5 @@
 'use client'
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import "swiper/css";
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,11 +8,11 @@ import Btn from './Btn';
 import { formatNumber, translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
 import { seoAltImage, seoUrlCarPage } from '@/lib/constants';
 import { useRouter } from 'next/navigation';
-import { useCars } from '@/context/CarsContext';
+// import { useCars } from '@/context/CarsContext';
 import Loading from './Loading';
 import Link from 'next/link';
 import { Car } from '@/types/Car';
-import { getCars } from '@/api/cars';
+// import { getCars } from '@/api/cars';
 
 interface MainSliderProps {
 	allCars: Car[];
@@ -20,19 +20,19 @@ interface MainSliderProps {
 
 const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 	const router = useRouter()
-	const { cars, setCars } = useCars();
+	// const { cars, setCars } = useCars();
 
-	useEffect(() => {
-		if (allCars.length > 0 && cars.length === 0) {
-			setCars(allCars);
-		} else if (allCars.length === 0 && cars.length === 0) {
-			getCars(12, 0, 'price', 'DESC').then(data => {
-				setCars(data);
-			});
-		}
-	}, [allCars, cars.length, setCars]);
+	// useEffect(() => {
+	// 	if (allCars.length > 0 && cars.length === 0) {
+	// 		setCars(allCars);
+	// 	} else if (allCars.length === 0 && cars.length === 0) {
+	// 		getCars(12, 0, 'price', 'DESC').then(data => {
+	// 			setCars(data);
+	// 		});
+	// 	}
+	// }, [allCars, cars.length, setCars]);
 
-	if (cars.length === 0) {
+	if (allCars.length === 0) {
 		return <Loading />;
 	}
 
@@ -48,7 +48,7 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 				modules={[Autoplay]}
 				className="mySwiper"
 			>
-				{cars.map(car => (
+				{allCars.map(car => (
 					<SwiperSlide
 						key={car.id}
 						className='mySwiperSlide'
