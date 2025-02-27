@@ -22,6 +22,7 @@ const CarListFiltered: FC = () => {
 
 	const [requestShow, setRequestShow] = useState(false);
 	const [car, setCar] = useState<Car>();
+
 	const handleShowRequest = (car: Car) => {
 		setCar(car)
 		setRequestShow(true)
