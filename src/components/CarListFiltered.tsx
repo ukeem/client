@@ -31,8 +31,8 @@ const CarListFiltered: FC = () => {
 		setRequestShow(false)
 	}
 
-	if (!carsData) {
-		return <Loading />
+	if (!carsData || carsData.length === 0) {
+		return <Loading />;
 	}
 	return (
 		<>

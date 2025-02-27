@@ -2332,13 +2332,6 @@ const Filter: FC<Filter> = ({ allCars }) => {
 			return;
 		}
 
-
-		if (filterData.brandIds?.length === 0) {
-			setCarsData(cars);
-			setLoading(false);
-			return;
-		}
-
 		try {
 			const filteredData = searchFilterCar(filterData, cars);
 			filteredData.sort((a, b) => a.price - b.price);
