@@ -49,7 +49,6 @@ export default function FavoriteCarsList({ limit = 9, load = 9 }: FavoriteCarsLi
 		setFavoriteCars(filteredCars);
 	}, [favoriteIds, cars]);
 
-
 	const visibleCars = favoriteCars.slice(0, visibleCount);
 
 	const router = useRouter()
@@ -61,8 +60,6 @@ export default function FavoriteCarsList({ limit = 9, load = 9 }: FavoriteCarsLi
 	const handleShowMore = () => {
 		setVisibleCount((prev) => prev += load);
 	}
-
-
 
 	const [requestShow, setRequestShow] = useState(false);
 	const [car, setCar] = useState<Car>();

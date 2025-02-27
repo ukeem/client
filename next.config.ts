@@ -19,6 +19,9 @@ const nextConfig: NextConfig = {
         ],
         dangerouslyAllowSVG: true,
     },
+    experimental: {
+        optimizeCss: true, // Оптимизация CSS в Next.js
+    },
     // eslint: {
     //     // Warning: This allows production builds to successfully complete even if
     //     // your project has ESLint errors.
