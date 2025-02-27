@@ -10,9 +10,10 @@ import { seoAltImage, seoUrlCarPage } from '@/lib/constants';
 import Loading from './Loading';
 import Link from 'next/link';
 import { Car } from '@/types/Car';
+import { Swiper, SwiperSlide } from "swiper/react";
 
-const Swiper = dynamic(() => import("swiper/react").then(mod => mod.Swiper), { ssr: false });
-const SwiperSlide = dynamic(() => import("swiper/react").then(mod => mod.SwiperSlide), { ssr: false });
+// const Swiper = dynamic(() => import("swiper/react").then(mod => mod.Swiper), { ssr: false });
+// const SwiperSlide = dynamic(() => import("swiper/react").then(mod => mod.SwiperSlide), { ssr: false });
 
 interface MainSliderProps {
 	allCars: Car[];
@@ -39,7 +40,13 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 						<SwiperSlide key={car.id} className='mySwiperSlide'>
 							<div className="w-100 h-100 position-relative">
 								<Link className='slide d-block' href={`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`}>
-									<Image src={photoUrl} quality={50} alt={`${seoAltImage} | ${car.encarId}`} fill priority />
+									<Image
+										src={photoUrl}
+										quality={50}
+										alt={`${seoAltImage} | ${car.encarId}`}
+										fill
+										priority
+									/>
 								</Link>
 								<div className="slide_info d-flex p-2 p-md-4 position-absolute flex-lg-column gap-0 gap-lg-3 gap-lg-4 align-items-center align-items-lg-stretch">
 									<h2 className='slide_info_title mb-0'>{`${car.brand.brand} ${car.model.model} ${car.edition.edition}`}</h2>
