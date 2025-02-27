@@ -6,6 +6,7 @@ import { useCarStore } from '@/store/useCarStore';
 import { CARS_DATA } from './data';
 import Footer from '@/components/Footer';
 import FavoriteLink from '@/components/FavoriteLink';
+import Image from 'next/image';
 
 export default function FilterPage() {
 
@@ -26,7 +27,13 @@ export default function FilterPage() {
 	if (cars.length === 0 || loading) {
 		return (
 			<div className="loading">
-				<p>
+				<Image
+					src='/loading.svg'
+					alt='DKMotors | Экспорт автомобилей из Южной Кореи в Россию и страны СНГ | loading'
+					width={100}
+					height={100}
+				/>
+				<p className=' text-accent'>
 					Пожалуйста подождите!
 					<br />
 					Идет загрузка всех авто...
