@@ -56,8 +56,8 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 											src={photoUrl ? photoUrl : '/no_image.jpg'}
 											quality={50}
 											alt={`${seoAltImage} | ${car.encarId}`}
-											fill
-											sizes="(max-width: 768px) 100vw, 50vw"
+											width={1296}
+											height={777}
 											priority
 											onClick={() => router.push(`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`)}
 										/>
