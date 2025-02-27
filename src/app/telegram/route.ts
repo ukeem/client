@@ -26,17 +26,12 @@ export async function POST(req: Request) {
         // `;
 
         const text = `
-			📩 *Новая заявка:*  ${new Date().toLocaleString("ru-RU")}
-
-			👤 Имя:  *${name.replace(/[-_.*+?^${}()|[\]\\]/g, "\\$&")}*
-
-			📞 Телефон:  *${phone.replace(/[-_.*+?^${}()|[\]\\]/g, "\\$&")}*
-
-			🚗 Авто:  *${carName.replace(/[-_.*+?^${}()|[\]\\]/g, "\\$&")}*
-
-			💰 Цена:  *${price.replace(/[-_.*+?^${}()|[\]\\]/g, "\\$&")}*
-
-			🔗 Ссылка ENCAR:  *${url.replace(/[-_.*+?^${}()|[\]\\]/g, "\\$&")}*
+			📩 <b>Новая заявка:</b>  ${new Date().toLocaleString("ru-RU")}<br><br>
+			👤 Имя:  <b>${name}</b><br><br>
+			📞 Телефон:  <b>${phone}</b><br><br>
+			🚗 Авто:  <b>${carName}</b><br><br>
+			💰 Цена:  <b>${price}</b><br><br>
+			🔗 Ссылка ENCAR:  <b>${url}</b>
 		`;
 
         const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
@@ -44,7 +39,11 @@ export async function POST(req: Request) {
         const response = await fetch(telegramUrl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ chat_id: CHAT_ID, text }),
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text,
+                parse_mode: "HTML",
+            }),
         });
 
         if (!response.ok) {
