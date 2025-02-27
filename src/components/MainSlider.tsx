@@ -31,13 +31,9 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 			>
 				{allCars.map(car => {
 					const photoUrl = useMemo(() => {
-						const firstPhoto = car.photos.find(photo => photo.photo);
-						return firstPhoto ? `${process.env.NEXT_PUBLIC_API_URL}${firstPhoto.photo}` : '/no_image.jpg';
+						const firstPhoto = car.photos.sort((a, b) => a.photo.localeCompare(b.photo))[0].photo
+						return firstPhoto ? `${process.env.NEXT_PUBLIC_API_URL}${firstPhoto}` : '/no_image.jpg';
 					}, [car.photos]);
-
-					const formattedPrice = useMemo(() =>
-						(car.price - (car.price % 10000)).toLocaleString('ru-RU')
-						, [car.price]);
 
 					return (
 						<SwiperSlide key={car.id} className='mySwiperSlide'>
@@ -61,7 +57,7 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 											<li><p className='slide_info_detail mb-0'>Цвет: <strong>{translateColor(car.color.color)}</strong></p></li>
 										</ul>
 										<div className="d-flex flex-column align-items-end">
-											<span className='slide_info_price'>{formattedPrice} ₽</span>
+											<span className='slide_info_price'>{`${(Math.round(car.price / 100000) * 100000).toLocaleString('ru-RU')} ₽`}</span>
 											<span className='slide_info_key'>Цена под ключ</span>
 										</div>
 										<Btn icon='auto' clazz='slide_info_btn d-none d-lg-flex' href={`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`} target>
