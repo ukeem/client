@@ -27,7 +27,7 @@ export default function FilterPage() {
 	if (cars.length === 0 || loading) {
 		return (
 			<div className="loading">
-				<div className=' d-flex flex-column justify-content-center gap-4'>
+				<div className=' d-flex flex-column justify-content-center align-items-center'>
 					<Image
 						src='/loading.svg'
 						alt='DKMotors | Экспорт автомобилей из Южной Кореи в Россию и страны СНГ | loading'
