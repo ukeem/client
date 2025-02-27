@@ -33,6 +33,7 @@ export default function FilterPage() {
 						alt='DKMotors | Экспорт автомобилей из Южной Кореи в Россию и страны СНГ | loading'
 						width={102}
 						height={40}
+						className='mb-4'
 					/>
 					<p>
 						Пожалуйста подождите!
