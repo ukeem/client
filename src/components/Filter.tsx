@@ -2387,7 +2387,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 	return (
 		<>
-			<HeaderInner />
+			{/* <HeaderInner />
 			<section className={`filter ${isFixed ? "fix" : "mb-3"}`} id='filter'>
 				<div className=" container">
 					<div className="row row-gap-3">
@@ -2435,14 +2435,14 @@ const Filter: FC<Filter> = ({ allCars }) => {
 					</div>
 				</div>
 			</div>
-			{/* <CarListFiltered /> */}
+			<CarListFiltered />
 			<FilterModal
 				show={show}
 				title={modalTitle}
 				list={modalList}
 				listRadio={modalListRadio}
 				handleClose={handleClose}
-			/>
+			/> */}
 		</>
 	);
 }
