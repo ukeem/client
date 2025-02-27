@@ -28,7 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
 
     // Динамические страницы автомобилей
-    const cars = await getCars();
+    const cars = await getCars(50000);
     if (cars.length === 0) return staticPages;
 
     const carPages: MetadataRoute.Sitemap = cars.map((car) => ({
