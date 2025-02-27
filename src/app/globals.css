@@ -212,6 +212,7 @@ a {
     font-size: 20px;
     line-height: 100%;
     color: var(--accent);
+    white-space: nowrap;
 }
 .slide_info_key {
     font-weight: 500;

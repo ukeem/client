@@ -72,8 +72,8 @@ export const revalidate = 3600
 
 export default async function Home() {
 	const [carListData, initialCars] = await Promise.all([
-		getCars(12, 0, 'price', 'DESC'),
-		getCars(12, 0, 'mileage', 'ASC'),
+		getCars(9, 0, 'price', 'DESC'),
+		getCars(9, 0, 'mileage', 'ASC'),
 	]);
 
 	return (

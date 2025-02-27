@@ -45,6 +45,7 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 										quality={50}
 										alt={`${seoAltImage} | ${car.encarId}`}
 										fill
+										sizes="(max-width: 768px) 100vw, 50vw"
 										priority
 									/>
 								</Link>
