@@ -165,6 +165,7 @@ export async function findCars(token: string) {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
             },
+            cache: "no-store",
         }
     );
 

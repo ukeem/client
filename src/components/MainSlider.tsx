@@ -26,7 +26,7 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 		<section className="container mb-4">
 			<Swiper
 				loop
-				autoplay={{ delay: 10000, pauseOnMouseEnter: true, disableOnInteraction: false }}
+				autoplay={{ delay: 5000, pauseOnMouseEnter: true, disableOnInteraction: false }}
 				modules={[Autoplay]}
 				className="mySwiper"
 			>
