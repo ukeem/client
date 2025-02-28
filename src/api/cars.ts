@@ -3,8 +3,8 @@
 "use server";
 
 import { Car } from "@/types/Car";
-import fs from "fs/promises";
-import path from "path";
+// import fs from "fs/promises";
+// import path from "path";
 
 export async function getCars(
     limit = 9,
@@ -19,8 +19,8 @@ export async function getCars(
     if (orderValue) body.orderValue = orderValue;
 
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/cars/filter`,
-        // `${process.env.NEXT_PUBLIC_API_URL}/api/cars/filter`,
+        // `${process.env.NEXT_PUBLIC_API_URL}/cars/filter`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/cars/filter`,
         {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -43,11 +43,11 @@ export async function getAllCars(
     if (orderKey) params.append("orderKey", orderKey);
     if (orderValue) params.append("orderValue", orderValue);
 
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/cars?${params.toString()}`;
+    // const url = `${process.env.NEXT_PUBLIC_API_URL}/cars?${params.toString()}`;
 
-    // const url = `${
-    //     process.env.NEXT_PUBLIC_API_URL
-    // }/api/cars?${params.toString()}`;
+    const url = `${
+        process.env.NEXT_PUBLIC_API_URL
+    }/api/cars?${params.toString()}`;
 
     const res = await fetch(url, {
         method: "GET",
@@ -65,8 +65,8 @@ export async function getAllCars(
 
 export async function getCarById(id: string): Promise<Car> {
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/cars/${id}`,
-        // `${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}`,
+        // `${process.env.NEXT_PUBLIC_API_URL}/cars/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}`,
         {
             method: "GET",
             cache: "force-cache",
@@ -117,22 +117,22 @@ export async function deleteCar(id: string, token: string): Promise<void> {
 
     if (!res.ok) throw new Error("Ошибка удаления автомобиля");
 
-    try {
-        const filePath = path.join(process.cwd(), "/public/response.json");
-        const data = JSON.parse(await fs.readFile(filePath, "utf-8"));
+    // try {
+    //     const filePath = path.join(process.cwd(), "/public/response.json");
+    //     const data = JSON.parse(await fs.readFile(filePath, "utf-8"));
 
-        // Фильтруем массив, удаляя машину с соответствующим id
-        const updatedData = data.filter((car: Car) => car.id !== Number(id));
+    //     // Фильтруем массив, удаляя машину с соответствующим id
+    //     const updatedData = data.filter((car: Car) => car.id !== Number(id));
 
-        // Записываем обновленные данные обратно в файл
-        await fs.writeFile(
-            filePath,
-            JSON.stringify(updatedData, null, 2),
-            "utf-8"
-        );
-    } catch (error) {
-        console.error("Ошибка обновления response.json:", error);
-    }
+    //     // Записываем обновленные данные обратно в файл
+    //     await fs.writeFile(
+    //         filePath,
+    //         JSON.stringify(updatedData, null, 2),
+    //         "utf-8"
+    //     );
+    // } catch (error) {
+    //     console.error("Ошибка обновления response.json:", error);
+    // }
 
     return res.json();
 }
