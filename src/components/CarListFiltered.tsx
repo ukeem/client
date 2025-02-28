@@ -1,17 +1,15 @@
 'use client'
 import { translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
-import { useState, useCallback, FC } from "react";
+import { useState, FC } from "react";
 import ItemSlider from './ItemSlider';
 import Btn from './Btn';
 import { useCarsDataStore } from '@/store/useCarsDataStore';
 import { seoUrlCarPage } from '@/lib/constants';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import FavoriteButton from './FavoriteButton';
 import { WantItBtn } from './WantItBtn';
 import { ModalRequest } from './ModalRequest';
 import { Car } from '@/types/Car';
-import Loading from './Loading';
 
 
 const CarListFiltered: FC = () => {
@@ -32,11 +30,16 @@ const CarListFiltered: FC = () => {
 		setRequestShow(false)
 	}
 
-	// if (!carsData || carsData.length === 0) {
-	// 	return <Loading />;
-	// }
+	if (!carsData || carsData.length === 0) {
+		return (
+			<></>
+		)
+	}
+
+
 
 	return (
+
 		<>
 			<div className='cars mb-4' id='search'>
 				<div className=" container">
@@ -146,23 +149,6 @@ const CarListFiltered: FC = () => {
 						))}
 					</div>
 				</div>
-
-				{/* {visibleCount < carsData.length && (
-					<div className="container py-4 mb-5">
-						<div className="row">
-							<div className="mx-auto col-12 col-md-4">
-								<Btn
-									onClick={handleShowMore}
-									icon="arrow_more"
-									clazz="show_more_btn w-100"
-								>
-									Показать больше
-								</Btn>
-							</div>
-						</div>
-					</div>
-				)} */}
-
 			</div >
 
 			<ModalRequest

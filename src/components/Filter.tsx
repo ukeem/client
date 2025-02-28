@@ -11,7 +11,6 @@ import { usePathname, useRouter, } from 'next/navigation';
 import { seoAltImage } from '@/lib/constants';
 import { useCarsDataStore } from '@/store/useCarsDataStore';
 import HeaderInner from './HeaderInner';
-import CarListFiltered from './CarListFiltered';
 // import { useCarStore } from '@/store/useCarStore';
 
 export interface FilterProps {
@@ -47,7 +46,7 @@ export interface ModalItem {
 const Filter: FC<Filter> = ({ allCars }) => {
 
 	// const { cars, setCars } = useCarStore();
-	const [cars, setCars] = useState<Car[]>([]);
+	const [cars, setCars] = useState<Car[]>(allCars);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [loader, setLoader] = useState<boolean>(false);
 
@@ -154,15 +153,13 @@ const Filter: FC<Filter> = ({ allCars }) => {
 	useEffect(() => {
 
 		setCarsData([]);
-		if (allCars.length) {
-			setCars(allCars);
-		}
+		// if (allCars.length) {
+		// 	setCars(allCars);
+		// }
 
-	}, [allCars]);
+	}, []);
 
 	useEffect(() => {
-
-		setLoading(true);
 
 		setFilterData({
 			minMileage: undefined,
@@ -2432,7 +2429,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 	};
 
 
-	if (loading || cars.length === 0) {
+	if (cars.length === 0) {
 		return (
 			<div className="loading">
 				<div className=" d-flex flex-column justify-content-center align-items-center">
@@ -2512,7 +2509,6 @@ const Filter: FC<Filter> = ({ allCars }) => {
 					</div>
 				</div>
 			</div>
-			<CarListFiltered />
 			<FilterModal
 				show={show}
 				title={modalTitle}
