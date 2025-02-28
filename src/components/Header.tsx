@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import Logo from './Logo';
-import Btn from './Btn';
 import Image from 'next/image';
 import Link from 'next/link';
 import { seoAltImage } from '@/lib/constants';
