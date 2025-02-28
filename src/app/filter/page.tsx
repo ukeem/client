@@ -6,7 +6,7 @@ import { useCarStore } from '@/store/useCarStore';
 import { CARS_DATA } from './data';
 import Footer from '@/components/Footer';
 import FavoriteLink from '@/components/FavoriteLink';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 export default function FilterPage() {
 
@@ -16,11 +16,18 @@ export default function FilterPage() {
 	const memoizedCars = useMemo(() => CARS_DATA, []);
 
 	useEffect(() => {
-		setCars(memoizedCars);
-		setTimeout(() => {
+		if (cars.length === 0) {
+			setCars(memoizedCars);
+		}
+
+		const timeout = setTimeout(() => {
 			setLoading(false);
 		}, 1000);
-	}, [memoizedCars]);
+
+		return () => clearTimeout(timeout); // Чистим таймер при размонтировании
+
+	}, [memoizedCars, cars.length]); // Следим только за длиной массива, а не за всем `cars`
+
 
 	// console.log(cars);
 
