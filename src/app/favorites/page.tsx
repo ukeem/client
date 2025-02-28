@@ -1,4 +1,5 @@
 
+import { getDataFileJSON } from '@/api/cars';
 import FavoriteCarsList from '@/components/FavoriteCarsList';
 import FavoriteLink from '@/components/FavoriteLink';
 import Footer from '@/components/Footer';
@@ -29,8 +30,7 @@ export const metadata: Metadata = {
 
 export default async function FavoritesCars() {
 
-	const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/data/response.json`);
-	const cars: Car[] = await response.json();
+	const cars: Car[] = await getDataFileJSON();
 
 	return (
 		<>

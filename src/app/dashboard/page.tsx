@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { getLocal } from '@/lib/fn';
 import { useCarStore } from '@/store/useCarStore';
 import Loading from '../loading';
+import { getDataFileJSON } from '@/api/cars';
 
 export default function Dashboard() {
 	const { cars, setCars } = useCarStore();
@@ -22,18 +23,20 @@ export default function Dashboard() {
 			return;
 		}
 
-		fetch("/response.json") // Загружаем JSON из public/
-			.then((res) => res.json())
-			.then((data) => {
-				setCars(data);
-				setLoading(false);
-			})
-			.catch((err) => {
-				console.error("Ошибка загрузки данных:", err);
-				setLoading(false);
-			});
+		fetchCars();
 	}, [cars.length]);
 
+	const fetchCars = async () => {
+		setLoading(true);
+		try {
+			const data = await getDataFileJSON();
+			setCars(data);
+		} catch (error) {
+			console.error("Ошибка загрузки автомобилей:", error);
+		} finally {
+			setLoading(false);
+		}
+	}
 
 
 	if (loading) {

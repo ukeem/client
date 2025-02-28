@@ -153,3 +153,21 @@ export async function findCars(token: string) {
 
     return res.json();
 }
+
+export async function getDataFileJSON(): Promise<Car[]> {
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/data/response.json`,
+        {
+            method: "GET",
+            cache: "force-cache",
+        }
+    );
+
+    if (!res.ok) {
+        throw new Error(
+            `Ошибка загрузки JSON данных: ${res.status} ${res.statusText}`
+        );
+    }
+
+    return res.json();
+}

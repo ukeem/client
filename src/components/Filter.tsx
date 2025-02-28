@@ -151,6 +151,8 @@ const Filter: FC<Filter> = ({ allCars }) => {
 	}, [pathname]);
 
 	useEffect(() => {
+
+		setBrands([]);
 		if (allCars.length) {
 			setCars(allCars);
 		}
@@ -197,9 +199,9 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 			setBrands(brand);
 
-			// setTimeout(() => {
-			// 	setLoading(false);
-			// }, 500);
+			setTimeout(() => {
+				setLoading(false);
+			}, 500);
 		}
 	}, [cars]); // Теперь `useEffect` зависит от `cars`, а не выполняется один раз
 

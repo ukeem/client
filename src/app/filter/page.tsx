@@ -1,13 +1,12 @@
 import Filter from '@/components/Filter';
 import { seoAltImage } from '@/lib/constants';
-// import Footer from '@/components/Footer';
 import FavoriteLink from '@/components/FavoriteLink';
 import { Car } from '@/types/Car';
+import { getDataFileJSON } from '@/api/cars';
 
 export default async function FilterPage() {
 
-	const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/data/response.json`);
-	const cars: Car[] = await response.json();
+	const cars: Car[] = await getDataFileJSON();
 
 	return (
 		<>
