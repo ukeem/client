@@ -32,7 +32,10 @@ export default function FavoriteCarsList({ limit = 9, load = 9 }: FavoriteCarsLi
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		if (cars.length > 0) return;
+		if (cars.length > 0) {
+			setLoading(false);
+			return;
+		}
 
 		fetch("/response.json") // Загружаем JSON из public/
 			.then((res) => res.json())

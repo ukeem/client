@@ -7,7 +7,7 @@ import Loading from '../loading';
 
 export default function Dashboard() {
 	const { cars, setCars } = useCarStore();
-	const [loading, setLoading] = useState(cars.length === 0);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const role = getLocal('role');
@@ -17,7 +17,10 @@ export default function Dashboard() {
 	}, []);
 
 	useEffect(() => {
-		if (cars.length > 0) return;
+		if (cars.length > 0) {
+			setLoading(false);
+			return;
+		}
 
 		fetch("/response.json") // Загружаем JSON из public/
 			.then((res) => res.json())

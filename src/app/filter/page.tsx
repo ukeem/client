@@ -10,7 +10,7 @@ import FavoriteLink from '@/components/FavoriteLink';
 export default function FilterPage() {
 
 	const { cars, setCars } = useCarStore();
-	const [loading, setLoading] = useState<boolean>(cars.length === 0);
+	const [loading, setLoading] = useState<boolean>(true);
 
 	// useEffect(() => {
 	// 	if (cars.length === 0) {
@@ -21,7 +21,10 @@ export default function FilterPage() {
 
 
 	useEffect(() => {
-		if (cars.length > 0) return;
+		if (cars.length > 0) {
+			setLoading(false);
+			return;
+		}
 
 		fetch("/response.json") // Загружаем JSON из public/
 			.then((res) => res.json())
