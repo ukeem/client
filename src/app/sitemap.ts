@@ -1,7 +1,7 @@
 /** @format */
 
 import type { MetadataRoute } from "next";
-import { getCars } from "@/api/cars";
+import { getCars, getDataFileJSON } from "@/api/cars";
 import { seoUrlCarPage } from "@/lib/constants";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -28,7 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ];
 
     // Динамические страницы автомобилей
-    const cars = await getCars(50000);
+    const cars = await getDataFileJSON();
     if (cars.length === 0) return staticPages;
 
     const carPages: MetadataRoute.Sitemap = cars.map((car) => ({

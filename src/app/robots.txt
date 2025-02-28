@@ -2,5 +2,8 @@ User-Agent: *
 Allow: /
 Disallow: /dashboard/
 Disallow: /success/
+Disallow: /favorites/
+Disallow: /filter/
+Disallow: /login/
 
 Sitemap: https://autokorean.ru/sitemap.xml
