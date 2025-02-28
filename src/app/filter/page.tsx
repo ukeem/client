@@ -1,15 +1,15 @@
 import Filter from '@/components/Filter';
 import { seoAltImage } from '@/lib/constants';
 import FavoriteLink from '@/components/FavoriteLink';
+import { getAllCarsForFilter } from '@/api/cars';
 // import { Car } from '@/types/Car';
-import { getAllCars, getDataFileJSON } from '@/api/cars';
 // import { Suspense } from 'react';
 // import Loading from './loading';
 
 export default async function FilterPage() {
 
 	// const cars: Car[] = await getDataFileJSON();
-	const cars = await getAllCars();
+	const cars = await getAllCarsForFilter();
 
 	return (
 		<>

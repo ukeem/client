@@ -34,6 +34,25 @@ export async function getCars(
     return res.json();
 }
 
+export async function getAllCarsForFilter(): Promise<Car[]> {
+    // const url = `${process.env.NEXT_PUBLIC_API_URL}/cars/getfilter`;
+
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/cars/getfilter`;
+
+    const res = await fetch(url, {
+        method: "GET",
+        cache: "force-cache",
+    });
+
+    if (!res.ok) {
+        throw new Error(
+            `Ошибка загрузки данных: ${res.status} ${res.statusText}`
+        );
+    }
+
+    return await res.json();
+}
+
 export async function getAllCars(
     orderKey?: string,
     orderValue?: string
