@@ -36,6 +36,7 @@ export default function Dashboard() {
 
 	if (loading) {
 		return <Loading />;
+
 	}
 
 	return <AdminPanel allCars={cars} />;
