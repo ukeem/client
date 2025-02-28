@@ -2340,12 +2340,12 @@ const Filter: FC<Filter> = ({ allCars }) => {
 		try {
 
 			if (isEmptyObject(filterData)) {
-				alert(`Пожалуйста, выберите хотя бы "Производителя"!`);
+				alert(`Пожалуйста, выберите "Производителя"`);
 				return;
 			}
 
 			if (filterData.brandIds?.length === 0) {
-				alert(`Пожалуйста, выберите "Производителя"!`);
+				alert(`Пожалуйста, выберите "Производителя"`);
 				return;
 			}
 
@@ -2433,8 +2433,13 @@ const Filter: FC<Filter> = ({ allCars }) => {
 								type='submit'
 								disabled={loading}
 							>
-								{loading ? 'Поиск...' : filterData.brandIds?.length ? `Найдено (${(searchFilterCar(filterData, cars)).length})` : 'Поиск по фильтру'}
-
+								{/* {loading ? 'Поиск...' : filterData.brandIds?.length ? `Найдено (${(searchFilterCar(filterData, cars)).length})` : 'Поиск по фильтру'} */}
+								{loading
+									? 'Поиск...'
+									: filterData.brandIds?.length
+										? `Найдено (${searchFilterCar(filterData, cars).length})`
+										: 'Поиск по фильтру'
+								}
 							</Btn>
 						</div>
 					</div>

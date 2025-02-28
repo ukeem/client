@@ -307,6 +307,7 @@ a {
 .modal_checkbox span {
     font-size: 16px;
     line-height: 100%;
+    text-transform: capitalize;
 }
 .modal_submit_btn {
     border-radius: 6px;

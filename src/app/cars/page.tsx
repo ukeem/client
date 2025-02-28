@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 };
 
 export default async function CarsPage() {
-	const carListData = await getCars(12, 0)
+	const carListData = await getCars(12, 0, 'encarId', 'DESC');
 
 	return (
 		<CarsProvider>
