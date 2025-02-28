@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 };
 
 export default async function FavoritesCars() {
-	const response = await fetch(`${process.env.NEXT_PUBLIC_CLIENT_URL}/response.json`);
+	const response = await fetch(`https://autokorean.ru/response.json`);
 	const cars: Car[] = await response.json();
 	return (
 		<>

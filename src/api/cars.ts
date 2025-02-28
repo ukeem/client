@@ -3,6 +3,8 @@
 "use server";
 
 import { Car } from "@/types/Car";
+import fs from "fs/promises";
+import path from "path";
 
 export async function getCars(
     limit = 9,
@@ -114,6 +116,23 @@ export async function deleteCar(id: string, token: string): Promise<void> {
     );
 
     if (!res.ok) throw new Error("Ошибка удаления автомобиля");
+
+    try {
+        const filePath = path.join(process.cwd(), "/public/response.json");
+        const data = JSON.parse(await fs.readFile(filePath, "utf-8"));
+
+        // Фильтруем массив, удаляя машину с соответствующим id
+        const updatedData = data.filter((car: Car) => car.id !== Number(id));
+
+        // Записываем обновленные данные обратно в файл
+        await fs.writeFile(
+            filePath,
+            JSON.stringify(updatedData, null, 2),
+            "utf-8"
+        );
+    } catch (error) {
+        console.error("Ошибка обновления response.json:", error);
+    }
 
     return res.json();
 }

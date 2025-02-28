@@ -1,12 +1,12 @@
 import Filter from '@/components/Filter';
 import { seoAltImage } from '@/lib/constants';
-import Footer from '@/components/Footer';
+// import Footer from '@/components/Footer';
 import FavoriteLink from '@/components/FavoriteLink';
 import { Car } from '@/types/Car';
 
 export default async function FilterPage() {
 
-	const response = await fetch(`${process.env.NEXT_PUBLIC_CLIENT_URL}/response.json`);
+	const response = await fetch(`https://autokorean.ru/response.json`);
 	const cars: Car[] = await response.json();
 
 	return (
