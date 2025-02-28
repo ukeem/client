@@ -199,7 +199,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 		setTimeout(() => {
 			setLoading(false);
-		}, 1000);
+		}, 5000);
 	}, [cars]);
 
 	// useEffect(() => {
@@ -2429,7 +2429,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 	};
 
 
-	if (cars.length === 0) {
+	if (cars.length === 0 || loading) {
 		return (
 			<div className="loading">
 				<div className=" d-flex flex-column justify-content-center align-items-center">
