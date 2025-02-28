@@ -173,8 +173,8 @@ export const isNumberArray = (value: number | number[]): value is number[] => {
 export const searchFilterCar = (
     filters: Partial<FilterProps> = {},
     cars: Car[]
-): Car[] => {
-    return cars.filter((car) => {
+) => {
+    const filteredCars = cars.filter((car) => {
         const passed =
             (!filters.brandIds ||
                 filters.brandIds.length === 0 ||
@@ -213,6 +213,8 @@ export const searchFilterCar = (
 
         return passed;
     });
+
+    return filteredCars;
 };
 
 export const saveLocal = (data: UserLogin) => {

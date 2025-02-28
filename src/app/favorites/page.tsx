@@ -3,6 +3,7 @@ import FavoriteCarsList from '@/components/FavoriteCarsList';
 import FavoriteLink from '@/components/FavoriteLink';
 import Footer from '@/components/Footer';
 import { keywords, seoAltImage } from '@/lib/constants';
+import { Car } from '@/types/Car';
 import { Metadata } from 'next';
 
 
@@ -26,12 +27,13 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function FavoritesCars() {
-
+export default async function FavoritesCars() {
+	const response = await fetch(`${process.env.NEXT_PUBLIC_CLIENT_URL}/response.json`);
+	const cars: Car[] = await response.json();
 	return (
 		<>
 			<h1 className='main_title'>{`Избранные авто | ${seoAltImage}`}</h1>
-			<FavoriteCarsList />
+			<FavoriteCarsList allCars={cars} />
 			<Footer />
 			<FavoriteLink />
 		</>

@@ -34,7 +34,7 @@ export interface FilterProps {
 }
 
 interface Filter {
-	allCars?: Car[]
+	allCars: Car[]
 }
 
 
@@ -46,11 +46,12 @@ export interface ModalItem {
 
 const Filter: FC<Filter> = ({ allCars }) => {
 
-	const { cars } = useCarStore();
+	const { cars, setCars } = useCarStore();
+	const [loading, setLoading] = useState<boolean>(true);
+	const [loader, setLoader] = useState<boolean>(false);
 
 	const { filterData, setFilterData } = useFilterDataStore();
 	const { setCarsData } = useCarsDataStore();
-	const [loading, setLoading] = useState(false);
 
 	const [show, setShow] = useState(false);
 
@@ -138,11 +139,6 @@ const Filter: FC<Filter> = ({ allCars }) => {
 			&& optionFilter;
 	})
 
-	const brandCounts = cars.reduce((acc, { brand }) => {
-		acc[brand.brand] = (acc[brand.brand] || 0) + 1;
-		return acc;
-	}, {} as Record<string, number>);
-
 	useEffect(() => {
 		if (pathname !== "/") return; // Добавляем фикс только на главной
 
@@ -155,7 +151,17 @@ const Filter: FC<Filter> = ({ allCars }) => {
 	}, [pathname]);
 
 	useEffect(() => {
-		if (cars && cars.length) {
+		if (allCars.length && !cars.length) {
+			setCars(allCars);
+		}
+		setLoading(false);
+	}, [allCars]);
+
+	useEffect(() => {
+		if (cars.length > 0) {
+			setLoading(true); // Начало обработки данных
+
+			setCarsData([]);
 			setFilterData({
 				minMileage: undefined,
 				maxMileage: undefined,
@@ -171,8 +177,14 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				minEngine: undefined,
 				maxEngine: undefined,
 				bodyIds: [],
-				transmissionIds: []
+				transmissionIds: [],
+				optionIds: []
 			});
+
+			const brandCounts = cars.reduce((acc, { brand }) => {
+				acc[brand.brand] = (acc[brand.brand] || 0) + 1;
+				return acc;
+			}, {} as Record<string, number>);
 
 			const brand = cars
 				.map(({ brand }) => ({
@@ -182,10 +194,49 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.filter((value, index, self) =>
 					index === self.findIndex((v) => v.brand === value.brand)
 				)
-				.sort((a, b) => a.brand.localeCompare(b.brand))
+				.sort((a, b) => a.brand.localeCompare(b.brand));
+
 			setBrands(brand);
+			setLoading(false); // Завершение обработки данных
+		} else {
+			setBrands([]); // Сбрасываем бренды, если машин нет
 		}
-	}, [cars]);
+	}, [cars]); // Теперь `useEffect` зависит от `cars`, а не выполняется один раз
+
+
+	// useEffect(() => {
+	// 	if (cars && cars.length) {
+	// 		setFilterData({
+	// 			minMileage: undefined,
+	// 			maxMileage: undefined,
+	// 			minYear: undefined,
+	// 			maxYear: undefined,
+	// 			minPrice: undefined,
+	// 			maxPrice: undefined,
+	// 			brandIds: [],
+	// 			modelIds: [],
+	// 			editionIds: [],
+	// 			fuelIds: [],
+	// 			colorIds: [],
+	// 			minEngine: undefined,
+	// 			maxEngine: undefined,
+	// 			bodyIds: [],
+	// 			transmissionIds: []
+	// 		});
+
+	// 		const brand = cars
+	// 			.map(({ brand }) => ({
+	// 				id: brand.id,
+	// 				brand: `${brand.brand} (${brandCounts[brand.brand]})`
+	// 			}))
+	// 			.filter((value, index, self) =>
+	// 				index === self.findIndex((v) => v.brand === value.brand)
+	// 			)
+	// 			.sort((a, b) => a.brand.localeCompare(b.brand))
+	// 		setBrands(brand);
+
+	// 	}
+	// }, [cars]);
 
 	useEffect(() => {
 		if (filterData.brandIds) {
@@ -2332,31 +2383,28 @@ const Filter: FC<Filter> = ({ allCars }) => {
 		}
 	}
 
-	const handleSubmit = async () => {
-		setLoading(true);
-
+	const handleSubmit = () => {
+		setLoader(true);
 		setCarsData([]);
 
-		try {
+		if (isEmptyObject(filterData)) {
+			alert(`Пожалуйста, выберите "Производителя"`);
+			setLoading(false);
+			return;
+		}
 
-			if (isEmptyObject(filterData)) {
-				alert(`Пожалуйста, выберите "Производителя"`);
-				return;
-			}
+		if (filterData.brandIds?.length === 0) {
+			alert(`Пожалуйста, выберите "Производителя"`);
+			setLoading(false);
+			return;
+		}
 
-			if (filterData.brandIds?.length === 0) {
-				alert(`Пожалуйста, выберите "Производителя"`);
-				return;
-			}
-
+		// Даем React обновить loading перед выполнением фильтрации
+		setTimeout(() => {
 			const filteredData = searchFilterCar(filterData, cars);
 			filteredData.sort((a, b) => a.price - b.price);
 			setCarsData(filteredData);
 
-			document.getElementById("search")?.scrollIntoView({ behavior: "smooth" });
-		} catch (error) {
-			console.error("Ошибка при фильтрации автомобилей:", error);
-		} finally {
 			setFilterData({
 				minMileage: undefined,
 				maxMileage: undefined,
@@ -2373,22 +2421,41 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				maxEngine: undefined,
 				bodyIds: [],
 				transmissionIds: [],
+				optionIds: []
 			});
-			setLoading(false);
-		}
+
+			setLoader(false);
+			document.getElementById("search")?.scrollIntoView({ behavior: "smooth" });
+		}, 0);
 	};
 
-	if (cars.length === 0) {
+
+	if (brands.length === 0 || loading) {
 		return (
 			<div className="loading">
-				<p className=' text-accent'>
-					Пожалуйста подождите!
-					<br />
-					Идет загрузка всех авто...
-				</p>
+				<div className=" d-flex flex-column justify-content-center align-items-center">
+					<svg className="car mb-4" width="102" height="40" xmlns="http://www.w3.org/2000/svg">
+						<g transform="translate(2 1)" stroke="#F44336" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
+							<path className="car__body" d="M47.293 2.375C52.927.792 54.017.805 54.017.805c2.613-.445 6.838-.337 9.42.237l8.381 1.863c2.59.576 6.164 2.606 7.98 4.531l6.348 6.732 6.245 1.877c3.098.508 5.609 3.431 5.609 6.507v4.206c0 .29-2.536 4.189-5.687 4.189H36.808c-2.655 0-4.34-2.1-3.688-4.67 0 0 3.71-19.944 14.173-23.902zM36.5 15.5h54.01" strokeWidth="3" />
+							<ellipse className="car__wheel--left" strokeWidth="3.2" fill="#fff" cx="83.493" cy="30.25" rx="6.922" ry="6.808" />
+							<ellipse className="car__wheel--right" strokeWidth="3.2" fill="#fff" cx="46.511" cy="30.25" rx="6.922" ry="6.808" />
+							<path className="car__line car__line--top" d="M22.5 16.5H2.475" strokeWidth="3" />
+							<path className="car__line car__line--middle" d="M20.5 23.5H.4755" strokeWidth="3" />
+							<path className="car__line car__line--bottom" d="M25.5 9.5h-19" strokeWidth="3" />
+						</g>
+					</svg>
+					<p className=' text-center '>
+						Пожалуйста, подождите немного
+						<br />
+						Идет загрузка всех авто...
+						<br />
+						<span className=' text-accent'>Среднее время ожидания 15-20 секунд</span>
+					</p>
+				</div>
 			</div>
 		)
 	}
+
 
 	return (
 		<>
@@ -2431,14 +2498,12 @@ const Filter: FC<Filter> = ({ allCars }) => {
 								clazz='filter_submit_btn'
 								icon='look'
 								type='submit'
-								disabled={loading}
+								disabled={loader}
 							>
-								{/* {loading ? 'Поиск...' : filterData.brandIds?.length ? `Найдено (${(searchFilterCar(filterData, cars)).length})` : 'Поиск по фильтру'} */}
-								{loading
-									? 'Поиск...'
-									: filterData.brandIds?.length
-										? `Найдено (${searchFilterCar(filterData, cars).length})`
-										: 'Поиск по фильтру'
+								{loader ?
+									'Идет поиск ...' : filterData.brandIds?.length ?
+										`Найдено (${searchFilterCar(filterData, cars).length})`
+										: 'Найти'
 								}
 							</Btn>
 						</div>

@@ -22,9 +22,10 @@ import HeaderInner from './HeaderInner';
 interface FavoriteCarsListProps {
 	limit?: number;
 	load?: number;
+	allCars: Car[];
 }
 
-export default function FavoriteCarsList({ limit = 9, load = 9 }: FavoriteCarsListProps) {
+export default function FavoriteCarsList({ limit = 9, load = 9, allCars }: FavoriteCarsListProps) {
 	const { favoriteIds } = useFavoriteStore();
 	const [favoriteCars, setFavoriteCars] = useState<Car[]>([]);
 	const [visibleCount, setVisibleCount] = useState(limit);
@@ -32,22 +33,29 @@ export default function FavoriteCarsList({ limit = 9, load = 9 }: FavoriteCarsLi
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		if (cars.length > 0) {
-			setLoading(false);
-			return;
+		if (allCars.length && !cars.length) {
+			setCars(allCars);
 		}
+		setLoading(false);
+	}, [allCars]);
 
-		fetch("/response.json") // Загружаем JSON из public/
-			.then((res) => res.json())
-			.then((data) => {
-				setCars(data);
-				setLoading(false);
-			})
-			.catch((err) => {
-				console.error("Ошибка загрузки данных:", err);
-				setLoading(false);
-			});
-	}, [cars.length]);
+	// useEffect(() => {
+	// 	if (cars.length > 0) {
+	// 		setLoading(false);
+	// 		return;
+	// 	}
+
+	// 	fetch("/response.json") // Загружаем JSON из public/
+	// 		.then((res) => res.json())
+	// 		.then((data) => {
+	// 			setCars(data);
+	// 			setLoading(false);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.error("Ошибка загрузки данных:", err);
+	// 			setLoading(false);
+	// 		});
+	// }, [cars.length]);
 
 	useEffect(() => {
 		const filteredCars = cars.filter((car) => favoriteIds.includes(car.encarId));
