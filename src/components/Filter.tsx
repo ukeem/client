@@ -152,15 +152,18 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 	useEffect(() => {
 
+		setCarsData([]);
 		setBrands([]);
 		if (allCars.length) {
 			setCars(allCars);
 		}
 
-		setCarsData([]);
 	}, [allCars]);
 
 	useEffect(() => {
+
+		setLoading(true);
+
 		if (cars.length > 0) {
 
 			setFilterData({
@@ -199,14 +202,12 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 			setBrands(brand);
 
-			if (brands.length > 0) {
-				setTimeout(() => {
-					setLoading(false);
-				}, 500);
-			}
-		}
-	}, [cars, brands]);
 
+			setTimeout(() => {
+				setLoading(false);
+			}, 500);
+		}
+	}, [cars]);
 
 	// useEffect(() => {
 	// 	if (cars && cars.length) {
