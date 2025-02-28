@@ -1,5 +1,5 @@
 'use client'
-import { deleteCar, saveAllCars } from '@/api/cars';
+import { deleteCar, findCars, saveAllCars } from '@/api/cars';
 import { getLocal, translateColor } from '@/lib/fn';
 import { Car } from "@/types/Car";
 import { FC, useState } from "react";
@@ -13,6 +13,7 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 
 	const [cars, setCars] = useState<Car[]>(allCars);
 	const [url, setUrl] = useState<string>('')
+	const [btnText, setBtnText] = useState<string>('')
 	const [token] = useState<string>(() => getLocal("token") || "");
 
 	const [loading, setLoading] = useState(false);
@@ -99,10 +100,42 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 		});
 	};
 
+	const findNewCars = async () => {
+
+		if (!token) {
+			alert("Необходимо авторизоваться");
+			return;
+		}
+
+		if (!confirm("Вы уверены, что хотите найти новые авто?")) {
+			return;
+		}
+
+		setLoading(true);
+		try {
+			const res = await findCars(token);
+
+			setBtnText('Найдено ' + res.length)
+		} catch (error) {
+			alert(error);
+		} finally {
+			setLoading(false);
+		}
+	}
+
 
 	return (
 		<>
 			<section className="container-fluid p-3 overflow-hidden admin_panel">
+				<div className=" d-flex align-items-center justify-content-between gap-3 mb-3">
+					<button
+						onClick={findNewCars}
+						disabled={loading}
+						className=' w-25 mx-auto'
+					>
+						{btnText ? btnText : 'Найти новые авто'}
+					</button>
+				</div>
 				<div className=" d-flex align-items-center justify-content-between gap-3 mb-3">
 					<input
 						type='text'

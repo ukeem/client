@@ -115,22 +115,22 @@ export async function deleteCar(id: string, token: string): Promise<void> {
 
     if (!res.ok) throw new Error("Ошибка удаления автомобиля");
 
-    // try {
-    //     const filePath = path.join(process.cwd(), "/public/response.json");
-    //     const data = JSON.parse(await fs.readFile(filePath, "utf-8"));
+    return res.json();
+}
 
-    //     // Фильтруем массив, удаляя машину с соответствующим id
-    //     const updatedData = data.filter((car: Car) => car.id !== Number(id));
+export async function findCars(token: string) {
+    const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/cars/find`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        }
+    );
 
-    //     // Записываем обновленные данные обратно в файл
-    //     await fs.writeFile(
-    //         filePath,
-    //         JSON.stringify(updatedData, null, 2),
-    //         "utf-8"
-    //     );
-    // } catch (error) {
-    //     console.error("Ошибка обновления response.json:", error);
-    // }
+    if (!res.ok) throw new Error("Ошибка при поиске новых автомобилей");
 
     return res.json();
 }
