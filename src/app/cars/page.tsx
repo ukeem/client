@@ -34,13 +34,10 @@ export const metadata: Metadata = {
 };
 
 export default async function CarsPage() {
-	const [carListData, initialCars] = await Promise.all([
-		getCars(12, 0, 'price', 'DESC'),
-		getCars(12, 0, 'price', 'ASC'),
-	]);
+	const carListData = await getCars(12, 0)
 
 	return (
-		<CarsProvider initialCars={initialCars}>
+		<CarsProvider>
 			<h1 className="main_title">{`Каталог авто | ${seoAltImage}`}</h1>
 			<HeaderInner />
 			<CarList allCars={carListData} />

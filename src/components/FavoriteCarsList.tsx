@@ -42,7 +42,7 @@ export default function FavoriteCarsList({ limit = 9, load = 9 }: FavoriteCarsLi
 		setTimeout(() => {
 			setLoading(false);
 		}, 1000);
-	}, [memoizedCars]);
+	}, [memoizedCars, cars]);
 
 	useEffect(() => {
 		const filteredCars = cars.filter((car) => favoriteIds.includes(car.encarId));

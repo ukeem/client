@@ -147,7 +147,7 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 							value={formdata.name}
 							onChange={handleChangeName}
 						/>
-						<label htmlFor="name">Как обращаться к вам?</label>
+						<label htmlFor="name">Как к вам обращаться?</label>
 					</div>
 					<div className="form-floating mb-3">
 						<input
@@ -177,6 +177,7 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 					clazz='show_more_btn mb-3 w-100 fs-6'
 					disabled={loading}
 					icon='wa'
+					href={`https://wa.me/821050451011?text=Здравствуйте!%20Я%20хочу%20узнать%20подробнее%20о%20автомобиле%20${formdata.carName}%20стоимостью%20${formdata.price}%20₽`}
 				>
 					WhatsApp
 				</Btn>
@@ -185,6 +186,7 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 					clazz='show_more_btn w-100 fs-6 mb-3'
 					disabled={loading}
 					icon='tg'
+					href='https://t.me/DKMOTORS_KOREA'
 				>
 					Telegram
 				</Btn>
