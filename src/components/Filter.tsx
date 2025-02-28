@@ -200,7 +200,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 		setTimeout(() => {
 			setLoading(false);
-		}, 5000);
+		}, 500);
 	}, [cars]);
 
 	// useEffect(() => {
@@ -2426,7 +2426,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 			setLoader(false);
 
 			document.getElementById("search")?.scrollIntoView({ behavior: "smooth" });
-		}, 100);
+		}, 500);
 	};
 
 
