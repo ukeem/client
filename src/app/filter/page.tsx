@@ -11,27 +11,32 @@ import FavoriteLink from '@/components/FavoriteLink';
 export default function FilterPage() {
 
 	const { cars, setCars } = useCarStore();
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(cars.length === 0);
 
-	const memoizedCars = useMemo(() => CARS_DATA, []);
+	// useEffect(() => {
+	// 	if (cars.length === 0) {
+	// 		setCars(memoizedCars);
+	// 	}
+	// 	setLoading(false);
+	// }, [cars.length, memoizedCars]);
+
 
 	useEffect(() => {
-		if (cars.length === 0) {
-			setCars(memoizedCars);
-		}
+		if (cars.length > 0) return;
 
-		const timeout = setTimeout(() => {
-			setLoading(false);
-		}, 1000);
+		fetch("/response.json") // Загружаем JSON из public/
+			.then((res) => res.json())
+			.then((data) => {
+				setCars(data);
+				setLoading(false);
+			})
+			.catch((err) => {
+				console.error("Ошибка загрузки данных:", err);
+				setLoading(false);
+			});
+	}, []);
 
-		return () => clearTimeout(timeout); // Чистим таймер при размонтировании
-
-	}, [memoizedCars, cars.length]); // Следим только за длиной массива, а не за всем `cars`
-
-
-	// console.log(cars);
-
-	if (cars.length === 0 || loading) {
+	if (loading) {
 		return (
 			<div className="loading">
 				<div className=' d-flex flex-column justify-content-center align-items-center'>
