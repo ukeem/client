@@ -151,10 +151,12 @@ const Filter: FC<Filter> = ({ allCars }) => {
 	}, [pathname]);
 
 	useEffect(() => {
-		if (allCars.length && !cars.length) {
+		if (allCars.length) {
 			setCars(allCars);
 		}
-		setLoading(false);
+		setTimeout(() => {
+			setLoading(false);
+		}, 100);
 	}, [allCars]);
 
 	useEffect(() => {
@@ -197,7 +199,9 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.sort((a, b) => a.brand.localeCompare(b.brand));
 
 			setBrands(brand);
-			setLoading(false); // Завершение обработки данных
+			setTimeout(() => {
+				setLoading(false);
+			}, 100);// Завершение обработки данных
 		} else {
 			setBrands([]); // Сбрасываем бренды, если машин нет
 		}
@@ -2426,7 +2430,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 			setLoader(false);
 			document.getElementById("search")?.scrollIntoView({ behavior: "smooth" });
-		}, 0);
+		}, 1000);
 	};
 
 
