@@ -12,7 +12,7 @@ import { seoAltImage } from '@/lib/constants';
 import { useCarsDataStore } from '@/store/useCarsDataStore';
 import HeaderInner from './HeaderInner';
 import CarListFiltered from './CarListFiltered';
-import { useCarStore } from '@/store/useCarStore';
+// import { useCarStore } from '@/store/useCarStore';
 
 export interface FilterProps {
 	minMileage?: number;
@@ -2435,7 +2435,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 	};
 
 
-	if (brands.length === 0 || loading) {
+	if (cars.length === 0) {
 		return (
 			<div className="loading">
 				<div className=" d-flex flex-column justify-content-center align-items-center">
