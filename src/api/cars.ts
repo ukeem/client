@@ -70,7 +70,7 @@ export async function getAllCars(
 
     const res = await fetch(url, {
         method: "GET",
-        cache: "force-cache",
+        cache: "no-store",
     });
 
     if (!res.ok) {
@@ -88,7 +88,7 @@ export async function getCarById(id: string): Promise<Car> {
         `${process.env.NEXT_PUBLIC_API_URL}/api/cars/${id}`,
         {
             method: "GET",
-            cache: "force-cache",
+            cache: "no-store",
         }
     );
 
@@ -178,7 +178,7 @@ export async function getDataFileJSON(): Promise<Car[]> {
         `${process.env.NEXT_PUBLIC_API_URL}/api/data/response.json`,
         {
             method: "GET",
-            cache: "force-cache",
+            cache: "no-store",
         }
     );
 
