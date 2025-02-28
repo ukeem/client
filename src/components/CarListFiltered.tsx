@@ -1,6 +1,6 @@
 'use client'
 import { translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
-import { useState, FC } from "react";
+import { useState, FC, forwardRef } from "react";
 import ItemSlider from './ItemSlider';
 import Btn from './Btn';
 import { useCarsDataStore } from '@/store/useCarsDataStore';
@@ -12,7 +12,7 @@ import { ModalRequest } from './ModalRequest';
 import { Car } from '@/types/Car';
 
 
-const CarListFiltered: FC = () => {
+const CarListFiltered = forwardRef<HTMLDivElement>((props, ref) => {
 
 	const { carsData } = useCarsDataStore();
 
@@ -41,7 +41,7 @@ const CarListFiltered: FC = () => {
 	return (
 
 		<>
-			<div className='cars mb-4' id='search'>
+			<div className='cars mb-4' ref={ref} {...props} id='search'>
 				<div className=" container">
 					<div className="row row-gap-4">
 						{visibleCars.map((car) => (
@@ -158,6 +158,6 @@ const CarListFiltered: FC = () => {
 			/>
 		</>
 	);
-};
+})
 
 export default CarListFiltered

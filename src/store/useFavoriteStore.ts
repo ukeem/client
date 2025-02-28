@@ -1,7 +1,7 @@
 /** @format */
 
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 interface FavoriteStore {
     favoriteIds: string[];
@@ -24,7 +24,8 @@ export const useFavoriteStore = create<FavoriteStore>()(
                 }),
         }),
         {
-            name: "favorites", // 🔥 Zustand сам сохранит данные в localStorage под этим ключом
+            name: "favorites",
+            storage: createJSONStorage(() => localStorage), // ✅ Корректное сохранение в localStorage
         }
     )
 );

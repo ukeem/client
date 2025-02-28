@@ -36,24 +36,6 @@ export default function FavoriteCarsList({ limit = 9, load = 9, allCars }: Favor
 		setLoading(false);
 	}, [allCars]);
 
-	// useEffect(() => {
-	// 	if (cars.length > 0) {
-	// 		setLoading(false);
-	// 		return;
-	// 	}
-
-	// 	fetch("/response.json") // Загружаем JSON из public/
-	// 		.then((res) => res.json())
-	// 		.then((data) => {
-	// 			setCars(data);
-	// 			setLoading(false);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.error("Ошибка загрузки данных:", err);
-	// 			setLoading(false);
-	// 		});
-	// }, [cars.length]);
-
 	useEffect(() => {
 		const filteredCars = cars.filter((car) => favoriteIds.includes(car.encarId));
 		setFavoriteCars(filteredCars);

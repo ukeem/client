@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image';
-import { useEffect, useState, type FC } from 'react';
+import { useEffect, useRef, useState, type FC } from 'react';
 import FilterModal from './FilterModal';
 import { useFilterDataStore } from '@/store/useFilterDataStore';
 import { Car } from '@/types/Car';
@@ -81,6 +81,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 	const pathname = usePathname();
 
+	const searchRef = useRef<HTMLDivElement>(null);
 
 	const filterOptions = [
 		{ key: brands, name: "Производитель" },
@@ -2422,7 +2423,9 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 			setLoader(false);
 
-			document.getElementById("search")?.scrollIntoView({ behavior: "smooth" });
+			setTimeout(() => {
+				searchRef.current?.scrollIntoView({ behavior: "smooth" });
+			}, 100);
 		}, 500);
 	};
 
@@ -2487,7 +2490,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 					</div>
 				</div>
 			</div>
-			<CarListFiltered />
+			<CarListFiltered ref={searchRef} />
 			<FilterModal
 				show={show}
 				title={modalTitle}
