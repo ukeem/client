@@ -154,16 +154,13 @@ const Filter: FC<Filter> = ({ allCars }) => {
 		if (allCars.length) {
 			setCars(allCars);
 		}
-		setTimeout(() => {
-			setLoading(false);
-		}, 100);
+
+		setCarsData([]);
 	}, [allCars]);
 
 	useEffect(() => {
 		if (cars.length > 0) {
-			setLoading(true); // Начало обработки данных
 
-			setCarsData([]);
 			setFilterData({
 				minMileage: undefined,
 				maxMileage: undefined,
@@ -199,11 +196,10 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				.sort((a, b) => a.brand.localeCompare(b.brand));
 
 			setBrands(brand);
+
 			setTimeout(() => {
 				setLoading(false);
-			}, 100);// Завершение обработки данных
-		} else {
-			setBrands([]); // Сбрасываем бренды, если машин нет
+			}, 500);
 		}
 	}, [cars]); // Теперь `useEffect` зависит от `cars`, а не выполняется один раз
 
