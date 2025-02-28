@@ -27,7 +27,6 @@ export default function Dashboard() {
 	}, [cars.length]);
 
 	const fetchCars = async () => {
-		setLoading(true);
 		try {
 			const data = await getDataFileJSON();
 			setCars(data);

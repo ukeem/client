@@ -199,11 +199,13 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 			setBrands(brand);
 
-			setTimeout(() => {
-				setLoading(false);
-			}, 500);
+			if (brands.length > 0) {
+				setTimeout(() => {
+					setLoading(false);
+				}, 500);
+			}
 		}
-	}, [cars]); // Теперь `useEffect` зависит от `cars`, а не выполняется один раз
+	}, [cars, brands]);
 
 
 	// useEffect(() => {
@@ -2425,9 +2427,9 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				transmissionIds: [],
 				optionIds: []
 			});
+			document.getElementById("search")?.scrollIntoView({ behavior: "smooth" });
 
 			setLoader(false);
-			document.getElementById("search")?.scrollIntoView({ behavior: "smooth" });
 		}, 1000);
 	};
 
