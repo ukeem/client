@@ -41,7 +41,7 @@ export async function getAllCarsForFilter(): Promise<Car[]> {
 
     const res = await fetch(url, {
         method: "GET",
-        cache: "force-cache",
+        cache: "no-store",
     });
 
     if (!res.ok) {
