@@ -6,7 +6,7 @@ import { Car } from '@/types/Car';
 
 export default async function FilterPage() {
 
-	const response = await fetch(`https://autokorean.ru/response.json`);
+	const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/data/response.json`);
 	const cars: Car[] = await response.json();
 
 	return (

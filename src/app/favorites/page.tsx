@@ -28,8 +28,10 @@ export const metadata: Metadata = {
 };
 
 export default async function FavoritesCars() {
-	const response = await fetch(`https://autokorean.ru/response.json`);
+
+	const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/data/response.json`);
 	const cars: Car[] = await response.json();
+
 	return (
 		<>
 			<h1 className='main_title'>{`Избранные авто | ${seoAltImage}`}</h1>
