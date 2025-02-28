@@ -173,7 +173,6 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 	useEffect(() => {
 		if (cars.length) {
-			setCarsData([]);
 			setFilterData({
 				minMileage: undefined,
 				maxMileage: undefined,
