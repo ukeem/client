@@ -46,7 +46,8 @@ export interface ModalItem {
 
 const Filter: FC<Filter> = ({ allCars }) => {
 
-	const { cars, setCars } = useCarStore();
+	// const { cars, setCars } = useCarStore();
+	const [cars, setCars] = useState<Car[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [loader, setLoader] = useState<boolean>(false);
 
@@ -153,7 +154,6 @@ const Filter: FC<Filter> = ({ allCars }) => {
 	useEffect(() => {
 
 		setCarsData([]);
-		setBrands([]);
 		if (allCars.length) {
 			setCars(allCars);
 		}
