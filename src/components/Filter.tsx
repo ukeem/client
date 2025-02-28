@@ -164,49 +164,45 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 		setLoading(true);
 
-		if (cars.length > 0) {
+		setFilterData({
+			minMileage: undefined,
+			maxMileage: undefined,
+			minYear: undefined,
+			maxYear: undefined,
+			minPrice: undefined,
+			maxPrice: undefined,
+			brandIds: [],
+			modelIds: [],
+			editionIds: [],
+			fuelIds: [],
+			colorIds: [],
+			minEngine: undefined,
+			maxEngine: undefined,
+			bodyIds: [],
+			transmissionIds: [],
+			optionIds: []
+		});
 
-			setFilterData({
-				minMileage: undefined,
-				maxMileage: undefined,
-				minYear: undefined,
-				maxYear: undefined,
-				minPrice: undefined,
-				maxPrice: undefined,
-				brandIds: [],
-				modelIds: [],
-				editionIds: [],
-				fuelIds: [],
-				colorIds: [],
-				minEngine: undefined,
-				maxEngine: undefined,
-				bodyIds: [],
-				transmissionIds: [],
-				optionIds: []
-			});
+		const brandCounts = cars.reduce((acc, { brand }) => {
+			acc[brand.brand] = (acc[brand.brand] || 0) + 1;
+			return acc;
+		}, {} as Record<string, number>);
 
-			const brandCounts = cars.reduce((acc, { brand }) => {
-				acc[brand.brand] = (acc[brand.brand] || 0) + 1;
-				return acc;
-			}, {} as Record<string, number>);
+		const brand = cars
+			.map(({ brand }) => ({
+				id: brand.id,
+				brand: `${brand.brand} (${brandCounts[brand.brand]})`
+			}))
+			.filter((value, index, self) =>
+				index === self.findIndex((v) => v.brand === value.brand)
+			)
+			.sort((a, b) => a.brand.localeCompare(b.brand));
 
-			const brand = cars
-				.map(({ brand }) => ({
-					id: brand.id,
-					brand: `${brand.brand} (${brandCounts[brand.brand]})`
-				}))
-				.filter((value, index, self) =>
-					index === self.findIndex((v) => v.brand === value.brand)
-				)
-				.sort((a, b) => a.brand.localeCompare(b.brand));
+		setBrands(brand);
 
-			setBrands(brand);
-
-
-			setTimeout(() => {
-				setLoading(false);
-			}, 500);
-		}
+		setTimeout(() => {
+			setLoading(false);
+		}, 1000);
 	}, [cars]);
 
 	// useEffect(() => {
@@ -2428,14 +2424,15 @@ const Filter: FC<Filter> = ({ allCars }) => {
 				transmissionIds: [],
 				optionIds: []
 			});
-			document.getElementById("search")?.scrollIntoView({ behavior: "smooth" });
 
 			setLoader(false);
+
+			document.getElementById("search")?.scrollIntoView({ behavior: "smooth" });
 		}, 1000);
 	};
 
 
-	if (cars.length === 0) {
+	if (loading || cars.length === 0) {
 		return (
 			<div className="loading">
 				<div className=" d-flex flex-column justify-content-center align-items-center">
