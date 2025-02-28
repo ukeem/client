@@ -2388,13 +2388,13 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 		if (isEmptyObject(filterData)) {
 			alert(`Пожалуйста, выберите "Производителя"`);
-			setLoading(false);
+			setLoader(false);
 			return;
 		}
 
 		if (filterData.brandIds?.length === 0) {
 			alert(`Пожалуйста, выберите "Производителя"`);
-			setLoading(false);
+			setLoader(false);
 			return;
 		}
 
