@@ -34,6 +34,8 @@ export default function Dashboard() {
 			});
 	}, [cars.length]);
 
+
+
 	if (loading) {
 		return <Loading />;
 
