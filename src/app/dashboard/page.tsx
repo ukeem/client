@@ -3,29 +3,33 @@ import AdminPanel from '@/components/AdminPanel';
 import { useEffect, useMemo, useState } from 'react';
 import { getLocal } from '@/lib/fn';
 import { useCarStore } from '@/store/useCarStore';
-import { Car } from '@/types/Car';
 import Loading from '../loading';
-import { CARS_DATA } from '../filter/data';
 
 export default function Dashboard() {
 	const { cars, setCars } = useCarStore();
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(cars.length === 0);
 
 	useEffect(() => {
 		const role = getLocal('role');
 		if (role !== 'ADMIN' || !role) {
-			window.location.href = '/';
+			window.location.href = '/login';
 		}
 	}, []);
 
-	const memoizedCars = useMemo(() => CARS_DATA, []);
-
 	useEffect(() => {
-		setCars(memoizedCars);
-		setTimeout(() => {
-			setLoading(false);
-		}, 1000);
-	}, [memoizedCars]);
+		if (cars.length > 0) return;
+
+		fetch("/response.json") // Загружаем JSON из public/
+			.then((res) => res.json())
+			.then((data) => {
+				setCars(data);
+				setLoading(false);
+			})
+			.catch((err) => {
+				console.error("Ошибка загрузки данных:", err);
+				setLoading(false);
+			});
+	}, [cars.length]);
 
 	if (loading) {
 		return <Loading />;

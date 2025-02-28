@@ -17,7 +17,7 @@ import { getAllCars } from '@/api/cars';
 import { useCarStore } from '@/store/useCarStore';
 import Loading from './Loading';
 import HeaderInner from './HeaderInner';
-import { CARS_DATA } from '@/app/filter/data';
+// import { CARS_DATA } from '@/app/filter/data';
 
 interface FavoriteCarsListProps {
 	limit?: number;
@@ -30,19 +30,21 @@ export default function FavoriteCarsList({ limit = 9, load = 9 }: FavoriteCarsLi
 	const [visibleCount, setVisibleCount] = useState(limit);
 	const { cars, setCars } = useCarStore();
 	const [loading, setLoading] = useState(true);
-	const memoizedCars = useMemo(() => CARS_DATA, []);
 
 	useEffect(() => {
-		if (cars.length === 0) {
-			setCars(memoizedCars);
-			setTimeout(() => {
+		if (cars.length > 0) return;
+
+		fetch("/response.json") // Загружаем JSON из public/
+			.then((res) => res.json())
+			.then((data) => {
+				setCars(data);
 				setLoading(false);
-			}, 1000);
-		}
-		setTimeout(() => {
-			setLoading(false);
-		}, 1000);
-	}, [memoizedCars, cars]);
+			})
+			.catch((err) => {
+				console.error("Ошибка загрузки данных:", err);
+				setLoading(false);
+			});
+	}, [cars.length]);
 
 	useEffect(() => {
 		const filteredCars = cars.filter((car) => favoriteIds.includes(car.encarId));

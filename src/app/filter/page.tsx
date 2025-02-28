@@ -3,7 +3,6 @@ import Filter from '@/components/Filter';
 import { useState, useEffect, useMemo } from 'react';
 import { seoAltImage } from '@/lib/constants';
 import { useCarStore } from '@/store/useCarStore';
-import { CARS_DATA } from './data';
 import Footer from '@/components/Footer';
 import FavoriteLink from '@/components/FavoriteLink';
 // import Image from 'next/image';
@@ -11,7 +10,7 @@ import FavoriteLink from '@/components/FavoriteLink';
 export default function FilterPage() {
 
 	const { cars, setCars } = useCarStore();
-	const [loading, setLoading] = useState(cars.length === 0);
+	const [loading, setLoading] = useState<boolean>(cars.length === 0);
 
 	// useEffect(() => {
 	// 	if (cars.length === 0) {
@@ -34,7 +33,7 @@ export default function FilterPage() {
 				console.error("Ошибка загрузки данных:", err);
 				setLoading(false);
 			});
-	}, []);
+	}, [cars.length]);
 
 	if (loading) {
 		return (
