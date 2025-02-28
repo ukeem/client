@@ -2,12 +2,12 @@
 import AdminPanel from '@/components/AdminPanel';
 import { useEffect, useMemo, useState } from 'react';
 import { getLocal } from '@/lib/fn';
-import { useCarStore } from '@/store/useCarStore';
 import Loading from '../loading';
 import { getDataFileJSON } from '@/api/cars';
+import { Car } from '@/types/Car';
 
 export default function Dashboard() {
-	const { cars, setCars } = useCarStore();
+	const [cars, setCars] = useState<Car[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {

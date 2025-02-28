@@ -12,9 +12,6 @@ import { translateBody, translateColor, translateFuel, translateTransmission } f
 import FavoriteButton from './FavoriteButton';
 import { WantItBtn } from './WantItBtn';
 import { ModalRequest } from './ModalRequest';
-import { useCars } from '@/context/CarsContext';
-import { getAllCars } from '@/api/cars';
-import { useCarStore } from '@/store/useCarStore';
 import Loading from './Loading';
 import HeaderInner from './HeaderInner';
 // import { CARS_DATA } from '@/app/filter/data';
@@ -29,7 +26,7 @@ export default function FavoriteCarsList({ limit = 9, load = 9, allCars }: Favor
 	const { favoriteIds } = useFavoriteStore();
 	const [favoriteCars, setFavoriteCars] = useState<Car[]>([]);
 	const [visibleCount, setVisibleCount] = useState(limit);
-	const { cars, setCars } = useCarStore();
+	const [cars, setCars] = useState<Car[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {

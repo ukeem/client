@@ -1,7 +1,7 @@
 'use client'
 import { translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
 import { Car } from '@/types/Car';
-import { useState, FC, useEffect } from "react";
+import { useState, FC } from "react";
 import ItemSlider from './ItemSlider';
 import Btn from './Btn';
 import { seoUrlCarPage } from '@/lib/constants';
@@ -9,7 +9,6 @@ import Link from 'next/link';
 import FavoriteButton from './FavoriteButton';
 import { WantItBtn } from './WantItBtn';
 import { ModalRequest } from './ModalRequest';
-import { useCars } from '@/context/CarsContext';
 import Loading from './Loading';
 import { getCars } from '@/api/cars';
 

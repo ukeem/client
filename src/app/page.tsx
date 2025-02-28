@@ -3,7 +3,6 @@ import CarList from '@/components/CarList';
 import { seoAltImage } from '@/lib/constants';
 import Header from '@/components/Header';
 import { getCars } from '@/api/cars';
-import { CarsProvider } from '@/context/CarsContext';
 import FilterBtn from '@/components/FilterBtn';
 import Script from 'next/script';
 import Footer from '@/components/Footer';
@@ -18,7 +17,7 @@ export default async function Home() {
 	]);
 
 	return (
-		<CarsProvider>
+		<>
 			<Script
 				id="homepage-schema"
 				type="application/ld+json"
@@ -44,6 +43,6 @@ export default async function Home() {
 			<CarList allCars={carListData} />
 			<Footer />
 			<FavoriteLink />
-		</CarsProvider>
+		</>
 	);
 }
