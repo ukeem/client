@@ -159,7 +159,6 @@ export async function getDataFileJSON(): Promise<Car[]> {
         `${process.env.NEXT_PUBLIC_API_URL}/api/data/response.json`,
         {
             method: "GET",
-            cache: "force-cache",
         }
     );
 
