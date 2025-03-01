@@ -238,7 +238,7 @@ const Footer: FC<FooterProps> = () => {
 								<span className='contacts_item_text'>WhatsApp</span>
 							</Link>
 						</div>
-						<div className=" col-9 mx-auto col-lg-3 mb-4 text-center">
+						<div className=" col-9 mx-auto col-lg-3 mt-lg-5 mb-4 text-center">
 							<span className=''>&copy; Все права защищены</span>
 						</div>
 					</Row>

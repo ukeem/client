@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 import { Metadata } from 'next';
 import { DangerBtn } from '@/components/DangerBtn';
+import { keywords } from '@/lib/constants';
+import YandexMetrika from '@/components/YandexMetrika';
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
@@ -10,7 +12,7 @@ export const metadata: Metadata = {
 	metadataBase: new URL("https://autokorean.ru"),
 	title: "Авто из Кореи | Купить авто с пробегом в Москве",
 	description: "Авто из Кореи под ключ: цены, характеристики, фото. Прямые поставки. Доставка в Москву и другие города.",
-	keywords: "авто из кореи, корейские автомобили, купить авто с пробегом, авто под ключ",
+	keywords: keywords.split("\n").join(", "),
 	alternates: {
 		canonical: '/',
 	},
@@ -51,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 		<html lang="ru">
 			<body className={inter.className}>
+				<YandexMetrika />
 				{children}
 				<DangerBtn />
 			</body>

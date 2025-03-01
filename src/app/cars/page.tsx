@@ -11,7 +11,7 @@ const siteUrl = process.env.NEXT_PUBLIC_CLIENT_URL || "https://autokorean.ru/";
 export const metadata: Metadata = {
 	title: `Каталог авто | ${seoAltImage}`,
 	description: "Каталог автомобилей из Южной Кореи. Заказ под ключ, доставка и растаможка в Россию. Выгодные цены и проверенные авто!",
-	keywords: keywords, // массив строк, а не шаблон
+	keywords: keywords.split("\n").join(", "), // массив строк, а не шаблон
 	alternates: {
 		canonical: siteUrl + "/cars",
 		languages: {

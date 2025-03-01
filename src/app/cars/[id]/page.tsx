@@ -29,7 +29,7 @@ export async function generateMetadata(props: { params: Params }): Promise<Metad
 	return {
 		title: carTitle,
 		description: `Купить ${car.brand.brand} ${car.model.model} с доставкой под ключ авто из Кореи. Лучшая цена и условия!`,
-		keywords: keywords, // Передаем массив строк
+		keywords: keywords.split("\n").join(", "), // Передаем массив строк
 		alternates: {
 			canonical: `${siteUrl}/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`,
 			languages: {
