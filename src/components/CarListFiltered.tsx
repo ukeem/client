@@ -1,7 +1,6 @@
 'use client'
 import { translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
 import { useState, FC, forwardRef } from "react";
-import ItemSlider from './ItemSlider';
 import Btn from './Btn';
 import { useCarsDataStore } from '@/store/useCarsDataStore';
 import { seoUrlCarPage } from '@/lib/constants';
@@ -10,6 +9,7 @@ import FavoriteButton from './FavoriteButton';
 import { WantItBtn } from './WantItBtn';
 import { ModalRequest } from './ModalRequest';
 import { Car } from '@/types/Car';
+import ItemSliderMain from './ItemSliderMain';
 
 
 const CarListFiltered = forwardRef<HTMLDivElement>((props, ref) => {
@@ -48,7 +48,7 @@ const CarListFiltered = forwardRef<HTMLDivElement>((props, ref) => {
 							<div key={car.id} className="col-12 col-md-6 col-xl-4">
 								<div className="car__item p-3 p-lg-4 d-flex flex-column gap-3">
 									<div>
-										<ItemSlider photos={car.photos} title={`${car.brand.brand} ${car.model.model} ${car.edition.edition}`} clazz={car.clazz ? car.clazz : undefined} />
+										<ItemSliderMain photos={car.photos} title={`${car.brand.brand} ${car.model.model} ${car.edition.edition}`} clazz={car.clazz ? car.clazz : undefined} />
 									</div>
 									<div className="car_detail d-flex flex-column">
 										<Link

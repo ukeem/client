@@ -24,7 +24,7 @@ const ItemSlider: FC<MainSliderProps> = ({ photos, clazz, title }) => {
 		}
 	}
 	// const photoUrl = `${process.env.NEXT_PUBLIC_API_URL}${photos.filter(photo => photo.photo).sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`
-	const sortedPhoto = photos?.sort((a, b) => a.photo.localeCompare(b.photo))
+	const sortedPhoto = photos?.sort((a, b) => a.photo.localeCompare(b.photo)).slice(0, 5)
 	return (
 		<>
 			<Swiper
