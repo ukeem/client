@@ -23,7 +23,7 @@ const ItemSlider: FC<MainSliderProps> = ({ photos, clazz, title }) => {
 			setShow(false)
 		}
 	}
-	const photoUrl = `${process.env.NEXT_PUBLIC_API_URL}${photos.filter(photo => photo.photo).sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`
+	// const photoUrl = `${process.env.NEXT_PUBLIC_API_URL}${photos.filter(photo => photo.photo).sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`
 
 	return (
 		<>
@@ -42,7 +42,7 @@ const ItemSlider: FC<MainSliderProps> = ({ photos, clazz, title }) => {
 					>
 						<Image
 							className='slide item_slide'
-							src={el.photo ? el.photo : '/no_image.jpg'}
+							src={el.photo ? `${process.env.NEXT_PUBLIC_API_URL}${el.photo}` : '/no_image.jpg'}
 							alt={`${seoAltImage} | ${el.photo}`}
 							width={306}
 							height={184}
