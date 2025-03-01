@@ -1,5 +1,5 @@
 import { Photo } from '@/types/Car';
-import type { FC } from 'react';
+import { useEffect, useState, type FC } from 'react';
 import { Modal } from 'react-bootstrap';
 import Image from 'next/image';
 import { seoAltImage } from '@/lib/constants';
@@ -13,7 +13,13 @@ interface PhotosModalProps {
 
 const PhotosModal: FC<PhotosModalProps> = ({ photos, show, handleClose, title }) => {
 
-	const sortedPhoto = photos?.sort((a, b) => a.photo.localeCompare(b.photo))
+	const [sortedPhoto, setSortedPhoto] = useState<Photo[]>([])
+
+	useEffect(() => {
+		setSortedPhoto(() => photos?.sort((a, b) => a.photo.localeCompare(b.photo)))
+	}, [photos])
+
+	// const sortedPhoto = photos?.sort((a, b) => a.photo.localeCompare(b.photo))
 
 	return (
 		<Modal
