@@ -26,21 +26,23 @@ const PhotosModal: FC<PhotosModalProps> = ({ photos, show, handleClose, title })
 			</Modal.Header>
 			<Modal.Body className=' overflow-y-auto'>
 				<div className=" container px-0">
-					<div className="row">{photos.map(el => (
-						<div
-							key={el.id}
-							className="col-12 position-relative mb-2"
-						>
-							<Image
-								src={`${process.env.NEXT_PUBLIC_API_URL}${el.photo}`}
-								alt={`${seoAltImage} | ${el.id}fullscreen`}
-								quality={25}
-								fill
-								priority
-								className=' photo_modal'
-							/>
-						</div>
-					))}
+					<div className="row">
+						{photos?.map(el => (
+							<div
+								key={el.id}
+								className="col-12 position-relative mb-2"
+							>
+								<Image
+									src={`${process.env.NEXT_PUBLIC_API_URL}${el.photo}`}
+									alt={`${seoAltImage} | ${el.id}fullscreen`}
+									quality={25}
+									fill
+									priority
+									loading='lazy'
+									className=' photo_modal'
+								/>
+							</div>
+						))}
 					</div>
 				</div>
 			</Modal.Body>

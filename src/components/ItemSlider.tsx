@@ -35,7 +35,24 @@ const ItemSlider: FC<MainSliderProps> = ({ photos, clazz, title }) => {
 				{clazz &&
 					<span className='clazz'>Премиум опции</span>
 				}
-				<SwiperSlide
+				{photos && photos.map(el => (
+					<SwiperSlide
+						key={el.id}
+						className='itemSwiperSlide'
+					>
+						<Image
+							className='slide item_slide'
+							src={el.photo ? el.photo : '/no_image.jpg'}
+							alt={`${seoAltImage} | ${el.photo}`}
+							width={306}
+							height={184}
+							quality={25}
+							priority
+							onClick={() => setShow(true)}
+						/>
+					</SwiperSlide>
+				))}
+				{/* <SwiperSlide
 					className='itemSwiperSlide'
 				>
 					<Image
@@ -48,7 +65,7 @@ const ItemSlider: FC<MainSliderProps> = ({ photos, clazz, title }) => {
 						priority
 						onClick={() => setShow(true)}
 					/>
-				</SwiperSlide>
+				</SwiperSlide> */}
 			</Swiper>
 			<PhotosModal
 				show={show}

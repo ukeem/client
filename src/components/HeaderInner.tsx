@@ -77,7 +77,7 @@ const HeaderInner: FC<HeaderProps> = () => {
 										href='/filter'
 										className=' d-flex gap-2 align-items-center'
 									>
-										<span>Фильтр</span>
+										<span>Поиск</span>
 										<Image
 											src={`/search.svg`}
 											alt={`${seoAltImage} | search}`}

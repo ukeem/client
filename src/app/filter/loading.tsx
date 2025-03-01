@@ -13,7 +13,7 @@ export default function Loading() {
 					</g>
 				</svg>
 				<p className=' text-center '>
-					Идет загрузка всех автомобилей...
+					Идет загрузка всех 5000+ авто...
 					<br />
 					<span className=' text-accent'>Среднее время ожидания 15-20 секунд</span>
 				</p>
