@@ -177,7 +177,7 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 					clazz='show_more_btn mb-3 w-100 fs-6'
 					disabled={loading}
 					icon='wa'
-					href={`https://wa.me/821050451011?text=Здравствуйте!%20Я%20хочу%20узнать%20подробнее%20о%20автомобиле%20${formdata.carName}%20стоимостью%20${formdata.price}%20₽`}
+					href={`https://wa.me/821050451011?text=Здравствуйте!%20Я%20хочу%20узнать%20подробнее%20о%20автомобиле%20${formdata.carName}%20стоимостью%20${formdata.price}`}
 				>
 					WhatsApp
 				</Btn>
