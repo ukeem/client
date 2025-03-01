@@ -14,6 +14,7 @@ import { WantItBtn } from './WantItBtn';
 import { ModalRequest } from './ModalRequest';
 import Loading from './Loading';
 import HeaderInner from './HeaderInner';
+import { useCarStore } from '@/store/useCarStore';
 // import { CARS_DATA } from '@/app/filter/data';
 
 interface FavoriteCarsListProps {
@@ -26,19 +27,23 @@ export default function FavoriteCarsList({ limit = 9, load = 9, allCars }: Favor
 	const { favoriteIds } = useFavoriteStore();
 	const [favoriteCars, setFavoriteCars] = useState<Car[]>([]);
 	const [visibleCount, setVisibleCount] = useState(limit);
-	const [cars, setCars] = useState<Car[]>(allCars);
+	// const [cars, setCars] = useState<Car[]>(allCars);
+
+	const { cars, setCars } = useCarStore();
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		if (allCars.length > 0) {
-			setCars(allCars);
+		if (allCars && allCars.length > 0 && cars.length === 0) {
+			setCars(allCars)
 		}
-		setLoading(false);
-	}, [allCars]);
+	}, [allCars, cars.length])
 
 	useEffect(() => {
 		const filteredCars = cars.filter((car) => favoriteIds.includes(car.encarId));
 		setFavoriteCars(filteredCars);
+		setTimeout(() => {
+			setLoading(false)
+		}, 100);
 	}, [favoriteIds, cars]);
 
 	console.log(favoriteIds);
