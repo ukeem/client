@@ -188,7 +188,7 @@ const AdminPanel: FC<AdminPanelProps> = ({ allCars = [] }) => {
 						</thead>
 						<tbody className=' overflow-y-auto'>
 
-							{cars.map((el, index) => (
+							{cars.sort((a, b) => b.createdAt.localeCompare(a.createdAt)).map((el, index) => (
 								<tr key={el.id}>
 									<th scope="row">{index + 1}</th>
 									<td>{el.year}</td>
