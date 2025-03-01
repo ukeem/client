@@ -26,11 +26,11 @@ export default function FavoriteCarsList({ limit = 9, load = 9, allCars }: Favor
 	const { favoriteIds } = useFavoriteStore();
 	const [favoriteCars, setFavoriteCars] = useState<Car[]>([]);
 	const [visibleCount, setVisibleCount] = useState(limit);
-	const [cars, setCars] = useState<Car[]>([]);
+	const [cars, setCars] = useState<Car[]>(allCars);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		if (allCars.length && !cars.length) {
+		if (allCars.length > 0) {
 			setCars(allCars);
 		}
 		setLoading(false);
@@ -40,6 +40,8 @@ export default function FavoriteCarsList({ limit = 9, load = 9, allCars }: Favor
 		const filteredCars = cars.filter((car) => favoriteIds.includes(car.encarId));
 		setFavoriteCars(filteredCars);
 	}, [favoriteIds, cars]);
+
+	console.log(favoriteIds);
 
 	const visibleCars = favoriteCars.slice(0, visibleCount);
 
@@ -64,7 +66,7 @@ export default function FavoriteCarsList({ limit = 9, load = 9, allCars }: Favor
 		setRequestShow(false)
 	}
 
-	if (loading) {
+	if (loading || cars.length === 0) {
 		return <Loading />
 	}
 
