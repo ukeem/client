@@ -108,7 +108,7 @@ export default function FavoriteCarsList({ limit = 9, load = 9, allCars }: Favor
 															(
 																<>
 																	<span className='car_price'>
-																		{`${(Math.round(car.price / 10000) * 10000).toLocaleString('ru-RU')} ₽`}
+																		{`от ${(Math.round(car.price / 10000) * 10000).toLocaleString('ru-RU')} ₽`}
 																	</span>
 																	<span className='car_price_key'>цена под ключ</span>
 																</>
