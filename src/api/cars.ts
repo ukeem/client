@@ -19,8 +19,8 @@ export async function getCars(
     if (orderValue) body.orderValue = orderValue;
 
     const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/cars/filter`,
-        // `${process.env.NEXT_PUBLIC_API_URL}/api/cars/filter`,
+        // `${process.env.NEXT_PUBLIC_API_URL}/cars/filter`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/cars/filter`,
         {
             method: "POST",
             headers: { "Content-Type": "application/json" },
