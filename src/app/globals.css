@@ -554,6 +554,7 @@ a {
     border-radius: 6px;
     border: 1px solid var(--accent);
     background-color: #ffff8d;
+    max-width: 375px;
 }
 
 .danger_btn span {
