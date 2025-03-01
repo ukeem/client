@@ -13,6 +13,7 @@ import { useCarsDataStore } from '@/store/useCarsDataStore';
 import HeaderInner from './HeaderInner';
 import CarListFiltered from './CarListFiltered';
 import Loading from '@/app/filter/loading';
+import { useCarStore } from '@/store/useCarStore';
 
 export interface FilterProps {
 	minMileage?: number;
@@ -46,8 +47,8 @@ export interface ModalItem {
 
 const Filter: FC<Filter> = ({ allCars }) => {
 
-	// const { cars, setCars } = useCarStore();
-	const [cars, setCars] = useState<Car[]>([]);
+	const { cars, setCars } = useCarStore();
+	// const [cars, setCars] = useState<Car[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [loader, setLoader] = useState<boolean>(false);
 
@@ -166,13 +167,13 @@ const Filter: FC<Filter> = ({ allCars }) => {
 	}, [pathname]);
 
 	useEffect(() => {
-		if (allCars.length) {
+		if (allCars && allCars.length > 0 && cars.length === 0) {
 			setCars(allCars)
 		}
-	}, [allCars])
+	}, [allCars, cars.length])
 
 	useEffect(() => {
-		if (cars.length) {
+		if (cars.length > 0) {
 			setFilterData({
 				minMileage: undefined,
 				maxMileage: undefined,
@@ -197,7 +198,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 
 		setTimeout(() => {
 			setLoading(false);
-		}, 500);
+		}, 100);
 	}, [cars.length]);
 
 	// useEffect(() => {
@@ -2425,7 +2426,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 			setTimeout(() => {
 				searchRef.current?.scrollIntoView({ behavior: "smooth" });
 			}, 100);
-		}, 500);
+		}, 100);
 	};
 
 

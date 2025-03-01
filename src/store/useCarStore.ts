@@ -1,16 +1,14 @@
 /** @format */
 
-// /** @format */
+import { Car } from "@/types/Car";
+import { create } from "zustand";
 
-// import { Car } from "@/types/Car";
-// import { create } from "zustand";
+interface CarStore {
+    cars: Car[];
+    setCars: (cars: Car[]) => void;
+}
 
-// interface CarStore {
-//     cars: Car[];
-//     setCars: (cars: Car[]) => void;
-// }
-
-// export const useCarStore = create<CarStore>((set) => ({
-//     cars: [],
-//     setCars: (cars) => set({ cars }),
-// }));
+export const useCarStore = create<CarStore>((set) => ({
+    cars: [],
+    setCars: (cars) => set({ cars }),
+}));
