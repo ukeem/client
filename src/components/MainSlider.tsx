@@ -69,13 +69,13 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 												{car.year <= 2023 ?
 													(
 														<>
-															<span className='car_price'>
+															<span className='slide_info_price'>
 																{`${(Math.round(car.price / 10000) * 10000).toLocaleString('ru-RU')} ₽`}
 															</span>
-															<span className='car_price_key'>цена под ключ</span>
+															<span className='slide_info_key'>цена под ключ</span>
 														</>
 													) : (
-														<span className='car_price'>Уточняйте цену</span>
+														<span className='slide_info_price'>Уточняйте цену</span>
 													)
 												}
 											</div>

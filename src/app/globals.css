@@ -620,7 +620,6 @@ a {
 }
 .btn_filter {
     transition: all 0.3s ease;
-    margin-bottom: 72px;
 }
 .btn_filter.margin_bottom {
     margin-bottom: 72px;
