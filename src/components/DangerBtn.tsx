@@ -47,7 +47,7 @@ export const DangerBtn = () => {
 					<Modal.Title className='modal_title title_photo_modal'>Внимание!</Modal.Title>
 				</Modal.Header>
 				<Modal.Body className=' overflow-y-auto '>
-					<div className=" ">
+					<div className=" container ">
 						<h5 className='  text-center'><span className='text-accent'>⚠</span> Остерегайтесь мошенников!</h5>
 						<p className=' fs-6 fw-light'>Уважаемые пользователи! Мы заботимся о вашей безопасности и предупреждаем о возможных мошенниках, использующих имя нашей компании.</p>
 						<p>✅ <strong>Единственные официальные способы связи</strong> – это номера телефонов и мессенджеры, указанные в списке ниже. <strong>Других номеров у нас нет!</strong></p>
