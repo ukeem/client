@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 const FilterBtn: FC = () => {
 
 	const [isFixed, setIsFixed] = useState(false);
-	const [margin, setMargin] = useState(false);
 
 	const pathname = usePathname();
 
@@ -18,9 +17,6 @@ const FilterBtn: FC = () => {
 
 			window.addEventListener("scroll", handleScroll);
 			return () => window.removeEventListener("scroll", handleScroll);
-		} else if (pathname === '/filter') {
-
-			setMargin(true)
 		}
 
 
@@ -32,7 +28,7 @@ const FilterBtn: FC = () => {
 	return (
 		<>
 			<div className={`emptyBlock ${isFixed ? "fix" : ""}`}></div>
-			<div className={`btn_filter ${isFixed ? "fix" : ""} ${margin ? 'margin_bottom' : ''}`}>
+			<div className={`btn_filter ${isFixed ? "fix" : ""} `}>
 				<div className=" container mb-4">
 					<div className=" row">
 						<div className="col-12 col-md-4 mx-auto">

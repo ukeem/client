@@ -2469,7 +2469,7 @@ const Filter: FC<Filter> = ({ allCars }) => {
 					</div>
 				</div>
 			</section>
-			<div className={`btn_filter ${isFixed ? "fix" : ""}`}>
+			<div className={`btn_filter margin_bottom ${isFixed ? "fix" : ""}`}>
 				<div className=" container mb-4">
 					<div className=" row">
 						<div className="col-12 col-md-4 mx-auto">
