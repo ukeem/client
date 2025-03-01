@@ -66,8 +66,18 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 										</ul>
 										<div className="d-flex flex-column align-items-end justify-content-center gap-4">
 											<div className="d-flex flex-column align-items-end">
-												<span className='slide_info_price'>{`${(Math.round(car.price / 100000) * 100000).toLocaleString('ru-RU')} ₽`}</span>
-												<span className='slide_info_key'>Цена под ключ</span>
+												{car.year <= 2023 ?
+													(
+														<>
+															<span className='car_price'>
+																{`${(Math.round(car.price / 10000) * 10000).toLocaleString('ru-RU')} ₽`}
+															</span>
+															<span className='car_price_key'>цена под ключ</span>
+														</>
+													) : (
+														<span className='car_price'>Уточняйте цену</span>
+													)
+												}
 											</div>
 											<Btn icon='auto' clazz='slide_info_btn d-none d-lg-flex' href={`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`} target>
 												Заказать авто

@@ -12,7 +12,7 @@ export const WantItBtn = ({ onClick }: WantItBtnProps) => {
 			clazz=' w-100 car_btn_order mb-2'
 			icon='quest'
 		>
-			<span>Хочу такую же!</span>
+			<span>Хочу эту БИБИКУ!</span>
 		</Btn>
 	)
 }

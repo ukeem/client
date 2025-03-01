@@ -31,8 +31,18 @@ const CarMainInfo: FC<CarMainInfoProps> = ({ car }) => {
 			<div className=" d-flex flex-column gap-3 gap-xl-4">
 				<h2 className='car_title mb-0'>{`${car.brand.brand} ${car.model.model} ${car.edition.edition}`}</h2>
 				<div className=" d-flex align-items-center justify-content-between">
-					<span className='car_price'>{`от ${(Math.round(car.price / 10000) * 10000).toLocaleString('ru-RU')} ₽`}</span>
-					<span className='car_price_key'>цена под ключ</span>
+					{car.year <= 2023 ?
+						(
+							<>
+								<span className='car_price'>
+									{`${(Math.round(car.price / 10000) * 10000).toLocaleString('ru-RU')} ₽`}
+								</span>
+								<span className='car_price_key'>цена под ключ</span>
+							</>
+						) : (
+							<span className='car_price'>Уточняйте цену</span>
+						)
+					}
 				</div>
 			</div>
 			<hr />
