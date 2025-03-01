@@ -57,7 +57,7 @@ const ItemSliderMain: FC<MainSliderProps> = ({ photos, clazz, title }) => {
 				>
 					<Image
 						className='slide item_slide'
-						src={sortedPhoto ? sortedPhoto[0].photo : '/no_image.jpg'}
+						src={sortedPhoto ? `${process.env.NEXT_PUBLIC_API_URL}${sortedPhoto[0].photo}` : '/no_image.jpg'}
 						alt={`${seoAltImage} | ${sortedPhoto[0].photo}`}
 						width={306}
 						height={184}
