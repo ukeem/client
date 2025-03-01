@@ -6,18 +6,24 @@ import { usePathname } from 'next/navigation';
 const FilterBtn: FC = () => {
 
 	const [isFixed, setIsFixed] = useState(false);
+	const [margin, setMargin] = useState(false);
 
 	const pathname = usePathname();
 
 	useEffect(() => {
-		if (pathname !== "/") return; // Добавляем фикс только на главной
+		if (pathname === "/") {
+			const handleScroll = () => {
+				setIsFixed(window.scrollY > 810);
+			};
 
-		const handleScroll = () => {
-			setIsFixed(window.scrollY > 810);
-		};
+			window.addEventListener("scroll", handleScroll);
+			return () => window.removeEventListener("scroll", handleScroll);
+		} else if (pathname === '/filter') {
 
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
+			setMargin(true)
+		}
+
+
 	}, [pathname]);
 
 
@@ -26,7 +32,7 @@ const FilterBtn: FC = () => {
 	return (
 		<>
 			<div className={`emptyBlock ${isFixed ? "fix" : ""}`}></div>
-			<div className={`btn_filter ${isFixed ? "fix" : ""}`}>
+			<div className={`btn_filter ${isFixed ? "fix" : ""} ${margin ? 'margin_bottom' : ''}`}>
 				<div className=" container mb-4">
 					<div className=" row">
 						<div className="col-12 col-md-4 mx-auto">
