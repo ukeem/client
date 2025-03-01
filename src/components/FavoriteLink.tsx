@@ -23,8 +23,8 @@ export default function FavoriteLink() {
 				<Image
 					src='/favlink.svg'
 					alt={`${seoAltImage} | favlink`}
-					width={36}
-					height={33}
+					width={24}
+					height={20}
 					priority
 				/>
 				<span className=" position-absolute count_favorite">{count}</span>

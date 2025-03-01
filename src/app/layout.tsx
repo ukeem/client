@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 import { Metadata } from 'next';
+import { DangerBtn } from '@/components/DangerBtn';
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="ru">
 			<body className={inter.className}>
 				{children}
+				<DangerBtn />
 			</body>
 		</html>
 	);

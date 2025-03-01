@@ -534,14 +534,31 @@ a {
 }
 .favoriteLink {
     position: fixed;
-    bottom: 60px;
+    bottom: 72px;
     left: 12px;
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     border: 1px solid var(--accent);
     background-color: #fff;
     z-index: 100;
+}
+
+.danger_btn {
+    position: fixed;
+    bottom: 12px;
+    left: 12px;
+    z-index: 100;
+    width: calc(100% - 24px);
+    height: 48px;
+    border-radius: 6px;
+    border: 1px solid var(--accent);
+    background-color: #ffff8d;
+}
+
+.danger_btn span {
+    font-size: 16px;
+    font-weight: normal;
 }
 .count_favorite {
     width: 24px;
@@ -637,6 +654,7 @@ a {
 .contacts {
     background-color: var(--dark);
     color: #fff;
+    padding-bottom: 60px;
 }
 .contacts_item_icon {
     width: 48px;
@@ -648,6 +666,11 @@ a {
 }
 .contacts_item_text {
     font-size: 20px;
+}
+
+.dangerLink {
+    border-bottom: 1px dashed var(--accent);
+    color: var(--accent);
 }
 
 @media (min-width: 475px) {
@@ -746,9 +769,9 @@ a {
         text-overflow: ellipsis; /* Добавляет многоточие в конце */
         white-space: nowrap;
     }
-    .favoriteLink {
+    /* .favoriteLink {
         bottom: 50%;
-    }
+    } */
 }
 
 @media (min-width: 1200px) {

@@ -163,7 +163,7 @@ const Footer: FC<FooterProps> = () => {
 					</Row>
 				</Container>
 			</section>
-			<section className='contacts py-5'>
+			<section className='contacts pt-5'>
 				<Container>
 					<h2 className=' mb-5 text-center text-md-start text-uppercase info_title'>Присоединяйтесь к нам!</h2>
 					<Row>
@@ -237,6 +237,9 @@ const Footer: FC<FooterProps> = () => {
 								</div>
 								<span className='contacts_item_text'>WhatsApp</span>
 							</Link>
+						</div>
+						<div className=" col-9 mx-auto col-lg-3 mb-4 text-center">
+							<span className=''>&copy; Все права защищены</span>
 						</div>
 					</Row>
 				</Container>
