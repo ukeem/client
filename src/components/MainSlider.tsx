@@ -42,7 +42,7 @@ const MainSlider: FC<MainSliderProps> = ({ allCars }) => {
 								<Link className='slide d-block' href={`/cars/${car.id}_${car.brand.brand}_${car.model.model}_${seoUrlCarPage}_${car.encarId}`}>
 									<Image
 										src={photoUrl}
-										// quality={75}
+										quality={25}
 										alt={`${seoAltImage} | ${car.encarId}`}
 										fill
 										sizes="(max-width: 768px) 100vw, 50vw"
