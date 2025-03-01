@@ -19,6 +19,9 @@ const nextConfig: NextConfig = {
         ],
         dangerouslyAllowSVG: true,
     },
+    serverRuntimeConfig: {
+        apiTimeout: 3600000, // 1 час
+    },
     // eslint: {
     //     // Warning: This allows production builds to successfully complete even if
     //     // your project has ESLint errors.
