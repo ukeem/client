@@ -12,6 +12,9 @@ interface PhotosModalProps {
 }
 
 const PhotosModal: FC<PhotosModalProps> = ({ photos, show, handleClose, title }) => {
+
+	const sortedPhoto = photos?.sort((a, b) => a.photo.localeCompare(b.photo))
+
 	return (
 		<Modal
 			show={show}
@@ -27,7 +30,7 @@ const PhotosModal: FC<PhotosModalProps> = ({ photos, show, handleClose, title })
 			<Modal.Body className=' overflow-y-auto'>
 				<div className=" container px-0">
 					<div className="row">
-						{photos?.map(el => (
+						{sortedPhoto?.map(el => (
 							<div
 								key={el.id}
 								className="col-12 position-relative mb-2"
