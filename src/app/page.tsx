@@ -1,5 +1,4 @@
 import MainSlider from '@/components/MainSlider';
-import CarList from '@/components/CarList';
 import { seoAltImage } from '@/lib/constants';
 import Header from '@/components/Header';
 import { getCars } from '@/api/cars';
@@ -7,13 +6,14 @@ import FilterBtn from '@/components/FilterBtn';
 import Script from 'next/script';
 import Footer from '@/components/Footer';
 import FavoriteLink from '@/components/FavoriteLink';
+import CarListMain from '@/components/CarListMain';
 
 export const revalidate = 3600
 
 export default async function Home() {
 	const [carListData, initialCars] = await Promise.all([
-		getCars(9, 0, 'encarId', 'DESC'),
 		getCars(9, 0, 'price', 'DESC'),
+		getCars(9, 0,),
 	]);
 
 	return (
@@ -40,7 +40,7 @@ export default async function Home() {
 			<Header />
 			<MainSlider allCars={initialCars} />
 			<FilterBtn />
-			<CarList allCars={carListData} />
+			<CarListMain allCars={carListData} />
 			<Footer />
 			<FavoriteLink />
 		</>
