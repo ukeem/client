@@ -147,7 +147,7 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 							value={formdata.name}
 							onChange={handleChangeName}
 						/>
-						<label htmlFor="name">Как к вам обращаться?</label>
+						<label htmlFor="name">Ваше имя</label>
 					</div>
 					<div className="form-floating mb-3">
 						<input
