@@ -15,11 +15,12 @@ import { getCars } from '@/api/cars';
 interface CarListProps {
 	allCars: Car[];
 	limit?: number;
+	offset?: number;
 	orderKey?: string
 	orderValue?: 'DESC' | 'ASC'
 }
 
-const CarList: FC<CarListProps> = ({ limit = 12, allCars, orderKey = 'createdAt', orderValue = 'DESC' }) => {
+const CarList: FC<CarListProps> = ({ limit = 9, offset = 0, allCars, orderKey = 'createdAt', orderValue = 'DESC' }) => {
 
 	const [visibleOffset, setVisibleOffset] = useState<number>(0);
 	const [loading, setLoading] = useState(false);

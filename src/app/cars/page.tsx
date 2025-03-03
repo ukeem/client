@@ -33,13 +33,16 @@ export const metadata: Metadata = {
 };
 
 export default async function CarsPage() {
-	const carListData = await getCars(9, 0);
+
+
+	const randomNumber = Math.floor(Math.random() * 3000);
+	const carListData = await getCars(9, randomNumber);
 
 	return (
 		<>
 			<h1 className="main_title">{`Каталог авто | ${seoAltImage}`}</h1>
 			<HeaderInner />
-			<CarList allCars={carListData} />
+			<CarList allCars={carListData} offset={randomNumber} />
 			<Footer />
 			<FavoriteLink />
 		</>
