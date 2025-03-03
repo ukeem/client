@@ -235,7 +235,7 @@ const FilterProd = () => {
 					const value = (step + i * step).toFixed(1); // Форматируем с одной цифрой после запятой
 					return {
 						id: i + 1,
-						minEngine: value.endsWith(".0") ? parseFloat(value) : value, // Убираем `.0`, если есть
+						minEngine: value.endsWith(".0") ? String(parseFloat(value)) : value, // Убираем `.0`, если есть
 					};
 				}
 			);
