@@ -169,7 +169,7 @@ const CarListFiltered = forwardRef<HTMLDivElement>((props, ref) => {
 						))}
 					</div>
 				</div>
-				{visibleCars.length && hasMore && (
+				{visibleCars.length > 0 && hasMore && (
 					<div className="container py-4 my-5">
 						<div className="row">
 							<div className="mx-auto col-12 col-md-4">
