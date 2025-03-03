@@ -12,11 +12,11 @@ export default function Loading() {
 						<path className="car__line car__line--bottom" d="M25.5 9.5h-19" strokeWidth="3" />
 					</g>
 				</svg>
-				<p className=' text-center '>
+				{/* <p className=' text-center '>
 					Идет загрузка всех 5000+ авто...
 					<br />
 					<span className=' text-accent'>Среднее время ожидания 15-20 секунд</span>
-				</p>
+				</p> */}
 			</div>
 		</div>
 	);

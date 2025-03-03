@@ -671,6 +671,25 @@ const FilterProd = () => {
 		setLoader(true);
 		setCarsData([]);
 
+		setBrands([])
+		setModels([])
+		setEditions([])
+		setMinYears([])
+		setMaxYears([])
+		setMinEngines([])
+		setMaxEngines([])
+		setMinMileages([])
+		setMaxMileages([])
+		setMinPrice([])
+		setMaxPrice([])
+		setTransmission([])
+		setFuel([])
+		setBodies([])
+		setBodies([])
+		setColors([])
+		setOptions([])
+
+
 		if (isEmptyObject(filterData)) {
 			alert(`Пожалуйста, выберите "Производителя"`);
 			setLoader(false);
@@ -737,6 +756,28 @@ const FilterProd = () => {
 			setTimeout(() => {
 				searchRef.current?.scrollIntoView({ behavior: "smooth" });
 			}, 100);
+
+			setTimeout(async () => {
+				try {
+					await Promise.all([
+						fetchBrands(),
+						fetchMinYear(),
+						fetchMinEngine(),
+						fetchMinMileage(),
+						fetchMinPrice(),
+						fetchTransmissions(),
+						fetchFuel(),
+						fetchColor(),
+						fetchBody(),
+						fetchOption(),
+					]);
+					console.log("Все данные загружены");
+				} catch (error) {
+					console.error("Ошибка загрузки данных:", error);
+				}
+			}, 200);
+
+
 		} catch (error) {
 			console.error("Ошибка при фильтрации:", error);
 			setLoader(false);
