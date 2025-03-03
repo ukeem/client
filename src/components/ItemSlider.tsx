@@ -23,8 +23,8 @@ const ItemSlider: FC<MainSliderProps> = ({ photos, clazz, title }) => {
 			setShow(false)
 		}
 	}
-	const photoUrl = `${process.env.NEXT_PUBLIC_API_URL}${photos.filter(photo => photo.photo).sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`
-	// const sortedPhoto = photos?.sort((a, b) => a.photo.localeCompare(b.photo)).slice(0, 5)
+	// const photoUrl = `${process.env.NEXT_PUBLIC_API_URL}${photos.filter(photo => photo.photo).sort((a, b) => a.photo.localeCompare(b.photo))[0].photo}`
+	const sortedPhoto = photos?.sort((a, b) => a.photo.localeCompare(b.photo))
 	return (
 		<>
 			<Swiper
@@ -42,8 +42,8 @@ const ItemSlider: FC<MainSliderProps> = ({ photos, clazz, title }) => {
 				>
 					<Image
 						className='slide item_slide'
-						src={photoUrl ? `${process.env.NEXT_PUBLIC_API_URL}${photoUrl}` : '/no_image.jpg'}
-						alt={`${seoAltImage} | ${photoUrl}`}
+						src={sortedPhoto ? `${process.env.NEXT_PUBLIC_API_URL}${sortedPhoto[0].photo}` : '/no_image.jpg'}
+						alt={`${seoAltImage} | ${sortedPhoto}`}
 						width={306}
 						height={184}
 						quality={25}
