@@ -120,23 +120,25 @@ const FilterModal: FC<FilterModalProps> = ({
 									/>
 
 									<span>
-										{itemType === "maxEngine" || itemType === "minEngine" ? (
-											Number(item[itemType]) < 500 ? (
-												'Электро'
-											) : (
+										{
+											// itemType === "maxEngine" || itemType === "minEngine" ? (
+											// 	Number(item[itemType]) ? (
+											// 		item[itemType]
+											// 	) : (
+											// 		<>
+											// 			{item[itemType]} см<sup>3</sup>
+											// 		</>
+											// 	)
+											// ) : 
+											itemType === 'minPrice' || itemType === "maxPrice" ? (
 												<>
-													{item[itemType]} см<sup>3</sup>
+													{(Math.round(Number(item[itemType]) / 100000) * 100000).toLocaleString('ru-RU')} ₽
 												</>
-											)
-										) : itemType === 'minPrice' || itemType === "maxPrice" ? (
-											<>
-												{(Math.round(Number(item[itemType]) / 100000) * 100000).toLocaleString('ru-RU')} ₽
-											</>
-										) : itemType === 'minMileage' || itemType === "maxMileage" ? (
-											<>
-												{Number(item[itemType]).toLocaleString('ru-RU')} км
-											</>
-										) : item[itemType]}
+											) : itemType === 'minMileage' || itemType === "maxMileage" ? (
+												<>
+													{Number(item[itemType]).toLocaleString('ru-RU')} км
+												</>
+											) : item[itemType]}
 									</span>
 
 

@@ -62,11 +62,11 @@ export async function getAllCars(
     if (orderKey) params.append("orderKey", orderKey);
     if (orderValue) params.append("orderValue", orderValue);
 
-    // const url = `${process.env.NEXT_PUBLIC_API_URL}/cars?${params.toString()}`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/cars?${params.toString()}`;
 
-    const url = `${
-        process.env.NEXT_PUBLIC_API_URL
-    }/api/cars?${params.toString()}`;
+    // const url = `${
+    //     process.env.NEXT_PUBLIC_API_URL
+    // }/api/cars?${params.toString()}`;
 
     const res = await fetch(url, {
         method: "GET",

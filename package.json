@@ -5,6 +5,7 @@
 	"scripts": {
 		"dev": "set NODE_OPTIONS=--inspect && next dev --turbopack",
 		"build": "NODE_OPTIONS='--max-old-space-size=2048' next build --experimental-debug-memory-usage",
+		"bul": "next build",
 		"start": "NODE_OPTIONS='--max-old-space-size=2048' next start",
 		"lint": "next lint"
 	},

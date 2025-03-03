@@ -1,6 +1,6 @@
 'use client'
 import { translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
-import { useState, FC, forwardRef } from "react";
+import { useState, FC, forwardRef, useEffect } from "react";
 import Btn from './Btn';
 import { useCarsDataStore } from '@/store/useCarsDataStore';
 import { seoUrlCarPage } from '@/lib/constants';
@@ -16,11 +16,27 @@ const CarListFiltered = forwardRef<HTMLDivElement>((props, ref) => {
 
 	const { carsData } = useCarsDataStore();
 
-	const visibleCars = carsData.sort((a, b) => a.price - b.price)
+	const [visibleOffset, setVisibleOffset] = useState<number>(0);
+	const [loading, setLoading] = useState(false);
+	const [hasMore, setHasMore] = useState(true);
+	const [visibleCars, setVisibleCars] = useState<Car[]>([]);
+
+	useEffect(() => {
+		const sortedCars = [...carsData].sort((a, b) => a.price - b.price);
+		const newVisibleCars = sortedCars.slice(0, visibleOffset + 9);
+		setVisibleCars(newVisibleCars);
+
+		// Если доступных машин меньше, чем мы ожидаем, скрываем кнопку "Показать ещё"
+		setHasMore(newVisibleCars.length < sortedCars.length);
+	}, [carsData, visibleOffset]);
+
+	const handleShowMore = () => {
+		setVisibleOffset((prev) => prev + 9);
+	};
+
 
 	const [requestShow, setRequestShow] = useState(false);
 	const [car, setCar] = useState<Car>();
-
 	const handleShowRequest = (car: Car) => {
 		setCar(car)
 		setRequestShow(true)
@@ -28,12 +44,6 @@ const CarListFiltered = forwardRef<HTMLDivElement>((props, ref) => {
 
 	const handleCloseRequest = () => {
 		setRequestShow(false)
-	}
-
-	if (!carsData || carsData.length === 0) {
-		return (
-			<></>
-		)
 	}
 
 
@@ -45,7 +55,7 @@ const CarListFiltered = forwardRef<HTMLDivElement>((props, ref) => {
 				<div className=" container">
 					<div className="row row-gap-4">
 						{visibleCars.map((car) => (
-							<div key={car.id} className="col-12 col-md-6 col-xl-4">
+							<div key={`${car.id}_${car.brand.brand}`} className="col-12 col-md-6 col-xl-4">
 								<div className="car__item p-3 p-lg-4 d-flex flex-column gap-3">
 									<div>
 										<ItemSliderMain photos={car.photos} title={`${car.brand.brand} ${car.model.model} ${car.edition.edition}`} clazz={car.clazz ? car.clazz : undefined} />
@@ -159,6 +169,17 @@ const CarListFiltered = forwardRef<HTMLDivElement>((props, ref) => {
 						))}
 					</div>
 				</div>
+				{visibleCars.length && hasMore && (
+					<div className="container py-4 my-5">
+						<div className="row">
+							<div className="mx-auto col-12 col-md-4">
+								<Btn onClick={handleShowMore} icon='arrow_more' clazz='show_more_btn w-100'>
+									{loading ? "Загрузка..." : "Показать больше"}
+								</Btn>
+							</div>
+						</div>
+					</div>
+				)}
 			</div >
 
 			<ModalRequest
