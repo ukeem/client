@@ -11,9 +11,12 @@ import CarListMain from '@/components/CarListMain';
 export const revalidate = 3600
 
 export default async function Home() {
+
+	const randomNumber = Math.floor(Math.random() * 5001);
+
 	const [carListData, initialCars] = await Promise.all([
 		getCars(9, 0, 'price', 'DESC'),
-		getCars(9, 0,),
+		getCars(9, randomNumber),
 	]);
 
 	return (

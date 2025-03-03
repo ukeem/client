@@ -15,9 +15,11 @@ import { getCars } from '@/api/cars';
 interface CarListProps {
 	allCars: Car[];
 	limit?: number;
+	orderKey?: string
+	orderValue?: 'DESC' | 'ASC'
 }
 
-const CarList: FC<CarListProps> = ({ limit = 12, allCars }) => {
+const CarList: FC<CarListProps> = ({ limit = 12, allCars, orderKey = 'createdAt', orderValue = 'DESC' }) => {
 
 	const [visibleOffset, setVisibleOffset] = useState<number>(0);
 	const [loading, setLoading] = useState(false);
@@ -31,7 +33,7 @@ const CarList: FC<CarListProps> = ({ limit = 12, allCars }) => {
 	const fetchMoreCars = async (limit: number, offset: number) => {
 		try {
 			setLoading(true);
-			const data = await getCars(limit, offset, 'price', 'DESC');
+			const data = await getCars(limit, offset, orderKey, orderValue);
 
 			if (data.length && data.length < limit) setHasMore(false);
 			setVisibleCars((prev) => [...prev, ...data]);
