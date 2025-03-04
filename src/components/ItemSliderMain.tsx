@@ -33,7 +33,7 @@ const ItemSliderMain: FC<MainSliderProps> = ({ photos, clazz, title }) => {
 				className="itemSwiper"
 			>
 				{clazz &&
-					<span className='clazz'>Премиум опции</span>
+					<span className='clazz'>{clazz}</span>
 				}
 				{/* {sortedPhoto.map(el => (
 					<SwiperSlide

@@ -692,12 +692,52 @@ const FilterProd = () => {
 
 		if (isEmptyObject(filterData)) {
 			alert(`Пожалуйста, выберите "Производителя"`);
+
+			setTimeout(async () => {
+				try {
+					await Promise.all([
+						fetchBrands(),
+						fetchMinYear(),
+						fetchMinEngine(),
+						fetchMinMileage(),
+						fetchMinPrice(),
+						fetchTransmissions(),
+						fetchFuel(),
+						fetchColor(),
+						fetchBody(),
+						fetchOption(),
+					]);
+					console.log("Все данные загружены");
+				} catch (error) {
+					console.error("Ошибка загрузки данных:", error);
+				}
+			}, 200);
 			setLoader(false);
 			return;
 		}
 
 		if (filterData.brandIds?.length === 0) {
 			alert(`Пожалуйста, выберите "Производителя"`);
+
+			setTimeout(async () => {
+				try {
+					await Promise.all([
+						fetchBrands(),
+						fetchMinYear(),
+						fetchMinEngine(),
+						fetchMinMileage(),
+						fetchMinPrice(),
+						fetchTransmissions(),
+						fetchFuel(),
+						fetchColor(),
+						fetchBody(),
+						fetchOption(),
+					]);
+					console.log("Все данные загружены");
+				} catch (error) {
+					console.error("Ошибка загрузки данных:", error);
+				}
+			}, 200);
 			setLoader(false);
 			return;
 		}
