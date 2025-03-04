@@ -542,7 +542,7 @@ const FilterProd = () => {
 	}, [pathname]);
 
 	useEffect(() => {
-		setCarsData([])
+
 		setFilterData({
 			brandIds: [],
 			modelIds: [],
