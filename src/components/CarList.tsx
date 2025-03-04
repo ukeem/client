@@ -22,7 +22,7 @@ interface CarListProps {
 
 const CarList: FC<CarListProps> = ({ limit = 9, offset = 0, allCars, orderKey = 'createdAt', orderValue = 'DESC' }) => {
 
-	const [visibleOffset, setVisibleOffset] = useState<number>(0);
+	const [visibleOffset, setVisibleOffset] = useState<number>(offset);
 	const [loading, setLoading] = useState(false);
 	const [hasMore, setHasMore] = useState(true);
 	const [visibleCars, setVisibleCars] = useState(allCars);
