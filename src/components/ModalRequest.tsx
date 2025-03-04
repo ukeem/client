@@ -167,11 +167,11 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 						clazz='request_btn'
 						disabled={loading}
 					>
-						{loading ? "Отправка..." : success ? "Отправлено" : 'Отправить заявку'}
+						{loading ? "Отправка..." : success ? "Отправлено" : 'Получить детальный расчет'}
 					</Btn>
 				</form>
 
-				<h2 className=' lh-base fs-5 mb-3 text-center'>Свяжитесь с нами</h2>
+				<h2 className=' lh-base fs-5 mb-3 text-center'>Задать вопрос</h2>
 				<Btn
 					type='submit'
 					clazz='show_more_btn mb-3 w-100 fs-6'
