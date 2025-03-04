@@ -16,6 +16,9 @@ export const metadata: Metadata = {
 	alternates: {
 		canonical: '/',
 	},
+	icons: {
+		icon: '/favicon.ico'
+	},
 	openGraph: {
 		title: "Авто из Кореи | Купить авто с пробегом в Москве",
 		description: "Авто из Кореи под ключ: цены, характеристики, фото. Прямые поставки.",
