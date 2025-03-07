@@ -24,7 +24,7 @@ const HeaderInner: FC<HeaderProps> = () => {
 				<div className=" container">
 					<div className="row justify-content-between align-items-center flex-nowrap">
 						<div className="col-auto">
-							{pathname === "/cars" || pathname === "/filter" ? (
+							{pathname === "/filter" ? (
 								<Link
 									href='/'
 									className=' d-flex gap-2 align-items-center'
@@ -39,20 +39,21 @@ const HeaderInner: FC<HeaderProps> = () => {
 									<span>На главную</span>
 								</Link>
 							) : (
-								// <Link
-								// 	href='/cars'
-								// 	className=' d-flex gap-2 align-items-center'
-								// >
-								// 	<Image
-								// 		src={`/catalog.svg`}
-								// 		alt={`${seoAltImage} | catalog}`}
-								// 		width={20}
-								// 		height={20}
-								// 		priority
-								// 	/>
-								// 	<span>Каталог авто</span>
-								// </Link>
-								<Logo />
+								<Link
+									href=''
+									className=' d-flex gap-2 align-items-center'
+									onClick={() => router.back()}
+								>
+									<Image
+										src={`/back.svg`}
+										alt={`${seoAltImage} | back}`}
+										width={20}
+										height={20}
+										priority
+									/>
+									<span>Назад</span>
+								</Link>
+								// <Logo />
 							)}
 						</div>
 						<div className="col-auto d-none d-xl-block">
