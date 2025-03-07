@@ -5,6 +5,9 @@ import { Metadata } from 'next';
 import { DangerBtn } from '@/components/DangerBtn';
 import { keywords } from '@/lib/constants';
 import YandexMetrika from '@/components/YandexMetrika';
+import HeaderInner from '@/components/HeaderInner';
+import Footer from '@/components/Footer';
+import FavoriteLink from '@/components/FavoriteLink';
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
@@ -87,7 +90,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				</noscript>
 			</head>
 			<body className={inter.className}>
+				<HeaderInner />
 				{children}
+				<Footer />
+				<FavoriteLink />
 				<DangerBtn />
 			</body>
 		</html>

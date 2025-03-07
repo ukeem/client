@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import FavoriteLink from '@/components/FavoriteLink';
 import CarListMain from '@/components/CarListMain';
 import FilterProd from '@/components/FilterProd';
+import HeaderInner from '@/components/HeaderInner';
 
 export const revalidate = 3600
 
@@ -43,13 +44,10 @@ export default async function Home() {
 				}}
 			/>
 			<h1 className="main_title">{`Авто из Кореи | ${seoAltImage}`}</h1>
-			<Header />
 			<MainSlider allCars={initialCars} />
 			<FilterProd />
 			{/* <FilterBtn /> */}
 			{/* <CarListMain allCars={carListData} /> */}
-			<Footer />
-			<FavoriteLink />
 		</>
 	);
 }

@@ -10,8 +10,8 @@ export default async function FilterPage() {
 		<>
 			<h1 className='main_title'>{`Подбор авто по фильтру | ${seoAltImage}`}</h1>
 			<FilterProd />
-			<Footer />
-			<FavoriteLink />
+			{/* <Footer />
+			<FavoriteLink /> */}
 		</>
 	);
 }

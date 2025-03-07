@@ -96,7 +96,7 @@ export default async function CarPage(props: { params: Params }) {
 				}}
 			/>
 			<h1 className='main_title'>{`${car.brand.brand} ${car.model.model} ${car.edition.edition} | ${seoAltImage}`}</h1>
-			<HeaderInner />
+			{/* <HeaderInner /> */}
 			<section className='carInfo mb-4'>
 				<div className=" container">
 					<div className="row">
@@ -113,8 +113,8 @@ export default async function CarPage(props: { params: Params }) {
 					</div>
 				</div>
 			</section>
-			<Footer />
-			<FavoriteLink />
+			{/* <Footer />
+			<FavoriteLink /> */}
 		</>
 	);
 }

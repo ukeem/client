@@ -41,10 +41,10 @@ export default async function CarsPage() {
 	return (
 		<>
 			<h1 className="main_title">{`Каталог авто | ${seoAltImage}`}</h1>
-			<HeaderInner />
+			{/* <HeaderInner /> */}
 			<CarList allCars={carListData} offset={randomNumber} />
-			<Footer />
-			<FavoriteLink />
+			{/* <Footer />
+			<FavoriteLink /> */}
 		</>
 	);
 }

@@ -24,20 +24,8 @@ const HeaderInner: FC<HeaderProps> = () => {
 				<div className=" container">
 					<div className="row justify-content-between align-items-center flex-nowrap">
 						<div className="col-auto">
-							{pathname === "/filter" ? (
-								<Link
-									href='/'
-									className=' d-flex gap-2 align-items-center'
-								>
-									<Image
-										src={`/home.svg`}
-										alt={`${seoAltImage} | home}`}
-										width={20}
-										height={20}
-										priority
-									/>
-									<span>На главную</span>
-								</Link>
+							{pathname === "/" ? (
+								<Logo />
 							) : (
 								<Link
 									href=''
@@ -53,7 +41,6 @@ const HeaderInner: FC<HeaderProps> = () => {
 									/>
 									<span>Назад</span>
 								</Link>
-								// <Logo />
 							)}
 						</div>
 						<div className="col-auto d-none d-xl-block">
