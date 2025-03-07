@@ -330,6 +330,7 @@ a {
 }
 .filter_submit_btn.dark {
     background-color: var(--dark);
+    border-color: var(--dark);
 }
 .global_error_btn {
     border-radius: 6px;
@@ -558,7 +559,7 @@ a {
     border-radius: 6px;
     border: 1px solid var(--accent);
     background-color: #ffff8d;
-    max-width: 375px;
+    max-width: 500px;
 }
 
 .danger_btn span {
