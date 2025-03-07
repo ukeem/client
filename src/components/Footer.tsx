@@ -14,25 +14,25 @@ const Footer: FC<FooterProps> = () => {
 					<h2 className=' mb-5 text-center text-md-start  text-uppercase info_title'>НАШИ ПРЕИМУЩЕСТВА</h2>
 					<Row className=' mb-4'>
 						<div className=" col-12 col-md-6 col-lg-3 mb-4">
-							<div className="privilege_item_top d-flex align-items-center gap-3 gap-md-4 justify-content-between">
+							<div className="privilege_item_top d-flex align-items-center gap-3 gap-md-4">
 								<span className='privilege_item_top_count d-flex flex-shrink-0 justify-content-center align-items-center rounded-circle'>1</span>
 								<span className='privilege_item_top_text'>Тщательный осмотр кузова и салона</span>
 							</div>
 						</div>
 						<div className=" col-12 col-md-6 col-lg-3 mb-4">
-							<div className="privilege_item_top d-flex align-items-center gap-3 gap-md-4 justify-content-between">
+							<div className="privilege_item_top d-flex align-items-center gap-3 gap-md-4">
 								<span className='privilege_item_top_count d-flex flex-shrink-0 justify-content-center align-items-center rounded-circle'>2</span>
 								<span className='privilege_item_top_text'>Проверка лакокрасочного покрытия</span>
 							</div>
 						</div>
 						<div className=" col-12 col-md-6 col-lg-3 mb-4">
-							<div className="privilege_item_top d-flex align-items-center gap-3 gap-md-4 justify-content-between">
+							<div className="privilege_item_top d-flex align-items-center gap-3 gap-md-4">
 								<span className='privilege_item_top_count d-flex flex-shrink-0 justify-content-center align-items-center rounded-circle'>3</span>
 								<span className='privilege_item_top_text'>Полная техническая диагностика</span>
 							</div>
 						</div>
 						<div className=" col-12 col-md-6 col-lg-3 mb-4">
-							<div className="privilege_item_top d-flex align-items-center gap-3 gap-md-4 justify-content-between">
+							<div className="privilege_item_top d-flex align-items-center gap-3 gap-md-4">
 								<span className='privilege_item_top_count d-flex flex-shrink-0 justify-content-center align-items-center rounded-circle'>4</span>
 								<span className='privilege_item_top_text'>Компьютерная проверка на наличие ошибок</span>
 							</div>
