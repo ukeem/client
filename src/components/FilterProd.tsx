@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import FilterModal from './FilterModal';
 import { useFilterDataStore } from '@/store/useFilterDataStore';
-import { Brand, Car } from '@/types/Car';
+import { Car } from '@/types/Car';
 import FilterInput from './FilterInput';
 import { filterTitle, isEmptyObject, translateBody, translateColor, translateFuel, translateTransmission } from '@/lib/fn';
 import Btn from './Btn';
