@@ -23,7 +23,7 @@ const CarListFiltered = forwardRef<HTMLDivElement>((props, ref) => {
 
 	useEffect(() => {
 		const sortedCars = [...carsData].sort((a, b) => a.price - b.price);
-		const newVisibleCars = sortedCars.slice(0, visibleOffset + 9);
+		const newVisibleCars = sortedCars.slice(0, visibleOffset + 12);
 		setVisibleCars(newVisibleCars);
 
 		// Если доступных машин меньше, чем мы ожидаем, скрываем кнопку "Показать ещё"
@@ -31,7 +31,7 @@ const CarListFiltered = forwardRef<HTMLDivElement>((props, ref) => {
 	}, [carsData, visibleOffset]);
 
 	const handleShowMore = () => {
-		setVisibleOffset((prev) => prev + 9);
+		setVisibleOffset((prev) => prev + 12);
 	};
 
 

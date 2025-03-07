@@ -326,6 +326,10 @@ a {
     background-color: var(--accent);
     width: 100%;
     border: 1px solid var(--accent);
+    transition: all 0.3s ease;
+}
+.filter_submit_btn.dark {
+    background-color: var(--dark);
 }
 .global_error_btn {
     border-radius: 6px;

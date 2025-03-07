@@ -869,14 +869,14 @@ const FilterProd = () => {
 						<div className="col-12 col-md-4 mx-auto">
 							<Btn
 								onClick={handleSubmit}
-								clazz='filter_submit_btn'
+								clazz={`filter_submit_btn ${filterData.brandIds?.length ? 'dark' : ''}`}
 								icon='look'
 								type='submit'
 								disabled={loader}
 							>
 								{loader ?
 									'Загружаю...' : filterData.brandIds?.length ?
-										`Показать (${count})`
+										`Найдено (${count})`
 										: 'Подбор по фильтру'
 								}
 							</Btn>
