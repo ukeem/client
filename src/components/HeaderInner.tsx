@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { seoAltImage } from '@/lib/constants';
+import Logo from './Logo';
 
 interface HeaderProps { }
 
@@ -38,19 +39,20 @@ const HeaderInner: FC<HeaderProps> = () => {
 									<span>На главную</span>
 								</Link>
 							) : (
-								<Link
-									href='/cars'
-									className=' d-flex gap-2 align-items-center'
-								>
-									<Image
-										src={`/catalog.svg`}
-										alt={`${seoAltImage} | catalog}`}
-										width={20}
-										height={20}
-										priority
-									/>
-									<span>Каталог авто</span>
-								</Link>
+								// <Link
+								// 	href='/cars'
+								// 	className=' d-flex gap-2 align-items-center'
+								// >
+								// 	<Image
+								// 		src={`/catalog.svg`}
+								// 		alt={`${seoAltImage} | catalog}`}
+								// 		width={20}
+								// 		height={20}
+								// 		priority
+								// 	/>
+								// 	<span>Каталог авто</span>
+								// </Link>
+								<Logo />
 							)}
 						</div>
 						<div className="col-auto d-none d-xl-block">
