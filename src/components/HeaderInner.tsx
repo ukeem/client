@@ -59,19 +59,20 @@ const HeaderInner: FC<HeaderProps> = () => {
 						<div className="col-auto">
 							<div className=" d-flex align-items-center gap-2">
 								{pathname === "/filter" ? (
-									<Link
-										href='/cars'
-										className=' d-flex gap-2 align-items-center'
-									>
-										<span>Каталог авто</span>
-										<Image
-											src={`/catalog.svg`}
-											alt={`${seoAltImage} | catalog}`}
-											width={20}
-											height={20}
-											priority
-										/>
-									</Link>
+									// <Link
+									// 	href='/cars'
+									// 	className=' d-flex gap-2 align-items-center'
+									// >
+									// 	<span>Каталог авто</span>
+									// 	<Image
+									// 		src={`/catalog.svg`}
+									// 		alt={`${seoAltImage} | catalog}`}
+									// 		width={20}
+									// 		height={20}
+									// 		priority
+									// 	/>
+									// </Link>
+									<></>
 								) : (
 									<Link
 										href='/filter'

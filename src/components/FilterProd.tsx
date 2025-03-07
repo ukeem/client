@@ -530,16 +530,16 @@ const FilterProd = () => {
 		setCarsData(data)
 	}
 
-	useEffect(() => {
-		if (pathname !== "/") return; // Добавляем фикс только на главной
+	// useEffect(() => {
+	// 	if (pathname !== "/") return; // Добавляем фикс только на главной
 
-		const handleScroll = () => {
-			setIsFixed(window.scrollY > 930);
-		};
+	// 	const handleScroll = () => {
+	// 		setIsFixed(window.scrollY > 930);
+	// 	};
 
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, [pathname]);
+	// 	window.addEventListener("scroll", handleScroll);
+	// 	return () => window.removeEventListener("scroll", handleScroll);
+	// }, [pathname]);
 
 	useEffect(() => {
 

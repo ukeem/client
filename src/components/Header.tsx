@@ -20,7 +20,7 @@ const Header: FC<HeaderProps> = () => {
 						</div>
 						<div className="col-auto">
 							<div className=" d-flex align-items-center gap-3">
-								<Link
+								{/* <Link
 									href='/cars'
 									className=' d-flex gap-2 align-items-center'
 								>
@@ -28,6 +28,20 @@ const Header: FC<HeaderProps> = () => {
 									<Image
 										src={`/catalog.svg`}
 										alt={`${seoAltImage} | catalog}`}
+										width={20}
+										height={20}
+										priority
+									/>
+								</Link> */}
+
+								<Link
+									href='/filter'
+									className=' d-flex gap-2 align-items-center'
+								>
+									<span>Поиск</span>
+									<Image
+										src={`/search.svg`}
+										alt={`${seoAltImage} | search}`}
 										width={20}
 										height={20}
 										priority

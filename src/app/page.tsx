@@ -15,10 +15,12 @@ export default async function Home() {
 
 	const randomNumber = Math.floor(Math.random() * 5001);
 
-	const [carListData, initialCars] = await Promise.all([
-		getCars(9, 0, 'price', 'DESC'),
-		getCars(9, randomNumber),
-	]);
+	// const [carListData, initialCars] = await Promise.all([
+	// 	getCars(9, 0, 'price', 'DESC'),
+	// 	getCars(9, randomNumber),
+	// ]);
+
+	const initialCars = await getCars(9, randomNumber)
 
 	return (
 		<>
@@ -31,10 +33,10 @@ export default async function Home() {
 						"@type": "WebPage",
 						name: "Авто из Кореи",
 						description: "Продажа авто из Кореи. Доставка, подбор, гарантия.",
-						url: "https://example.com/",
+						url: "https://autokorean.ru/",
 						potentialAction: {
 							"@type": "SearchAction",
-							target: "https://example.com/cars?search={query}",
+							target: "https://autokorean.ru/",
 							"query-input": "required name=query",
 						},
 					}),
@@ -45,7 +47,7 @@ export default async function Home() {
 			<MainSlider allCars={initialCars} />
 			<FilterProd />
 			{/* <FilterBtn /> */}
-			<CarListMain allCars={carListData} />
+			{/* <CarListMain allCars={carListData} /> */}
 			<Footer />
 			<FavoriteLink />
 		</>
