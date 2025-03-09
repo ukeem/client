@@ -8,6 +8,7 @@ import YandexMetrika from '@/components/YandexMetrika';
 import HeaderInner from '@/components/HeaderInner';
 import Footer from '@/components/Footer';
 import FavoriteLink from '@/components/FavoriteLink';
+import Script from 'next/script';
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
