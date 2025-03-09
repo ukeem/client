@@ -1,3 +1,4 @@
+'use client'
 import { useVarioqub } from '@/hooks/useVarioqub';
 import { seoAltImage } from '@/lib/constants';
 import Image from 'next/image';
