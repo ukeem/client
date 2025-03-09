@@ -1,5 +1,4 @@
 'use client'
-import { useVarioqub } from '@/hooks/useVarioqub';
 import { seoAltImage } from '@/lib/constants';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,8 +8,6 @@ import { Container, Row } from 'react-bootstrap';
 interface FooterProps { }
 
 const Footer: FC<FooterProps> = () => {
-
-	useVarioqub();
 
 	return (
 		<>
