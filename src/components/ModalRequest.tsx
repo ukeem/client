@@ -133,7 +133,7 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 					quality={50}
 					priority
 				/>
-				<form
+				{/* <form
 					className='requestForm mb-5'
 					onSubmit={handleSubmit}
 				>
@@ -169,7 +169,7 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 					>
 						{loading ? "Отправка..." : success ? "Отправлено" : 'Получить детальный расчет'}
 					</Btn>
-				</form>
+				</form> */}
 
 				<h2 className=' lh-base fs-5 mb-3 text-center'>Задать вопрос</h2>
 				<Btn
