@@ -171,7 +171,7 @@ export const ModalRequest = ({ requestShow, handleCloseRequest, car }: ModalRequ
 					</Btn>
 				</form> */}
 
-				<h2 className=' lh-base fs-5 mb-3 text-center'>Задать вопрос</h2>
+				<h2 className=' lh-base fs-5 mb-3 text-center'>Получить детальный расчет</h2>
 				<Btn
 					type='submit'
 					clazz='show_more_btn mb-3 w-100 fs-6'
